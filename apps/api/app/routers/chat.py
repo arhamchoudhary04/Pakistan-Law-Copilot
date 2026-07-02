@@ -1,10 +1,11 @@
 """``POST /chat`` — streams a grounded answer over Server-Sent Events.
 
-Event contract (see project spec §11):
-    event: token     data: {"text": "..."}
-    event: citation  data: {"marker": 1, "chunk_id": "...", "source": "...", "section": "..."}
-    event: sources   data: {"retrieved": [{"chunk_id": "...", "score": 0.82, "used": true}, ...]}
-    event: done      data: {"message_id": "...", "answer_status": "grounded|idk|partial"}
+Event contract (spec §11, extended with ``stage`` for the Retrieval Inspector):
+    stage    -> pipeline node result: {stage, detail, latency_ms}
+    token    -> {text}
+    citation -> {marker, chunk_id, source, section}
+    sources  -> {retrieved: [{chunk_id, score, rerank_score, used}, ...]}
+    done     -> {message_id, answer_status: grounded|idk|partial, attempts}
 """
 
 from __future__ import annotations

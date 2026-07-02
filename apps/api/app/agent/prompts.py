@@ -31,15 +31,41 @@ def build_context_block(retrieved: list[RetrievedChunk]) -> str:
     return "\n\n".join(blocks)
 
 
-def build_messages(question: str, retrieved: list[RetrievedChunk]) -> list[dict[str, str]]:
-    """Build the chat messages for a grounded answer."""
+def build_messages(
+    question: str, retrieved: list[RetrievedChunk], feedback: str = ""
+) -> list[dict[str, str]]:
+    """Build the chat messages for a grounded answer.
+
+    ``feedback`` carries the self-verification note from a previous attempt so the
+    model can correct unsupported claims on the retry.
+    """
     context = build_context_block(retrieved)
+    hint = f"\n\nNote from a previous attempt: {feedback}" if feedback else ""
     user_content = (
         f"Context:\n{context}\n\n"
-        f"Question: {question}\n\n"
+        f"Question: {question}{hint}\n\n"
         "Answer using only the context above, with [n] citations."
     )
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_content},
+    ]
+
+
+REWRITE_SYSTEM = """You rewrite a user's question into concise search queries for a \
+document retrieval system. Output 1-3 short queries, one per line, no numbering or \
+extra text. Expand abbreviations and add likely synonyms; do not answer the question."""
+
+
+def build_rewrite_messages(question: str, feedback: str = "") -> list[dict[str, str]]:
+    """Build messages that ask the LLM to produce retrieval queries."""
+    hint = (
+        f"\n\nThe previous attempt retrieved weak context ({feedback}). "
+        "Try broader or differently-worded queries."
+        if feedback
+        else ""
+    )
+    return [
+        {"role": "system", "content": REWRITE_SYSTEM},
+        {"role": "user", "content": f"Question: {question}{hint}"},
     ]
