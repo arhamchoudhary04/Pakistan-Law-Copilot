@@ -64,7 +64,8 @@ class Settings(BaseSettings):
     # ---- API ----
     api_host: str = "0.0.0.0"
     api_port: int = 8000
-    cors_origins: str = "http://localhost:3000"
+    # Allow 3000 and 3001 by default — Next.js falls back to 3001 when 3000 is taken.
+    cors_origins: str = "http://localhost:3000,http://localhost:3001"
 
     # ---- Web ----
     next_public_api_url: str = "http://localhost:8000"
