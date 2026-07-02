@@ -26,10 +26,15 @@ class Chunk(BaseModel):
 
 
 class RetrievedChunk(BaseModel):
-    """A chunk returned by retrieval, with its relevance score and usage flag."""
+    """A chunk returned by retrieval, with its relevance score and usage flag.
+
+    ``score`` is the vector cosine similarity (0..1, used by the relevance gate).
+    ``rerank_score`` is the cross-encoder logit assigned during reranking, if any.
+    """
 
     chunk: Chunk
     score: float
+    rerank_score: float | None = None
     used: bool = False
 
 
@@ -49,6 +54,14 @@ class ChatRequest(BaseModel):
 # ---- SSE event payloads ----
 
 
+class StageEvent(BaseModel):
+    """One pipeline stage's result — powers the Retrieval Inspector."""
+
+    stage: str
+    detail: str = ""
+    latency_ms: float = 0.0
+
+
 class TokenEvent(BaseModel):
     text: str
 
@@ -63,6 +76,7 @@ class CitationEvent(BaseModel):
 class SourceItem(BaseModel):
     chunk_id: str
     score: float
+    rerank_score: float | None = None
     used: bool
     section: str = ""
     source: str = ""
@@ -75,3 +89,4 @@ class SourcesEvent(BaseModel):
 class DoneEvent(BaseModel):
     message_id: str
     answer_status: AnswerStatus
+    attempts: int = 1

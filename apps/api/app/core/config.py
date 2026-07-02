@@ -48,6 +48,19 @@ class Settings(BaseSettings):
     chunk_tokens: int = 600
     chunk_overlap: int = 80
 
+    # ---- Reranking (cross-encoder, local via fastembed) ----
+    rerank_enabled: bool = True
+    rerank_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
+    # Candidates pulled from the vector store (per query) before reranking down to top_k.
+    rerank_candidates: int = 12
+
+    # ---- Agent (LangGraph) ----
+    # Rewrite the query for retrieval and self-verify the answer; loop back on
+    # unsupported claims up to `max_attempts` times, then finalize.
+    rewrite_enabled: bool = True
+    verify_enabled: bool = True
+    max_attempts: int = 2
+
     # ---- API ----
     api_host: str = "0.0.0.0"
     api_port: int = 8000
