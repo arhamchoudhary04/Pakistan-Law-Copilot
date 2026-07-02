@@ -30,6 +30,7 @@ import argparse
 import asyncio
 import json
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
 # Make the `app` package importable (it lives under apps/api).
@@ -39,7 +40,8 @@ sys.path.insert(0, str(REPO_ROOT / "apps" / "api"))
 from app.agent.pipeline import run_chat  # noqa: E402
 from app.core.config import get_settings  # noqa: E402
 from app.core.embeddings import get_embedder  # noqa: E402
-from app.models.schemas import DoneEvent, TokenEvent  # noqa: E402
+from app.models.schemas import DoneEvent, RetrievedChunk, TokenEvent  # noqa: E402
+from app.retrieval.reranker import get_reranker  # noqa: E402
 from app.retrieval.vector_store import VectorStore  # noqa: E402
 
 GOLDEN_SET = Path(__file__).resolve().parent / "golden_set.jsonl"
@@ -100,6 +102,49 @@ def retrieval_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
     }
 
 
+def _hit_and_precision(
+    rows: list[dict], retrieve: Callable[[str], list[RetrievedChunk]]
+) -> tuple[float, float]:
+    """Hit rate @k and context precision @k for a retrieval function."""
+    answerable = [r for r in rows if r["answerable"] and r["expected_source_ids"]]
+    hits = 0
+    precision_sum = 0.0
+    precision_n = 0
+    for r in answerable:
+        docs = [x.chunk.doc_id for x in retrieve(r["question"])]
+        expected = set(r["expected_source_ids"])
+        if expected & set(docs):
+            hits += 1
+        if docs:
+            precision_sum += sum(1 for d in docs if d in expected) / len(docs)
+            precision_n += 1
+    hit_rate = hits / len(answerable) if answerable else 0.0
+    precision = precision_sum / precision_n if precision_n else 0.0
+    return hit_rate, precision
+
+
+def ablation(rows: list[dict], store: VectorStore) -> None:
+    """Compare vector-only retrieval vs vector + cross-encoder rerank."""
+    settings = get_settings()
+    embedder = get_embedder()
+    reranker = get_reranker()
+
+    def vector_only(q: str) -> list[RetrievedChunk]:
+        return store.search(embedder.embed_one(q), settings.top_k)
+
+    def vector_plus_rerank(q: str) -> list[RetrievedChunk]:
+        candidates = store.search(embedder.embed_one(q), settings.rerank_candidates)
+        return reranker.rerank(q, candidates, settings.top_k)
+
+    v_hit, v_prec = _hit_and_precision(rows, vector_only)
+    r_hit, r_prec = _hit_and_precision(rows, vector_plus_rerank)
+
+    print("\n=== Retrieval ablation (answerable questions) ===")
+    print(f"  {'config':<22}{'hit_rate@k':>12}{'context_prec@k':>18}")
+    print(f"  {'vector-only':<22}{v_hit:>12.3f}{v_prec:>18.3f}")
+    print(f"  {'vector + rerank':<22}{r_hit:>12.3f}{r_prec:>18.3f}")
+
+
 async def _collect_answer(question: str, store: VectorStore) -> tuple[str, str]:
     """Run the full pipeline and return (answer_text, answer_status)."""
     parts: list[str] = []
@@ -158,6 +203,11 @@ def main() -> None:
         action="store_true",
         help="Also run generation metrics (requires GROQ_API_KEY).",
     )
+    parser.add_argument(
+        "--ablation",
+        action="store_true",
+        help="Compare vector-only vs vector+rerank retrieval.",
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -170,6 +220,9 @@ def main() -> None:
     print(f"Loaded {len(rows)} golden Q/A pairs; index has {len(store)} chunks.")
 
     print_table("Retrieval + refusal metrics", retrieval_metrics(rows, store))
+
+    if args.ablation:
+        ablation(rows, store)
 
     if args.generate:
         if not settings.groq_api_key:
