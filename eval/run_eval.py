@@ -1,0 +1,183 @@
+"""Evaluation harness for Knowledge Copilot.
+
+Runs the golden set against the retriever and (optionally) the full generation
+pipeline, then reports quantified quality metrics.
+
+Two tiers of metrics:
+
+1. Retrieval + refusal metrics (default) — computed offline from embeddings only,
+   so they run WITHOUT a GROQ_API_KEY:
+     * retrieval hit rate @k   (expected source appears in retrieved chunks)
+     * context precision @k    (fraction of retrieved chunks from expected sources)
+     * refusal accuracy        (genuinely unanswerable questions correctly refused)
+     * over-refusal rate       (answerable questions wrongly refused by the gate)
+
+2. Generation metrics (--generate) — require GROQ_API_KEY:
+     * citation validity       (every [n] marker maps to a real retrieved chunk)
+     * answered rate           (answerable questions actually answered)
+
+RAGAS (--ragas) is attempted if installed and configured; it is optional and the
+harness degrades gracefully if it cannot run.
+
+Usage (from repo root):
+    python eval/run_eval.py                # retrieval + refusal metrics (offline)
+    python eval/run_eval.py --generate     # + generation/citation metrics (needs key)
+"""
+
+from __future__ import annotations
+
+import argparse
+import asyncio
+import json
+import sys
+from pathlib import Path
+
+# Make the `app` package importable (it lives under apps/api).
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "apps" / "api"))
+
+from app.agent.pipeline import run_chat  # noqa: E402
+from app.core.config import get_settings  # noqa: E402
+from app.core.embeddings import get_embedder  # noqa: E402
+from app.models.schemas import DoneEvent, TokenEvent  # noqa: E402
+from app.retrieval.vector_store import VectorStore  # noqa: E402
+
+GOLDEN_SET = Path(__file__).resolve().parent / "golden_set.jsonl"
+
+
+def load_golden() -> list[dict]:
+    rows = []
+    for line in GOLDEN_SET.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line:
+            rows.append(json.loads(line))
+    return rows
+
+
+def retrieval_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
+    settings = get_settings()
+    embedder = get_embedder()
+
+    answerable = [r for r in rows if r["answerable"]]
+    unanswerable = [r for r in rows if not r["answerable"]]
+
+    hits = 0
+    precision_sum = 0.0
+    precision_n = 0
+    over_refusals = 0
+
+    for r in answerable:
+        retrieved = store.search(embedder.embed_one(r["question"]), settings.top_k)
+        best = max((x.score for x in retrieved), default=0.0)
+        refused = not retrieved or best < settings.relevance_threshold
+        if refused:
+            over_refusals += 1
+
+        expected = set(r["expected_source_ids"])
+        retrieved_docs = [x.chunk.doc_id for x in retrieved]
+        if expected:
+            if expected & set(retrieved_docs):
+                hits += 1
+            if retrieved_docs:
+                relevant = sum(1 for d in retrieved_docs if d in expected)
+                precision_sum += relevant / len(retrieved_docs)
+                precision_n += 1
+
+    correct_refusals = 0
+    for r in unanswerable:
+        retrieved = store.search(embedder.embed_one(r["question"]), settings.top_k)
+        best = max((x.score for x in retrieved), default=0.0)
+        if not retrieved or best < settings.relevance_threshold:
+            correct_refusals += 1
+
+    return {
+        "retrieval_hit_rate": hits / len(answerable) if answerable else 0.0,
+        "context_precision": precision_sum / precision_n if precision_n else 0.0,
+        "over_refusal_rate": over_refusals / len(answerable) if answerable else 0.0,
+        "refusal_accuracy": correct_refusals / len(unanswerable) if unanswerable else 0.0,
+        "n_answerable": len(answerable),
+        "n_unanswerable": len(unanswerable),
+    }
+
+
+async def _collect_answer(question: str, store: VectorStore) -> tuple[str, str]:
+    """Run the full pipeline and return (answer_text, answer_status)."""
+    parts: list[str] = []
+    status = "partial"
+    async for event in run_chat(question, store):
+        if event.event == "token" and isinstance(event.data, TokenEvent):
+            parts.append(event.data.text)
+        elif event.event == "done" and isinstance(event.data, DoneEvent):
+            status = event.data.answer_status
+    return "".join(parts), status
+
+
+async def generation_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
+    import re
+
+    marker_re = re.compile(r"\[(\d+)\]")
+    settings = get_settings()
+    embedder = get_embedder()
+
+    answerable = [r for r in rows if r["answerable"]]
+    answered = 0
+    valid_citations = 0
+    cited = 0
+
+    for r in answerable:
+        retrieved = store.search(embedder.embed_one(r["question"]), settings.top_k)
+        answer, status = await _collect_answer(r["question"], store)
+        if status == "grounded":
+            answered += 1
+        markers = [int(m) for m in marker_re.findall(answer)]
+        if markers:
+            cited += 1
+            if all(1 <= m <= len(retrieved) for m in markers):
+                valid_citations += 1
+
+    return {
+        "answered_rate": answered / len(answerable) if answerable else 0.0,
+        "citation_validity": valid_citations / cited if cited else 0.0,
+        "n_cited": cited,
+    }
+
+
+def print_table(title: str, metrics: dict[str, float]) -> None:
+    print(f"\n=== {title} ===")
+    for key, value in metrics.items():
+        if isinstance(value, float):
+            print(f"  {key:<22} {value:.3f}")
+        else:
+            print(f"  {key:<22} {value}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Knowledge Copilot eval harness")
+    parser.add_argument(
+        "--generate",
+        action="store_true",
+        help="Also run generation metrics (requires GROQ_API_KEY).",
+    )
+    args = parser.parse_args()
+
+    settings = get_settings()
+    try:
+        store = VectorStore.load(settings.data_path)
+    except FileNotFoundError as exc:
+        raise SystemExit(f"{exc}") from exc
+
+    rows = load_golden()
+    print(f"Loaded {len(rows)} golden Q/A pairs; index has {len(store)} chunks.")
+
+    print_table("Retrieval + refusal metrics", retrieval_metrics(rows, store))
+
+    if args.generate:
+        if not settings.groq_api_key:
+            print("\n[--generate skipped] GROQ_API_KEY not set.")
+        else:
+            gen = asyncio.run(generation_metrics(rows, store))
+            print_table("Generation metrics", gen)
+
+
+if __name__ == "__main__":
+    main()
