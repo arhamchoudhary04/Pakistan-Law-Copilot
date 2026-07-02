@@ -26,8 +26,10 @@ Deliberately lean, free, and local-first:
 | Chunking | Structure-aware (markdown headers) + token-budget splitter |
 | Eval | Golden set + custom retrieval/refusal metrics + ablation |
 
-Qdrant, Neo4j graph retrieval, Postgres/Redis, document upload, auth, and the
-Next.js web UI are **intentionally deferred** to later phases.
+| Web UI | Next.js (App Router) + TypeScript + Tailwind, custom SSE-over-fetch client |
+
+Qdrant, Neo4j graph retrieval, Postgres/Redis, document upload, and auth are
+**intentionally deferred** to later phases.
 
 ## Architecture (agent flow)
 
@@ -114,6 +116,22 @@ curl -N -X POST http://localhost:8000/chat \
 
 Nothing clears the relevance threshold, so it returns `answer_status: idk` with no
 fabricated citations.
+
+## Web UI
+
+A Next.js chat UI (`apps/web`) consumes the SSE stream: streaming answer, inline
+clickable citation chips → source drawer, a collapsible **Retrieval Inspector**
+(per-stage latency + ranked chunks with cosine/rerank scores), and a trust-state
+badge (grounded / I-don't-know / partial).
+
+```bash
+cd apps/web
+npm install
+npm run dev        # http://localhost:3000  (expects the API on :8000)
+```
+
+Set `NEXT_PUBLIC_API_URL` if the API is not at `http://localhost:8000`. The API's
+`CORS_ORIGINS` already allows `http://localhost:3000`.
 
 ## SSE event contract
 
