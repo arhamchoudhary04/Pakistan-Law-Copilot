@@ -49,6 +49,8 @@ _PART_RE = re.compile(r"^(PART\b.*|CHAPTER\b.*)$")
 _MIN_BODY_CHARS = 180
 # A line is only a real heading if it splits into a short title via ".—".
 _MAX_TITLE_CHARS = 90
+# Reject absurd provision numbers (footnote/date artifacts, e.g. "40164.").
+_MAX_PROVISION_NUM = 500
 
 
 @dataclass
@@ -72,6 +74,27 @@ SOURCES: list[Source] = [
         title="The Prevention of Electronic Crimes Act, 2016 (PECA)",
         unit="Section",
         source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="punjab-rented-premises-2009.pdf",
+        out="punjab-rented-premises-act-2009.md",
+        title="The Punjab Rented Premises Act, 2009",
+        unit="Section",
+        source_url="https://punjabcode.punjab.gov.pk/",
+    ),
+    Source(
+        pdf="punjab-consumer-protection-2005.pdf",
+        out="punjab-consumer-protection-act-2005.md",
+        title="The Punjab Consumer Protection Act, 2005",
+        unit="Section",
+        source_url="https://punjablaws.punjab.gov.pk/",
+    ),
+    Source(
+        pdf="standing-orders-1968.pdf",
+        out="standing-orders-ordinance-1968.md",
+        title="The Industrial and Commercial Employment (Standing Orders) Ordinance, 1968",
+        unit="Section",
+        source_url="https://punjabcode.punjab.gov.pk/",
     ),
 ]
 
@@ -147,6 +170,8 @@ def _split_provisions(text: str) -> list[Provision]:
             context = part.group(1).strip()
             continue
         heading = _HEADING_RE.match(stripped)
+        if heading and int(re.match(r"\d+", heading.group(1)).group()) > _MAX_PROVISION_NUM:
+            heading = None  # footnote/date artifact, not a real provision number
         parsed = _parse_heading(heading.group(2)) if heading else None
         if heading and parsed:
             title, inline = parsed

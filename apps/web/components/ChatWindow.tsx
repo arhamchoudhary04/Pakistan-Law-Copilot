@@ -10,7 +10,8 @@ import type { AssistantMessage, ChatTurn, SourceItem } from "@/lib/types";
 
 const EXAMPLES = [
   "What are my rights if I am arrested by the police?",
-  "Do I have a right to a fair trial?",
+  "On what grounds can a landlord evict a tenant?",
+  "What are my rights if I bought a defective product?",
   "Kya mujhe taleem ka haq hasil hai?", // Roman Urdu: do I have the right to education?
   "What is the capital of France?", // triggers the honest refusal
 ];
