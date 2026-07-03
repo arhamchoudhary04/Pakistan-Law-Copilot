@@ -8,9 +8,9 @@ import { streamChat } from "@/lib/sse";
 import type { AssistantMessage, ChatTurn, SourceItem } from "@/lib/types";
 
 const EXAMPLES = [
-  "How do I declare the type of a path parameter in FastAPI?",
-  "How do you return a 404 error?",
-  "What is the restriction on allow_origins when allow_credentials is True?",
+  "What are my rights if I am arrested by the police?",
+  "Do I have a right to a fair trial?",
+  "Someone shared my private photos online without consent — what does the law say?",
   "What is the capital of France?", // triggers the honest refusal
 ];
 
@@ -150,10 +150,11 @@ export function ChatWindow() {
 function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   return (
     <div className="mx-auto max-w-3xl pt-10 text-center">
-      <h2 className="text-lg font-semibold text-slate-200">Ask the corpus</h2>
+      <h2 className="text-lg font-semibold text-slate-200">Ask about your rights</h2>
       <p className="mt-1 text-sm text-slate-500">
-        Answers are grounded in the indexed FastAPI docs, cited, and refused when the
-        evidence is weak. Try one:
+        Answers are grounded in Pakistani law (Constitution — Fundamental Rights, and
+        PECA 2016), cited to the exact provision, and refused when the law doesn&apos;t
+        cover it. Try one:
       </p>
       <div className="mt-5 grid gap-2 sm:grid-cols-2">
         {EXAMPLES.map((q) => (

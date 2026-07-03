@@ -5,11 +5,16 @@ export default function Home() {
     <main className="mx-auto flex h-screen max-w-4xl flex-col">
       <header className="border-b border-slate-800 px-4 py-3">
         <h1 className="text-base font-semibold text-slate-100">
-          Knowledge Copilot
+          Pakistan Law Copilot
           <span className="ml-2 text-xs font-normal text-slate-500">
             grounded · cited · refuses when unsure
           </span>
         </h1>
+        <p className="mt-1 text-xs text-idk">
+          ⚖️ Legal information, not legal advice. Answers come only from the indexed
+          Constitution (Fundamental Rights) &amp; PECA 2016 — verify against the cited
+          source and consult a qualified lawyer for your situation.
+        </p>
       </header>
       <div className="min-h-0 flex-1">
         <ChatWindow />
