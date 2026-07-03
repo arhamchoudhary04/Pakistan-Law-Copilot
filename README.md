@@ -154,6 +154,22 @@ npm run dev        # http://localhost:3000  (expects the API on :8000)
 Set `NEXT_PUBLIC_API_URL` if the API is not at `http://localhost:8000`. The API's
 `CORS_ORIGINS` allows `http://localhost:3000` and `:3001` (Next's fallback port).
 
+## Languages — English, Urdu & Roman Urdu
+
+Ask in **English, Urdu (Urdu script), or Roman Urdu** (Urdu in Latin letters). The
+corpus stays in the authoritative English legal text; language is handled at the two
+ends:
+
+- The agent's `rewrite` node **translates the question to English** for retrieval
+  (and, importantly, reranking runs against that English query — an English-only
+  cross-encoder scoring a Urdu question would otherwise demote the correct article).
+- The `generate` node **replies in the user's language and script**, while keeping
+  provision names and citations in English (e.g. answers in Urdu still cite
+  "Article 25A"). The UI renders Urdu-script messages right-to-left.
+
+Translation reuses the existing Groq call, so it adds no extra API cost. Requires
+the `GROQ_API_KEY` (non-English retrieval depends on the translation step).
+
 ## SSE event contract
 
 ```

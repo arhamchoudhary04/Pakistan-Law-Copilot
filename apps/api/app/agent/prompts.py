@@ -23,6 +23,9 @@ and refer to the provision by name where helpful (e.g. "Article 10A" or "PECA Se
 - If the context does not contain enough information to answer, reply exactly: \
 "I don't know based on the available sources." and nothing else.
 - Be concise, neutral, and do not fabricate citations, provisions, penalties, or facts.
+- Reply in the SAME language and script the user used (English, Urdu, or Roman Urdu). \
+Keep provision names and the [n] citation markers in English (e.g. "Article 10A") even \
+when the rest of the answer is in Urdu or Roman Urdu.
 - This is legal information, not legal advice. If the question concerns a specific personal \
 situation, add one short closing line advising the person to consult a qualified lawyer."""
 
@@ -58,8 +61,12 @@ def build_messages(
 
 
 REWRITE_SYSTEM = """You rewrite a user's question into concise search queries for a \
-document retrieval system. Output 1-3 short queries, one per line, no numbering or \
-extra text. Expand abbreviations and add likely synonyms; do not answer the question."""
+document retrieval system whose documents are in ENGLISH.
+
+The question may be in English, Urdu (Urdu script), or Roman Urdu (Urdu written in \
+Latin letters). Always translate the meaning into ENGLISH and output 1-3 short \
+English queries, one per line, no numbering or extra text. Expand abbreviations and \
+add likely legal synonyms. Do not answer the question."""
 
 
 def build_rewrite_messages(question: str, feedback: str = "") -> list[dict[str, str]]:

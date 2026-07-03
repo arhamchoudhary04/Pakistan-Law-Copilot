@@ -2,6 +2,7 @@
 
 import { CitationChip } from "./CitationChip";
 import { StatusBadge } from "./StatusBadge";
+import { dirOf } from "@/lib/text";
 import type { AssistantMessage, SourceItem } from "@/lib/types";
 
 const MARKER_RE = /(\[\d+\])/g;
@@ -31,7 +32,10 @@ export function MessageBubble({
 
   return (
     <div className="rounded-2xl rounded-tl-sm bg-slate-900 p-4 ring-1 ring-slate-800">
-      <div className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-slate-100">
+      <div
+        dir={dirOf(message.text)}
+        className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-slate-100"
+      >
         {parts.map((part, i) => {
           const m = /^\[(\d+)\]$/.exec(part);
           if (m) {

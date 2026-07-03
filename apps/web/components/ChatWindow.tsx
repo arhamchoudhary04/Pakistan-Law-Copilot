@@ -5,12 +5,13 @@ import { MessageBubble } from "./MessageBubble";
 import { RetrievalInspector } from "./RetrievalInspector";
 import { SourceDrawer } from "./SourceDrawer";
 import { streamChat } from "@/lib/sse";
+import { dirOf } from "@/lib/text";
 import type { AssistantMessage, ChatTurn, SourceItem } from "@/lib/types";
 
 const EXAMPLES = [
   "What are my rights if I am arrested by the police?",
   "Do I have a right to a fair trial?",
-  "Someone shared my private photos online without consent — what does the law say?",
+  "Kya mujhe taleem ka haq hasil hai?", // Roman Urdu: do I have the right to education?
   "What is the capital of France?", // triggers the honest refusal
 ];
 
@@ -106,7 +107,10 @@ export function ChatWindow() {
           turns.map((turn, i) => (
             <div key={i} className="space-y-2">
               <div className="flex justify-end">
-                <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-sky-600 px-4 py-2.5 text-[15px] text-white">
+                <div
+                  dir={dirOf(turn.question)}
+                  className="max-w-[85%] rounded-2xl rounded-tr-sm bg-sky-600 px-4 py-2.5 text-[15px] text-white"
+                >
                   {turn.question}
                 </div>
               </div>
@@ -128,7 +132,8 @@ export function ChatWindow() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about the FastAPI docs corpus…"
+            dir="auto"
+            placeholder="Ask about your rights (English, Urdu, or Roman Urdu)…"
             disabled={busy}
             className="flex-1 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-[15px] text-slate-100 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none disabled:opacity-60"
           />
