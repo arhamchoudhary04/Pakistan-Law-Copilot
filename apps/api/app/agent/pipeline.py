@@ -81,27 +81,39 @@ def _initial_state(question: str) -> AgentState:
 
 
 async def run_chat(question: str, store: VectorStore) -> AsyncIterator[Event]:
-    """Run the agent for one question, yielding SSE events."""
+    """Run the agent for one question, yielding SSE events.
+
+    We stream the graph with ``astream`` so each node's ``stage`` event is emitted
+    the moment that node finishes — giving the client live progress during the
+    (multi-second) rewrite/retrieve/rerank/generate run, instead of a silent wait.
+    The answer itself is still emitted only after the full verified run completes.
+    """
     message_id = str(uuid.uuid4())
     graph = get_graph()
 
-    state: AgentState = await graph.ainvoke(
-        _initial_state(question), config={"configurable": {"store": store}}
-    )
+    # 1. Inspector trace — emit each stage event live as its node completes.
+    final: AgentState = {}
+    emitted = 0
+    async for state in graph.astream(
+        _initial_state(question),
+        config={"configurable": {"store": store}},
+        stream_mode="values",
+    ):
+        final = state
+        trace = state.get("trace", [])
+        for stage in trace[emitted:]:
+            yield Event("stage", stage)
+        emitted = len(trace)
 
-    # 1. Inspector trace — one stage event per node that ran.
-    for stage in state.get("trace", []):
-        yield Event("stage", stage)
-
-    answer = state.get("answer", "")
-    retrieved = state.get("retrieved") or state.get("candidates") or []
+    answer = final.get("answer", "")
+    retrieved = final.get("retrieved") or final.get("candidates") or []
 
     # 2. Stream the verified answer, token by token.
     for token in _tokenize(answer):
         yield Event("token", TokenEvent(text=token))
 
     # 3. Structured citations for the markers the verified answer actually used.
-    for marker in state.get("used_markers", []):
+    for marker in final.get("used_markers", []):
         item = retrieved[marker - 1]
         item.used = True
         yield Event(
@@ -120,7 +132,7 @@ async def run_chat(question: str, store: VectorStore) -> AsyncIterator[Event]:
         "done",
         DoneEvent(
             message_id=message_id,
-            answer_status=state.get("status") or "partial",  # type: ignore[arg-type]
-            attempts=state.get("attempts", 1),
+            answer_status=final.get("status") or "partial",  # type: ignore[arg-type]
+            attempts=final.get("attempts", 1),
         ),
     )

@@ -30,6 +30,25 @@ export function MessageBubble({
 
   const parts = message.text.split(MARKER_RE);
 
+  // While the agent runs (multi-second) and no answer text has arrived yet, show a
+  // live "thinking" line with the current pipeline stage so it never looks stuck.
+  if (message.streaming && !message.text) {
+    const last = message.stages[message.stages.length - 1];
+    const label = last ? `${last.stage}…` : "searching the law…";
+    return (
+      <div className="rounded-2xl rounded-tl-sm bg-slate-900 p-4 ring-1 ring-slate-800">
+        <div className="flex items-center gap-2 text-sm text-slate-400">
+          <span className="flex gap-1">
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:-0.3s]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:-0.15s]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500" />
+          </span>
+          <span className="font-mono text-xs text-slate-500">{label}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-2xl rounded-tl-sm bg-slate-900 p-4 ring-1 ring-slate-800">
       <div

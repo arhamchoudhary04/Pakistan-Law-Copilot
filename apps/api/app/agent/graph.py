@@ -190,6 +190,7 @@ async def generate_node(state: AgentState, config: RunnableConfig) -> dict:
         gen = StageEvent(stage="generate", detail=f"{len(answer)} chars", latency_ms=_ms(t))
         return {"answer": answer, "can_retry": True, "trace": [gen]}
     except LLMError as exc:
+        print(f"[generate] LLM unavailable: {exc}")  # visible in server log for diagnosis
         gen = StageEvent(stage="generate", detail="LLM unavailable", latency_ms=_ms(t))
         return {
             "answer": f"[generation unavailable] {exc}",
