@@ -159,8 +159,13 @@ def rerank_node(state: AgentState, config: RunnableConfig) -> dict:
     t = perf_counter()
     settings = get_settings()
     candidates = state["candidates"]
+    # Rerank against the English (rewritten) query, not the raw question — the
+    # cross-encoder is English-only, so scoring a Urdu/Roman-Urdu question against
+    # English provisions produces garbage and demotes the correct article.
+    queries = state.get("queries") or [state["question"]]
+    rerank_query = queries[0]
     if settings.rerank_enabled:
-        ranked = get_reranker().rerank(state["question"], candidates, settings.top_k)
+        ranked = get_reranker().rerank(rerank_query, candidates, settings.top_k)
         detail = f"cross-encoder reranked {len(candidates)} -> top {len(ranked)}"
     else:
         ranked = sorted(candidates, key=lambda c: c.score, reverse=True)[: settings.top_k]
