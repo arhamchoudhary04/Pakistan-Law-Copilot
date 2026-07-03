@@ -28,6 +28,9 @@ dist/
 apps/api/.data/
 *.faiss
 *.index
+# Raw source PDFs (large, re-fetchable from official sources; processed markdown
+# under data/corpus/ is what's committed and indexed).
+/data/raw/
 
 # ---- OS / editor ----
 .DS_Store
