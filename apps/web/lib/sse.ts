@@ -33,6 +33,9 @@ export async function* streamChat(
     const { done, value } = await reader.read();
     if (done) break;
     buffer += decoder.decode(value, { stream: true });
+    // Normalize CRLF -> LF. sse-starlette separates events with "\r\n\r\n", which
+    // does NOT contain "\n\n", so we must normalize before splitting on blank lines.
+    buffer = buffer.replace(/\r\n/g, "\n");
 
     // SSE events are separated by a blank line.
     let sep: number;
