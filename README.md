@@ -1,15 +1,29 @@
-# Knowledge Copilot
+# Pakistan Law Copilot
 
-A **grounded, citation-first** assistant over a trusted document corpus. It answers
-**only** from your sources, cites every claim, and says *"I don't know"* when the
-evidence is weak — the opposite of a chatbot that confidently makes things up.
+A **grounded, citation-first** assistant over Pakistani law. It answers **only**
+from official legal sources, cites the exact provision, and says *"I don't know"*
+when the law doesn't cover the question — the opposite of a chatbot that
+confidently makes things up. **Legal information, not legal advice.**
 
-This repo implements the backend through **Phase 2**: ingestion (chunk → embed →
-FAISS), a **LangGraph agent** with query rewrite, cross-encoder reranking, a
-relevance gate with graceful refusal, and self-verification; a streaming `/chat`
-endpoint with inline citations and a per-stage inspector trace; and an evaluation
-harness with a retrieval ablation. The corpus is a curated markdown subset of the
-[FastAPI documentation](https://fastapi.tiangolo.com/) (MIT-licensed).
+It answers everyday "know your rights" questions — *"What are my rights if I'm
+arrested?"*, *"Do I have a right to a fair trial?"*, *"Someone shared my private
+photos without consent — what does the law say?"* — grounding each answer in the
+Constitution or a statute and linking to the exact Article/Section.
+
+**Corpus (v1, everyday-rights starter):**
+- **Constitution of Pakistan — Fundamental Rights** (Part II, Chapter 1, Articles 8–28),
+  hand-verified against the official text for citation accuracy.
+- **Prevention of Electronic Crimes Act, 2016 (PECA)** — parsed from the official PDF.
+
+Sources: official public texts via [pakistancode.gov.pk](https://pakistancode.gov.pk/).
+The architecture is domain-agnostic — swap `data/corpus/` to retarget it.
+
+This repo implements the backend through **Phase 2**: ingestion (PDF → structured
+markdown → chunk → embed → FAISS), a **LangGraph agent** with query rewrite,
+cross-encoder reranking, a relevance gate with graceful refusal, and
+self-verification; a streaming `/chat` endpoint with inline citations and a
+per-stage inspector trace; a Next.js web UI; and an evaluation harness with a
+retrieval ablation.
 
 ## Stack
 
@@ -23,9 +37,8 @@ Deliberately lean, free, and local-first:
 | Embeddings | `fastembed` local (`BAAI/bge-small-en-v1.5`, 384-dim), no API key |
 | Reranker | `fastembed` local cross-encoder (`Xenova/ms-marco-MiniLM-L-6-v2`, ONNX, no torch) |
 | Vector store | FAISS flat inner-product over L2-normalized vectors (cosine) |
-| Chunking | Structure-aware (markdown headers) + token-budget splitter |
+| Ingestion | `pypdf` → structured markdown (per Article/Section), then header + token chunking |
 | Eval | Golden set + custom retrieval/refusal metrics + ablation |
-
 | Web UI | Next.js (App Router) + TypeScript + Tailwind, custom SSE-over-fetch client |
 
 Qdrant, Neo4j graph retrieval, Postgres/Redis, document upload, and auth are
@@ -84,6 +97,14 @@ python -m app.ingestion.build_index
 This loads `data/corpus`, chunks it, embeds with fastembed (downloads ~130MB on
 first run), and writes a FAISS index + `chunks.json` into `.data/`.
 
+### Regenerating a statute from its PDF (optional)
+
+Statutes are converted from their official PDF to structured markdown (one heading
+per Section/Article) by `app/ingestion/legal_pdf.py`. To add or refresh one, drop
+the official PDF in `data/corpus/../data/raw/` and run `python -m app.ingestion.legal_pdf`.
+The Constitution's Fundamental Rights chapter is **hand-verified** (not auto-parsed)
+because citation accuracy is critical — see the note in `legal_pdf.py`.
+
 ## Run the API
 
 ```bash
@@ -99,12 +120,12 @@ uvicorn app.main:app --reload
 ```bash
 curl -N -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
-  -d '{"message": "How do I declare the type of a path parameter in FastAPI?"}'
+  -d '{"message": "Do I have a right to a fair trial?"}'
 ```
 
 You'll see `stage` events (the per-node inspector trace), then `token` events stream
 the answer, then `citation` and `sources` events (with `rerank_score`), then `done`
-with `answer_status: grounded`.
+with `answer_status: grounded`. This one cites **Article 10A**.
 
 ### Try the refusal path
 
@@ -131,7 +152,7 @@ npm run dev        # http://localhost:3000  (expects the API on :8000)
 ```
 
 Set `NEXT_PUBLIC_API_URL` if the API is not at `http://localhost:8000`. The API's
-`CORS_ORIGINS` already allows `http://localhost:3000`.
+`CORS_ORIGINS` allows `http://localhost:3000` and `:3001` (Next's fallback port).
 
 ## SSE event contract
 
@@ -154,20 +175,27 @@ python eval/run_eval.py --generate  # + generation/citation metrics (needs GROQ_
 ```
 
 Reports retrieval hit rate, context precision, refusal accuracy (unanswerable
-questions correctly refused), and over-refusal rate over the golden set in
-`eval/golden_set.jsonl`.
+questions correctly refused), and over-refusal rate over the 20-item golden set in
+`eval/golden_set.jsonl` (17 answerable, 3 uncovered).
 
-### Retrieval ablation
+Current results: `retrieval_hit_rate 1.00`, `over_refusal_rate 0.00`. Two layers
+guard against wrong answers: the cosine **gate** refuses clearly off-topic questions
+(e.g. "capital of France", 0.47), and for questions that are *legally adjacent but
+uncovered* (e.g. divorce procedure, 0.69 — just over the gate) the **LLM refuses**
+because the retrieved context doesn't actually answer them (verified end-to-end).
 
-Cross-encoder reranking improves ranking precision on the golden set:
+### Retrieval ablation — an honest, non-obvious result
 
 | config | hit_rate@k | context_precision@k |
 |---|---|---|
-| vector-only | 1.000 | 0.707 |
-| vector + rerank | 1.000 | 0.747 |
+| vector-only | 1.000 | **0.741** |
+| vector + rerank | 1.000 | 0.694 |
 
-(Hit rate is already saturated on this small 54-chunk corpus; the gain shows up as
-higher context precision — the reranker ranks the on-topic chunks above near-misses.)
+On this legal corpus, the cross-encoder reranker **slightly hurts** precision — the
+`ms-marco` reranker is trained on web passages, not statutes, so it's less
+calibrated on legal text. (On the earlier FastAPI corpus it helped: 0.71 → 0.75.)
+The lesson: reranking is not a universal win; measure it per corpus. A legal-domain
+reranker would likely recover the gain.
 
 ## Quality gates
 
@@ -183,8 +211,14 @@ pytest
 Drop your own markdown files into `data/corpus/` (or point `CORPUS_DIR` elsewhere),
 re-run `build_index`, and restart the API. Nothing else changes.
 
-## Attribution
+## Disclaimer & attribution
 
-The bundled corpus under `data/corpus/` is a condensed, curated derivative of the
-FastAPI documentation, which is MIT-licensed (© Sebastián Ramírez). It is included
-solely as sample source material for this grounded-RAG demo.
+**This is legal information, not legal advice.** Answers are generated from a
+limited corpus and may be incomplete or out of date. Always verify against the
+cited official source and consult a qualified lawyer for your specific situation.
+
+The corpus under `data/corpus/` is derived from official public texts of Pakistani
+law (the Constitution and Acts) obtained from [pakistancode.gov.pk](https://pakistancode.gov.pk/).
+The Fundamental Rights chapter is hand-transcribed from the official Constitution
+text; PECA 2016 is parsed from its official PDF. Provided for informational/
+educational use.
