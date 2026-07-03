@@ -11,9 +11,9 @@ export default function Home() {
           </span>
         </h1>
         <p className="mt-1 text-xs text-idk">
-          ⚖️ Legal information, not legal advice. Answers come only from the indexed
-          Constitution (Fundamental Rights) &amp; PECA 2016 — verify against the cited
-          source and consult a qualified lawyer for your situation.
+          ⚖️ Legal information, not legal advice. Answers come only from a limited set
+          of Pakistani laws (fundamental rights, cybercrime, rent, consumer &amp;
+          employment) — verify against the cited source and consult a qualified lawyer.
         </p>
       </header>
       <div className="min-h-0 flex-1">

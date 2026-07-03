@@ -16,6 +16,15 @@ const EXAMPLES = [
   "What is the capital of France?", // triggers the honest refusal
 ];
 
+// What the corpus currently covers — shown so users know the scope up front.
+const COVERAGE = [
+  "Fundamental Rights (Constitution)",
+  "Cybercrime — PECA 2016",
+  "Rent — Punjab 2009",
+  "Consumer — Punjab 2005",
+  "Employment — Standing Orders 1968",
+];
+
 function emptyAnswer(): AssistantMessage {
   return {
     text: "",
@@ -158,11 +167,23 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
     <div className="mx-auto max-w-3xl pt-10 text-center">
       <h2 className="text-lg font-semibold text-slate-200">Ask about your rights</h2>
       <p className="mt-1 text-sm text-slate-500">
-        Answers are grounded in Pakistani law (Constitution — Fundamental Rights, and
-        PECA 2016), cited to the exact provision, and refused when the law doesn&apos;t
-        cover it. Try one:
+        Grounded in Pakistani law, cited to the exact Article/Section, and refused when
+        the law doesn&apos;t cover it. Ask in English, Urdu, or Roman Urdu.
       </p>
-      <div className="mt-5 grid gap-2 sm:grid-cols-2">
+
+      <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+        {COVERAGE.map((c) => (
+          <span
+            key={c}
+            className="rounded-full border border-slate-800 bg-slate-900 px-2.5 py-1 text-[11px] text-slate-400"
+          >
+            {c}
+          </span>
+        ))}
+      </div>
+
+      <p className="mt-5 text-xs text-slate-600">Try one:</p>
+      <div className="mt-2 grid gap-2 sm:grid-cols-2">
         {EXAMPLES.map((q) => (
           <button
             key={q}
