@@ -19,7 +19,10 @@ const EXAMPLES = [
 // What the corpus currently covers — shown so users know the scope up front.
 const COVERAGE = [
   "Fundamental Rights (Constitution)",
+  "Family — Muslim Family Laws 1961",
   "Cybercrime — PECA 2016",
+  "Workplace Harassment — 2010",
+  "Right to Information — 2017",
   "Rent — Punjab 2009",
   "Consumer — Punjab 2005",
   "Employment — Standing Orders 1968",

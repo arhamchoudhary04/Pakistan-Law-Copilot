@@ -10,19 +10,23 @@ arrested?"*, *"Do I have a right to a fair trial?"*, *"Someone shared my private
 photos without consent — what does the law say?"* — grounding each answer in the
 Constitution or a statute and linking to the exact Article/Section.
 
-**Corpus (v1, everyday-rights):**
+**Corpus (v1, everyday-rights) — 8 acts, ~270 chunks:**
 - **Constitution of Pakistan — Fundamental Rights** (Part II, Chapter 1, Articles 8–28),
   hand-verified against the official text for citation accuracy.
+- **Muslim Family Laws Ordinance, 1961** — marriage, talaq/divorce, maintenance, polygamy.
 - **Prevention of Electronic Crimes Act, 2016 (PECA)** — cybercrime, online harassment.
+- **Protection against Harassment of Women at the Workplace Act, 2010** — workplace harassment.
+- **Right of Access to Information Act, 2017** — requesting public records.
 - **Punjab Rented Premises Act, 2009** — landlord/tenant rights, eviction.
 - **Punjab Consumer Protection Act, 2005** — defective products, services.
 - **Industrial and Commercial Employment (Standing Orders) Ordinance, 1968** — employment, retrenchment.
 
 Rent and consumer protection are provincial subjects, so the Punjab statutes are
 used (labelled as such). Sources: official public texts via
-[pakistancode.gov.pk](https://pakistancode.gov.pk/) and
-[punjabcode.punjab.gov.pk](https://punjabcode.punjab.gov.pk/). The architecture is
-domain-agnostic — drop more acts' PDFs in and swap `data/corpus/` to retarget it.
+[pakistancode.gov.pk](https://pakistancode.gov.pk/),
+[punjabcode.punjab.gov.pk](https://punjabcode.punjab.gov.pk/), and
+[kpcode.kp.gov.pk](https://kpcode.kp.gov.pk/). The architecture is domain-agnostic —
+drop more acts' PDFs in and swap `data/corpus/` to retarget it.
 
 This repo implements the backend through **Phase 2**: ingestion (PDF → structured
 markdown → chunk → embed → FAISS), a **LangGraph agent** with query rewrite,
@@ -197,23 +201,24 @@ python eval/run_eval.py --generate  # + generation/citation metrics (needs GROQ_
 ```
 
 Reports retrieval hit rate, context precision, refusal accuracy (unanswerable
-questions correctly refused), and over-refusal rate over the 20-item golden set in
-`eval/golden_set.jsonl` (17 answerable, 3 uncovered).
+questions correctly refused), and over-refusal rate over the 33-item golden set in
+`eval/golden_set.jsonl` (31 answerable across all 8 acts, 2 uncovered).
 
-Current results: `retrieval_hit_rate 1.00`, `over_refusal_rate 0.00`. Two layers
-guard against wrong answers: the cosine **gate** refuses clearly off-topic questions
-(e.g. "capital of France", 0.47), and for questions that are *legally adjacent but
-uncovered* (e.g. divorce procedure, 0.69 — just over the gate) the **LLM refuses**
-because the retrieved context doesn't actually answer them (verified end-to-end).
+Current results: `retrieval_hit_rate 1.00`, `over_refusal_rate 0.00`,
+`refusal_accuracy 1.00`. Two layers guard against wrong answers: the cosine **gate**
+refuses clearly off-topic questions (e.g. "capital of France", 0.47), and for
+questions that are *legally adjacent but uncovered* (e.g. a tax question that
+retrieves a near-miss just over the gate) the **LLM refuses** because the retrieved
+context doesn't actually answer them (verified end-to-end).
 
 ### Retrieval ablation — an honest, non-obvious result
 
 | config | hit_rate@k | context_precision@k |
 |---|---|---|
-| vector-only | 1.000 | **0.758** |
-| vector + rerank | 1.000 | 0.742 |
+| vector-only | 1.000 | **0.742** |
+| vector + rerank | 1.000 | 0.729 |
 
-On this legal corpus (5 acts, 212 chunks), the cross-encoder reranker **slightly
+On this legal corpus (8 acts, ~270 chunks), the cross-encoder reranker **slightly
 hurts** precision — the `ms-marco` reranker is trained on web passages, not statutes,
 so it's less calibrated on legal text. (On the earlier FastAPI corpus it helped:
 0.71 → 0.75.) The lesson: reranking is not a universal win; measure it per corpus.

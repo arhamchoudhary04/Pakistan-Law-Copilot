@@ -41,8 +41,8 @@ CORPUS_DIR = REPO_ROOT / "data" / "corpus"
 # number ("9", "9A", "2B"), then the rest of the line.
 _HEADING_RE = re.compile(r"^(?:\d+\[)?(\d+[A-Z]{0,3})\.\s+(\S.*)$")
 # In Pakistani drafting a section's title ends with a dash before the body text.
-# The dash is extracted variably: em/en dash, or 2+ hyphens/underscores ("__", "--").
-_TITLE_SPLIT_RE = re.compile(r"\.\s*(?:[—–]|[-_]{2,})\s*")
+# The dash is extracted variably: em/en/two-em dash, or 2+ hyphens/underscores.
+_TITLE_SPLIT_RE = re.compile(r"\.\s*(?:[—–⸺]|[-_]{2,})\s*")
 _PAGE_HEADER_RE = re.compile(r"^\s*Page \d+ of \d+\s*$")
 _PART_RE = re.compile(r"^(PART\b.*|CHAPTER\b.*)$")
 # Provisions with less body than this are treated as table-of-contents noise.
@@ -95,6 +95,27 @@ SOURCES: list[Source] = [
         title="The Industrial and Commercial Employment (Standing Orders) Ordinance, 1968",
         unit="Section",
         source_url="https://punjabcode.punjab.gov.pk/",
+    ),
+    Source(
+        pdf="muslim-family-laws-1961.pdf",
+        out="muslim-family-laws-ordinance-1961.md",
+        title="The Muslim Family Laws Ordinance, 1961",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="harassment-women-workplace-2010.pdf",
+        out="harassment-of-women-workplace-act-2010.md",
+        title="The Protection against Harassment of Women at the Workplace Act, 2010",
+        unit="Section",
+        source_url="https://kpcode.kp.gov.pk/",
+    ),
+    Source(
+        pdf="rti-2017.pdf",
+        out="right-of-access-to-information-act-2017.md",
+        title="The Right of Access to Information Act, 2017",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
     ),
 ]
 
