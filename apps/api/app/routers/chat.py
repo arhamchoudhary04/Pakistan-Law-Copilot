@@ -33,8 +33,10 @@ async def chat(request: Request, body: ChatRequest) -> EventSourceResponse:
             detail="Index not loaded. Run: python -m app.ingestion.build_index",
         )
 
+    history = [(h.question, h.answer) for h in body.history]
+
     async def event_generator() -> AsyncIterator[dict[str, str]]:
-        async for event in run_chat(body.message, store):
+        async for event in run_chat(body.message, store, history):
             # Client disconnected — stop generating (and stop paying the LLM).
             if await request.is_disconnected():
                 break

@@ -46,9 +46,19 @@ class ChatOptions(BaseModel):
     show_inspector: bool = True
 
 
+class HistoryTurn(BaseModel):
+    """A prior turn, sent by the client so the agent can resolve follow-ups."""
+
+    question: str
+    answer: str
+
+
 class ChatRequest(BaseModel):
     session_id: str | None = None
     message: str = Field(min_length=1)
+    # Recent prior turns (client-supplied) for follow-up context; the agent stays
+    # otherwise stateless. Newest last.
+    history: list[HistoryTurn] = Field(default_factory=list)
     options: ChatOptions = Field(default_factory=ChatOptions)
 
 

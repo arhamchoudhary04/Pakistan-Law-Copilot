@@ -66,10 +66,18 @@ document retrieval system whose documents are in ENGLISH.
 The question may be in English, Urdu (Urdu script), or Roman Urdu (Urdu written in \
 Latin letters). Always translate the meaning into ENGLISH and output 1-3 short \
 English queries, one per line, no numbering or extra text. Expand abbreviations and \
-add likely legal synonyms. Do not answer the question."""
+add likely legal synonyms. Do not answer the question.
+
+If a "Recent conversation" is given and the new question is a follow-up that refers \
+back to it (e.g. "what about the punishment?", "and for a second offence?"), resolve \
+those references into self-contained queries using the conversation."""
 
 
-def build_rewrite_messages(question: str, feedback: str = "") -> list[dict[str, str]]:
+def build_rewrite_messages(
+    question: str,
+    feedback: str = "",
+    history: list[tuple[str, str]] | None = None,
+) -> list[dict[str, str]]:
     """Build messages that ask the LLM to produce retrieval queries."""
     hint = (
         f"\n\nThe previous attempt retrieved weak context ({feedback}). "
@@ -77,7 +85,11 @@ def build_rewrite_messages(question: str, feedback: str = "") -> list[dict[str, 
         if feedback
         else ""
     )
+    convo = ""
+    if history:
+        turns = "\n".join(f"User: {q}\nAssistant: {a[:200]}" for q, a in history[-3:])
+        convo = f"Recent conversation:\n{turns}\n\n"
     return [
         {"role": "system", "content": REWRITE_SYSTEM},
-        {"role": "user", "content": f"Question: {question}{hint}"},
+        {"role": "user", "content": f"{convo}Question: {question}{hint}"},
     ]

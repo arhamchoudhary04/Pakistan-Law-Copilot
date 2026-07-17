@@ -64,9 +64,10 @@ def _sources_event(retrieved: list[RetrievedChunk]) -> SourcesEvent:
     )
 
 
-def _initial_state(question: str) -> AgentState:
+def _initial_state(question: str, history: list[tuple[str, str]]) -> AgentState:
     return {
         "question": question,
+        "history": history,
         "feedback": "",
         "attempts": 0,
         "queries": [],
@@ -81,13 +82,18 @@ def _initial_state(question: str) -> AgentState:
     }
 
 
-async def run_chat(question: str, store: VectorStore) -> AsyncIterator[Event]:
+async def run_chat(
+    question: str,
+    store: VectorStore,
+    history: list[tuple[str, str]] | None = None,
+) -> AsyncIterator[Event]:
     """Run the agent for one question, yielding SSE events.
 
     We stream the graph with ``astream`` so each node's ``stage`` event is emitted
     the moment that node finishes — giving the client live progress during the
     (multi-second) rewrite/retrieve/rerank/generate run, instead of a silent wait.
     The answer itself is still emitted only after the full verified run completes.
+    ``history`` (recent prior turns) lets the rewrite node resolve follow-ups.
     """
     message_id = str(uuid.uuid4())
     graph = get_graph()
@@ -96,7 +102,7 @@ async def run_chat(question: str, store: VectorStore) -> AsyncIterator[Event]:
     final: AgentState = {}
     emitted = 0
     async for state in graph.astream(
-        _initial_state(question),
+        _initial_state(question, history or []),
         config={"configurable": {"store": store}},
         stream_mode="values",
     ):

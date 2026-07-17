@@ -54,6 +54,7 @@ _MARKER_RE = re.compile(r"\[(\d+)\]")
 
 class AgentState(TypedDict, total=False):
     question: str
+    history: list[tuple[str, str]]
     feedback: str
     attempts: int
     queries: list[str]
@@ -92,13 +93,14 @@ async def rewrite_node(state: AgentState, config: RunnableConfig) -> dict:
     settings = get_settings()
     question = state["question"]
     feedback = state.get("feedback", "")
+    history = state.get("history", [])
     queries = [question]
     detail = "rewrite disabled; using original query"
     if settings.rewrite_enabled:
         try:
             parts: list[str] = []
             async for tok in get_llm().stream(
-                build_rewrite_messages(question, feedback), max_tokens=128
+                build_rewrite_messages(question, feedback, history), max_tokens=128
             ):
                 parts.append(tok)
             lines = [ln.strip() for ln in "".join(parts).splitlines() if ln.strip()]

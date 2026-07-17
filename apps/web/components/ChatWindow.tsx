@@ -49,8 +49,10 @@ export function ChatWindow() {
   const [busy, setBusy] = useState(false);
   const [drawerSource, setDrawerSource] = useState<SourceItem | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const turnsRef = useRef<ChatTurn[]>([]);
 
   useEffect(() => {
+    turnsRef.current = turns;
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [turns]);
 
@@ -68,12 +70,17 @@ export function ChatWindow() {
     async (question: string) => {
       const q = question.trim();
       if (!q || busy) return;
+      // Recent completed turns → follow-up context (kept short).
+      const history = turnsRef.current
+        .filter((t) => t.answer.text && !t.answer.streaming && !t.answer.error)
+        .slice(-4)
+        .map((t) => ({ question: t.question, answer: t.answer.text }));
       setBusy(true);
       setInput("");
       setTurns((prev) => [...prev, { question: q, answer: emptyAnswer() }]);
 
       try {
-        for await (const ev of streamChat(q)) {
+        for await (const ev of streamChat(q, history)) {
           switch (ev.event) {
             case "stage":
               patchLast((a) => ({ ...a, stages: [...a.stages, ev.data] }));
