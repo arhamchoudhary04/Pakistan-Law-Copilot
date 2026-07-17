@@ -12,7 +12,7 @@ arrested?"*, *"Do I have a right to a fair trial?"*, *"Someone shared my private
 photos without consent — what does the law say?"* — grounding each answer in the
 Constitution or a statute and linking to the exact Article/Section.
 
-**Corpus (v1, everyday-rights) — 13 acts, ~1,620 chunks:**
+**Corpus (v1, everyday-rights) — 13 acts, ~1,790 chunks:**
 - **Constitution of Pakistan — Fundamental Rights** (Part II, Chapter 1, Articles 8–28),
   hand-verified against the official text for citation accuracy.
 - **Pakistan Penal Code, 1860 (PPC)** — offences: theft, murder (qatl), cheating, cheque fraud.
@@ -100,8 +100,8 @@ rewrite ──► retrieve ──► grade ──(weak evidence)──► fallba
   query if the LLM is unavailable).
 - **grade** is the trust gate: it refuses (cosine below `RELEVANCE_THRESHOLD`) rather
   than guess. The gate stays cosine-based even though reranking reorders afterwards.
-- **rerank** is a cross-encoder that reorders candidates — the biggest precision win
-  (quantified by the ablation below).
+- **rerank** is a cross-encoder that reorders candidates; its effect is small and
+  corpus-dependent here (quantified by the ablation below).
 - **verify** checks every claim maps to a valid citation and loops back with feedback
   on unsupported claims, bounded by `MAX_ATTEMPTS`.
 
@@ -159,7 +159,7 @@ no LLM, no cost, no hallucination. Build the graph after indexing:
 ```bash
 # set GRAPH_ENABLED=true + NEO4J_* in .env first
 cd apps/api
-python -m app.ingestion.build_graph      # e.g. 223 provisions, 46 references
+python -m app.ingestion.build_graph      # e.g. 1,526 provisions, 569 references
 ```
 
 At query time the agent's `retrieve` node runs **hybrid retrieval**: vector search
@@ -268,37 +268,43 @@ Current results:
 | metric | value | what it measures |
 |---|---|---|
 | `retrieval_hit_rate` (document) | **1.00** | correct *Act* retrieved in top-k |
-| `article_hit_rate` (provision) | **0.95** | correct *Section/Article* retrieved in top-k |
+| `article_hit_rate` (provision) | **0.98** | correct *Section/Article* retrieved in top-k |
 | `refusal_accuracy` | **1.00** | genuinely unanswerable questions refused |
 | `over_refusal_rate` | **0.00** | answerable questions wrongly refused |
 
 Both hit-rate numbers are reported on purpose: document-level flatters (any chunk from
-the right Act counts), while **article-level is the honest one**. It's not a forced
-1.00 — the remaining ~5% are genuine near-misses, e.g. "punishment for theft" ranks
-theft *variants* above the base §378 (whose punishment clause, §379, merged during PDF
-parsing). We deliberately do **not** reword those questions to pass; a believable 0.95
-with two documented misses beats a gamed 1.00. The **CI gate** enforces
-`article_hit_rate ≥ 0.90`. Each golden question is annotated with all genuinely-correct
-provisions (some answers legitimately span several sections, e.g. a harassment complaint
-covers the Inquiry Committee, its powers, and the Ombudsperson).
+the right Act counts), while **article-level is the honest one** (0.976). It's not a
+forced 1.00 — the single remaining miss is a semantic near-miss ("cyberstalking" ranks
+the exact section §24 at position 8, just outside the top-5). We deliberately do **not**
+reword it to pass; a believable 0.98 with one documented miss beats a gamed 1.00. The
+**CI gate** enforces `article_hit_rate ≥ 0.90`. Each golden question is annotated with
+all genuinely-correct provisions (some answers legitimately span several sections, e.g.
+a harassment complaint covers the Inquiry Committee, its powers, and the Ombudsperson).
+
+Getting here was a real fix, not tuning: the earlier 0.88 was partly caused by a
+chunking filter that dropped short-but-real provisions (e.g. the theft *punishment*
+clause §379, ~90 chars, discarded as "table-of-contents noise"). Lowering that threshold
+recovered ~150 legitimate provisions across the corpus and lifted the honest metric to
+0.976.
 
 Two layers guard against wrong answers: the cosine **gate** refuses clearly off-topic
 questions (e.g. "capital of France", 0.47), and for questions that are *legally
 adjacent but uncovered* the **LLM refuses** because the retrieved context doesn't
 actually answer them (verified end-to-end).
 
-### Retrieval ablation — an honest, non-obvious result
+### Retrieval ablation — measure, don't assume
 
 | config | hit_rate@k | context_precision@k |
 |---|---|---|
-| vector-only | 1.000 | **0.700** |
-| vector + rerank | 1.000 | 0.695 |
+| vector-only | 1.000 | 0.714 |
+| vector + rerank | 1.000 | **0.724** |
 
-On this legal corpus (13 acts, ~1,620 chunks), the cross-encoder reranker **slightly
-hurts** precision — the `ms-marco` reranker is trained on web passages, not statutes,
-so it's less calibrated on legal text. (On the earlier FastAPI corpus it helped:
-0.71 → 0.75.) The lesson: reranking is not a universal win; measure it per corpus.
-A legal-domain reranker would likely recover the gain.
+On this legal corpus (13 acts, ~1,790 chunks) the cross-encoder reranker gives a
+**small precision gain** (0.714 → 0.724). Notably this *flipped* with chunking: on the
+earlier coarse chunks the same reranker slightly *hurt* (0.70 → 0.695), and it helped on
+a generic docs corpus (0.71 → 0.75). The lesson isn't "rerank always helps" — it's that
+reranking's value is corpus- and chunking-dependent, so you **measure it**, you don't
+assume it. The ablation is one flag (`--ablation`) away.
 
 ## Quality gates
 
@@ -328,9 +334,10 @@ The interesting parts of this project are the decisions, not the framework glue.
 - **The gate stays cosine-based** even though the reranker reorders afterwards — cosine
   is what's calibrated to the tuned `RELEVANCE_THRESHOLD` (0.65 for `bge-small`, chosen
   from a measured on-topic/off-topic score gap); cross-encoder logits are not comparable.
-- **Reranking is measured, not assumed.** The ablation showed the web-trained
-  cross-encoder *slightly hurts* precision on legal text (helped on generic docs) — a
-  reminder to measure per corpus rather than cargo-cult "rerank always helps".
+- **Reranking is measured, not assumed.** The ablation shows the web-trained
+  cross-encoder's effect is small and *flips* with chunking (it hurt on coarse chunks,
+  helps slightly on the current finer ones) — a reminder to measure per corpus rather
+  than cargo-cult "rerank always helps".
 - **Citation accuracy > coverage for law.** The Constitution's Fundamental Rights chapter
   is **hand-verified** rather than auto-parsed, because a mislabelled "Article 25" is worse
   than missing content. Statutes with clean structure are auto-converted from official PDFs.

@@ -1,5 +1,11 @@
 # The Dissolution of Muslim Marriages Act, 1939
 
+## Section 1. Short title and extent
+
+(1) This Act may be called the Dissolution of Muslim Marriages
+Act, 1939.
+ 1[(2) It extends to the whole of Pakistan.]
+
 ## Section 2. Grounds for decree for dissolution of marr iage. A woman married under Muslim Law
 
 shall be entitled to obtain a decree for the dissolution of her marriage on any one or more of the
@@ -85,3 +91,13 @@ marriage:
 decree for the dissolution of her marriage on any of the grounds mentioned in section 2:
  Provided further that the provisions of this section shall not apply to a woman converted to
 Islam from some other faith who re­embraces her former faith.
+
+## Section 5. Rights to dower not to be affected.  Nothing contained in this Act shall affect any right
+
+which a married woman may have under Muslim law to her dower or any part thereof on the
+dissolution of her marriage.
+
+## Section 6. 1[Repealed].
+
+Date: 29-05-2024
+1Rep. by the Repealing and Amending Act, 1942 (XXV of 1942), s. 2 and 1st Sch.

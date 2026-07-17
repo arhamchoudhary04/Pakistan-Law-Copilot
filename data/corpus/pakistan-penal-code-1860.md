@@ -1,5 +1,14 @@
 # The Pakistan Penal Code, 1860 (PPC)
 
+## Section 1. Title and extent of operation of the Code.  This Act shall be called the 3[Pakistan] (CHAPTER I)
+
+Penal Code, and shall take effect 4* * * throughout 5[Pakistan].
+
+## Section 2. Punishment of offences committed within Pakistan.  Every person shall be liable to (CHAPTER I)
+
+punishment under this Code and not otherwise for every act or omission contrary to the provisions
+thereof, of which he shall be guilty within 6[Pakistan] 7* * *.
+
 ## Section 3. Punishment of offences committed beyond, but which by law may be tried within, (CHAPTER I)
 
 Pakistan. Any persons liable, by any 8[Pakistan Law], to be tried for an offence committed beyond
@@ -100,6 +109,23 @@ by law to apprehend Z, and therefore the case falls within the general exception
 which provides that “nothing is an offence which is done by a person who is
 bound by law to do it”.
 
+## Section 7. Sense of expression once explained. Every expression which is explained in any part (CHAPTER II)
+
+of this Code is used in every part of this Code in conformity with the explanation.
+
+## Section 9. Number. Unless the contrary appears from the context, words importing the singular (CHAPTER II)
+
+number include the plural number, and words importing the plural number include the singular number.
+
+## Section 14. “Servant of the State”. The words “servant of the State” denote all officers or servants (CHAPTER II)
+
+continued, appointed or employed in Pakistan, by or under the authority of the 2[Federal Government]
+or any Provincial Government.]
+
+## Section 17. “Government”. The word “Government” denotes the person or persons authorized by (CHAPTER II)
+
+law to administer executive Government in 3[Pakistan, or in any part thereof].
+
 ## Section 18. [Definition of “Presidency”.] Rep. by A. O., 1937. (CHAPTER II)
 
 1The original section 14 has successively been amended by A.O., 1937, A. O., 1949, Sch. and A. O., 196 1, Art. 2 and Sch., (w.e.f. 23rd March, 1956), to read as above.
@@ -189,6 +215,11 @@ selection to which is by, or under, any law prescribed as by election.]
 1The original word “Government” has successively been amended by A. O., 1937 and A. O., 1961, Art. 2 ( w.e.f  23rd March, 1956), to read as above.
 2Ins. by the Elections Offences and Inquiries Act, 1920 (39 of 1920), section 2.
 
+## Section 22. “Moveable property”.  The words “Moveable property” are intended to include (CHAPTER II)
+
+corporeal property of every description, except land and thing attached to the earth or permanently
+fastened to anything which is attached to the earth.
+
 ## Section 23. “Wrongful gain”. “Wrongful gain” is gain by unlawful means of property to which (CHAPTER II)
 
 the person gaining is not legally entitled.
@@ -198,6 +229,10 @@ Gaining wrongfully.  Losing wr ongfully. A person is said to gain wrongfully whe
 person retains wrongfully, as well as when such person acquires wrongfully. A person is said to lose
 wrongfully when such person is wrongfully kept out of any property, as well as when such person is
 wrongfully deprived of property.
+
+## Section 24. “Dishonestly”. Whoever does anything with the intention of causing wrongful gain to (CHAPTER II)
+
+one person or wrongful loss to another person, is said to do that thing "dishonestly".
 
 ## Section 27. Property in possession of wife, clerk or servant. When property is in the possession (CHAPTER II)
 
@@ -252,6 +287,15 @@ Illustration
 A writes his name on the back of a bill of exchange. As the effect of this endorsement is to
 transfer the right to the bill to any person who may become the lawful holder of it, the endorsement is
 a “valuable security”.
+
+## Section 32. Words referring to acts include illegal omissions. In every part of this Code, except (CHAPTER II)
+
+where a con trary intention appears from the context, words which refer to acts done extend also to
+illegal omissions.
+
+## Section 33. “Act” “Omission”. The word “act” denotes as well a series of acts as a single act : the (CHAPTER II)
+
+word “omission” denotes as well a series of omissions as a single omission.
 
 ## Section 34. Acts done by several persons in furtherance of common intention.  When a criminal (CHAPTER II)
 
@@ -351,6 +395,15 @@ lSubs. by the Indian Penal Code Amdt. Act, 1870 (27 of 1870), s. 2, for the  ori
 6Subs. by A. O., 1949, Sch., for “British India”.
 7Subs. by the Central Laws (Statute Reform) Ordinance, 1960 (21 of 1960), s. 3 and 2nd Sch., for “the Provinces” ( w.e.f. 14th October, 1955).
 
+## Section 49. “Year.” “Month.” Wherever the word “year” or the wo rd “month” is used, it is to be (CHAPTER II)
+
+understood that the year or the month is to be reckoned according to the British calendar.
+
+## Section 51. “Oath.” The word “oath” includes a solemn affirmation substituted by law for an oath, (CHAPTER II)
+
+and any declaration required or authorized by law to be made before a public servant or to be used for
+the purpose of proof, whether in a Court of Justice or not.
+
 ## Section 52A. “Harbour.” Except in section 157, and in section 130 in the case in which the harbour (CHAPTER II)
 
 is given by the wife or husband of the person harboured, the word “harbour” includes the supplying a
@@ -424,12 +477,29 @@ the heirs of the victim, be exercised for any sentence awarded under Chapter XVI
 8Subs. by A.O., 1961, Art. 2 and Sch., for “His Majesty", or of the Governor­General if any such right is delegated to him by His Majesty” (w.e.f.
 23rd March, 1956).
 
+## Section 57. Fractions of terms of punishment.  In calculating fractions of terms of (CHAPTER III)
+
+punishment,1[imprisonment for life] shall be reckoned as equivalent to 1[imprisonment] for 2[twenty­
+five years.]
+
+## Section 58. [Offenders sentenced to transportation how de alt with until, transported.] Omitted by (CHAPTER III)
+
+the Law Reforms Ordinance, 1972 (XII of 1972), s. 2 and Sch.
+
 ## Section 60. Sentence may be (in certain case s of imprisonment) wholly or partly rigorous or (CHAPTER III)
 
 simple. In every case in which an offender is punishable with imprisonment which may be of either
 description, it shall be competent to the Court which sentences such offender to direct in the sentence
 that such imprisonment shall be wholly rigorous, or that such imprisonment shall be wholly simple, or
 that any part of such imprisonment shall be rigorous and the rest simple.
+
+## Section 62. [Forfeiture of property, in respect of offenders punishable with death, transportation (CHAPTER III)
+
+or imprisonment.] Rep. by the Indian Penal Code (Amdt.) Act, 1921 (XVI of 1921), s. 4.
+
+## Section 63. Amount of fine. Where no sum is expressed to which  a fine may extend, the amount (CHAPTER III)
+
+of fine to which the offender is liable is unlimited, but shall not be excessive.
 
 ## Section 64. Sentence of imprisonment for non­payment of fine.  3[In every case of an offence (CHAPTER III)
 
@@ -466,6 +536,11 @@ imprisoned, in default of payment of fine, shall not exceed the following scale,
 term not exceeding two months when the amount of the fine shall not exceed fifty rupees, and for any
 term not exceeding four months when the amount shall not exc eed one hundred rupees, and for any
 term not exceeding six months in any other case.
+
+## Section 68. Imprisonment to terminate on payment of fine. The imprisonment which is imposed (CHAPTER III)
+
+in default of payment of a fine shall terminate whenever that fine is either paid or levied by process of
+law.
 
 ## Section 69. Termination of imprisonment on payment of proportional part of fine.  If, before (CHAPTER III)
 
@@ -572,6 +647,11 @@ Illustrations
 commands of the law. A has committed no offence.
 (b) A, an officer of a Court of Justice, being ordered by that Court to arrest Y, and, after
 due enquiry, believing Z to be Y, arrests Z. A has committed no offence.
+
+## Section 77. Act of Judge when acting judicially. Nothing is an offence which is done by a Judge (CHAPTER IV)
+
+when acting judicially in the exercise of any power which is, or which in good faith he believes to be,
+given to him by law.
 
 ## Section 78. Act done pursuant to the judgment or order of Court.  Nothing which is done in (CHAPTER IV)
 
@@ -1534,6 +1614,11 @@ a member of an unlawful assembly.
 6Subs. by A. O., 1937, for “the Legislative or Executive G. of I, or the Government of any Presidency, or any Lieutenant­Governor.”
 7Subs. by the Federal Adaptation of Laws Order, 1975 (P.O.No.4 of 1975), Art.2 and Table for "Central".
 
+## Section 143. Punishment. Whoever is a member of an  unlawful assembly, shall be punished with (CHAPTER VIII)
+
+imprisonment of either description for a term which may extend to six months, or with fine, or with
+both.
+
 ## Section 144. Joining unlawful assembly armed with deadly weapon. Whoever, being armed with (CHAPTER VIII)
 
 any deadly weapon, or with anything which, used as a weapon of offence, is likely to cause death, is a
@@ -1545,6 +1630,16 @@ which may extend to two years, or with fine, or with both.
 disperse. Whoever joins or continues in an unlawful assembly, knowing that such unlawful assembly
 has been commanded in the manner prescribed by law to disperse, shall be punished with imprisonment
 of either description for a term which may extend to two years, or with fine, or with both.
+
+## Section 146. Rioting. Whenever force or violence is used by an unlawful assembly, or by any (CHAPTER VIII)
+
+member thereof, in prosecution of the common object of such assembly, eve ry member of such
+assembly is guilty of the offence of rioting.
+
+## Section 147. Punishment for rioting.  Whoever is guilty of rioting, shall be punished with (CHAPTER VIII)
+
+imprisonment of either description for a term which may extend to two years, or with fine, or with
+both.
 
 ## Section 148. Rioting, armed with deadly weapon. Whoever is guilty of rioting, being armed with (CHAPTER VIII)
 
@@ -2379,11 +2474,21 @@ of a dacoity. The punishment of dacoity is 2[imprisonment for life], or rigorous
 term which may extend to ten years, with or without fine. A, therefore, is liable to 4[such imprisonment
 for life] or imprisonment, with or without fine.
 
+## Section 196. Using evidence known to be false. Whoever corruptly uses or attempts to uses as true (CHAPTER XI)
+
+or genuine evidence any evidence which he knows to be false or fabric ated, shall be punished in the
+same manner as if he gave or fabricated false evidence.
+
 ## Section 197. Issuing or signing false certificate.  Whoever issues or signs any certificate required (CHAPTER XI)
 
 by law to be given or signed, or relating to any fact of which such certifica te is by law admissible in
 evidence, knowing or believing that such certificate is false in any material point, shall be punished in
 the same manner as if he gave false evidence.
+
+## Section 198. Using as true a certificate known to be false.  Whoever corruptly uses or attempts to (CHAPTER XI)
+
+use any such certificate as a true certificate, knowing the same to be false in any material point, shall
+be punished in the same manner as if he gave false evidence.
 
 ## Section 199. False statement made in declaration which is by law receivable as evide nce. (CHAPTER XI)
 
@@ -2895,6 +3000,11 @@ for a term which may extend to three years, and shall also be liable to fine ;
 and if the coin to be counterfeited is 1[Pakistan coin], shall be punished with imprisonment of
 either description for a term which may extend to ten years, and shall also be liable to fine.
 
+## Section 236. Abetting in Pakistan the counterfeiting out of Pakistan of coin.  Whoever, being (CHAPTER XII)
+
+within 3[Pakistan], abets the c ounterfeiting of coin out of 3[Pakistan] shall be punished in the same
+manner as if he abetted the counterfeiting of such coin within 3[Pakistan].
+
 ## Section 237. Import or export of counterfeit coin.  Whoever imports into 3[Pakistan], or exports (CHAPTER XII)
 
 therefrom, any counte rfeit coin, knowingly or having reason to believe that the same is counterfeit,
@@ -3129,6 +3239,11 @@ uses for any postal purpose any fictitious stamp, or
 or materials for making any fictitious stamp,
 shall be punished with fine which may extend to 2[six hundred rupees].
 
+## Section 264. Fraudulent use of false instrument for weighing.  Whoever fraudulently uses any (CHAPTER XIII)
+
+instrument for weighing which he knows to be false, shall be punished with imprisonment of either
+description for a term which may extend to one year, or with fine, or with both.
+
 ## Section 265. Fraudulent use of false weight or measure.  Whoever fraudulently uses any false (CHAPTER XIII)
 
 weight or false measure of length or capacity, or fraudulently uses any weight or any measure of length
@@ -3327,6 +3442,11 @@ danger to human life, or any probable danger of grievous hurt from such animal, 
 with imprisonment of either description for a term which may extend to six months, or with fine which
 may extend to 1[three thousand rupees], or with both.
 
+## Section 290. Punishment for public nuisance in cases not otherwise provided for.  Whoever (CHAPTER XIV)
+
+commits a public nuisance in any case not otherwise punishable by this Code, shall be punished wi th
+fine which may extend to 1[six hundred rupees].
+
 ## Section 291. Continuance of nuisance after injunction to discontinue.  Whoever repeats or (CHAPTER XIV)
 
 continues a public nuisance, having been enjoined by any public servant who has lawful authority to
@@ -3424,6 +3544,11 @@ the religious feelings of any class of 6[the citizens of Pakistan], by words, ei
 visible representations insults or attempts to insult the religion or the religious beliefs of that class, shall be
 punished with imprisonment of either description for a term which may extend to 7[ten years], or with fine,
 or with both.]
+
+## Section 295B. Defiling, etc., of copy of Holy Quran. Whoever wilfully defiles, damages or desecrates a (CHAPTER XV)
+
+copy of the Holy Quran or of an extract therefrom or uses it in any derogatory manner or for any unlawful
+purpose shall be punishable with imprisonment for life.]
 
 ## Section 295C. Use of derogatory remark s, etc., in respect of the Holy Prophet.  Whoever by words, (CHAPTER XV)
 
@@ -3867,6 +3992,16 @@ Provided that, where the punishment for the hurt is qisas which is not executabl
 shall be liable to arsh and may also be punished with imprisonment of either description for a term
 which may extend to seven years.
 
+## Section 326. Thug (CHAPTER XVI)
+
+Whoever shall have been habitually associated with any other or others for the
+purpose of committing robbery or child­stealing by means of or accompanied with qatl, is a thug.
+
+## Section 327. Punishment (CHAPTER XVI)
+
+Whoever is a thug, shall be punished with imprisonment for life and shall also
+be liable to fine.
+
 ## Section 328. Exposure and abandonment of child under twelve years by parent or person having (CHAPTER XVI)
 
 care of it.__ Whoever being the father or mother of a child under the age of twelve years, or having the
@@ -3936,6 +4071,11 @@ d) jurh       (جرح) ; and
 1[Explanation.__  disfigure means disfigurement of face or disfigurement or dismemberment of
 any organ or any part of the organ of the human body which impairs or injures or corrodes or deforms
 the symmetry or appearance of a person.]
+
+## Section 333. Itlaf­i­udw (CHAPTER XVI)
+
+Whoever dismembers, amputates, severs any limb or organ of the body
+of another person is said to cause Itlaf­i­udw.
 
 ## Section 334. Punishment for itlaf­i­udw (CHAPTER XVI)
 
@@ -4044,6 +4184,11 @@ face, a hurt which leaves a mark of the wound, whether temporary or permanent, i
 (a) Jaifah      جائفہ  ;and
 (b) Ghayr­jaifah.    غیر جائفہ
 
+## Section 337C. Jaifah (CHAPTER XVI)
+
+Whoever causes jurh in which the injury extends to the body cavity of the
+trunk, is said to cause jaifah.
+
 ## Section 337D. Punishment for jaifah (CHAPTER XVI)
 
 Whoever by doing any act with the intention of causing hurt
@@ -4111,6 +4256,11 @@ may extend to three years as ta'zir.
 (2) Whoever does any act so rashly or negligently as to endanger human life or the personal
 safety of others, shall be punished with imprisonment of either description for a term which may extend
 to three months, or with fine, or with both.
+
+## Section 337I. Punishment for causing hurt by mistake  (khata) (CHAPTER XVI)
+
+Whoever causes hurt by mistake
+(Khata) shall be liable to arsh or daman specified for the kind of hurt caused.
 
 ## Section 337J. Causing hurt by means of a poison (CHAPTER XVI)
 
@@ -4224,6 +4374,12 @@ of the child and during this period she may be released on bail on furnishing of
 satisfaction of the court or, if she is not so released, shall be dealt with as if sentenced to simple
 imprisonment.
 
+## Section 337Q. Arsh for single organs. The arsh for causing itlaf of an organ which is found singly in (CHAPTER XVI)
+
+a human body shall be equivalent to the value of diyat.
+Explanation.__ Nose and tongue are included in the organs which are found singly in a human
+body.
+
 ## Section 337R. Arsh for organs in pairs (CHAPTER XVI)
 
 The arsh for causing itlaf of organs found in a human body
@@ -4329,6 +4485,11 @@ imprisonment until daman is paid in full or may be released on bail if he furnis
 equivalent to the amount of daman to the satisfaction of the court or may be released on parole as may
 be prescribed by the rules.]
 
+## Section 337Z. Disbursement of arsh or daman (CHAPTER XVI)
+
+The arsh or daman shall be payable to the victim or,
+if the victim dies, to his heirs according to their respective shares in inheritance.
+
 ## Section 338. Isqat­i­Hamal(اسقاط حمل) (CHAPTER XVI)
 
 Whoever causes a woman with child whose organs have
@@ -4371,6 +4532,12 @@ Provided that, if there are more than on e child in the womb of the woman, the o
 be liable to separate diyat or ta'zir, as the case may be, for every such child:
 Provided further that if, as a result of isqat­i­janin, any hurt is caused to the woman or she dies,
 the offender shall also be liable to the punishment provided for such hurt or death, as the case may be.
+
+## Section 338D. Confirmation of sentence of death by way of qisas or ta’zir, etc (CHAPTER XVI)
+
+A sentence of death
+awarded by way of qisas or ta’zir, or a sentence of qisas awarded for causing hurt, shall not be
+executed, unless it is confirmed by the High Court.
 
 ## Section 338E. Waiver or compounding of offences (CHAPTER XVI)
 
@@ -4463,6 +4630,26 @@ proceeding in any direction beyond the circumscribing l ine of wall. A
 wrongfully confines Z.
 (b) A places men with firearms at the outlets of a building, and tells Z that they will
 fire at Z if Z attempts to leave the building. A wrongfully confines Z.
+
+## Section 341. Punishment for wrongful restrains.  Whoever wrongfully  restrains any person, shall be (CHAPTER XVI)
+
+punished with simple imprisonment for a term which may extend to one month, or with fine which may extend
+to 2[one thousand five hundred rupees], or with both.
+
+## Section 342. Punishment for wrongful confinement.  Whoever wrongfully confines any person, shall be (CHAPTER XVI)
+
+punished with imprisonment of either description for a term which may extend to one year, or with fine which
+may extend to 2[three thousand rupees], or with both.
+
+## Section 343. Wrongful confinement for three or more days. Whoever wrongfully confines any person for (CHAPTER XVI)
+
+three days or more, shall be punished with imprisonment of either description for a term which may extend to
+two years, or with fine, or with both.
+
+## Section 344. Wrongful confinement for ten or more days.  Whoever wrongfully confines any p erson for (CHAPTER XVI)
+
+ten days, or more, shall be punished with imprisonment of either description for a term which may extend to
+three years, and shall also be liable to fine.
 
 ## Section 345. Wrongful confinement of person for whose liberation writ has been issued. Whoever keeps (CHAPTER XVI)
 
@@ -4654,6 +4841,11 @@ simple imprisonment for a term which may extend to one month or with fine which 
 Explanation.__ The last section is subject to the same Explanation as section 352.
 Of Kidnapping, Abduction, Slavery and Forced Labour
 
+## Section 360. Kidnapping from Pakistan.  Whoever conveys any person beyond the limits of (CHAPTER XVI)
+
+3[Pakistan] without the consent of that person, or of some person l egally authorised to consent on
+behalf of that person, is said to kidnap that person from 3[Pakistan].
+
 ## Section 361. Kidnapping from lawful guardianship.  Whoever takes or entices any minor under (CHAPTER XVI)
 
 fourteen years of age if a male, or under sixteen years of age if a fe male, or any person of unsound
@@ -4672,6 +4864,11 @@ to go from any place, is said to abduct that person.
 1Omitted by the Criminal Laws (Amendment) Act, 2025 (Act No. XXVII of 2025), s.2
 2Subs. by Ord. No. 86 of 2002, s.2 and Sch­I.
 3Subs. by the Central Laws (Statue Reform) Ordinance, 1960 (21 of 1960), s. 3 and 2nd Sch. (w.e.f. 14th October, 1955).
+
+## Section 363. Punishments for kidnapping. Whoever kidnaps any person from 1[Pakistan] or from (CHAPTER XVI)
+
+lawful guardianship, shall be punished with imprisonment of either description for a term which may
+extend to seven years, and shall also be liable to fine.
 
 ## Section 364. Kidnapping or abducting in order to murder.  Whoever kidnaps or abducts any (CHAPTER XVI)
 
@@ -5058,6 +5255,10 @@ from Z to give. If A takes the property dishonestly, he commits theft.
 that property out of B’s possession. Here, as A does not take dishonestly, he
 does not commit theft.
 
+## Section 379. Punishment for theft. Whoever commits theft shall be punished with imprisonment of (CHAPTER XVII)
+
+either description for a term which may extend to three years, or with fine or with both.
+
 ## Section 380. Theft in dwelling house. etc.  Whoever commits theft in any building, tent or vessel, (CHAPTER XVII)
 
 which building, tent or vessel is used as a human dwelling, or used for the custody of property shall be
@@ -5117,6 +5318,11 @@ committed extortion.
 
 1Ins. by Act I of 1996, s.2.
 2Added by Act XVI of 1996, s.2.
+
+## Section 384. Punishment for extortion.  Whoever, commits extortion shall be punished with (CHAPTER XVII)
+
+imprisonment of either description for a term which may extend to three years, or with fine, or with
+both.
 
 ## Section 385. Putting person in fear of injury in order to commit extortion. Whoever, in order to (CHAPTER XVII)
 
@@ -5206,6 +5412,11 @@ imprisonment for a term which 1[shall not be less than three years nor more than
 also be liable to fine ; and, if the robbery be committed on the highway 2[* * *] the imprisonment may
 be extended to fourteen years.
 
+## Section 393. Attempt to commit robbery. Whoever attempts to commit robbery shall be punished (CHAPTER XVII)
+
+with rigorous imprisonment fo r a term which may extend to seven years, and shall also be liable to
+fine.
+
 ## Section 394. Voluntarily causing hurt in committing robbery. If any person, in committing or in (CHAPTER XVII)
 
 attempting to commit robbery, voluntarily causes hurt, such person, and any other person jointly
@@ -5217,6 +5428,11 @@ attempting to commit robbery, voluntarily causes hurt, such person, and any othe
 concerned in committing or attempting to commit such robbery, shall be punished with 1[imprisonment
 for life], or with rigorous imprisonment for a term which 2[shall not be less than four years nor more
 than] ten years, and shall also be liable to fine.
+
+## Section 395. Punishment for dacoity.  Whoever commits dacoity shall be punished with (CHAPTER XVII)
+
+1[imprisonment for life], or with rigorous imprisonment for a term which 2[shall not be less than four
+years nor more than] ten years, and shall also be liable to fine.
 
 ## Section 396. Dacoity with murder.  If anyone of five or more  persons, who are conjointly (CHAPTER XVII)
 
@@ -5234,6 +5450,11 @@ offender shall be punished shall not be less than seven years.
 
 time of attempting to commit robbery or dacoity, the offender is armed with any deadly weapon, the
 imprisonment with which such offender shall be punished shall not be less than seven years.
+
+## Section 399. Making preparation to commit dacoity.  Whoever makes any preparation for (CHAPTER XVII)
+
+committing dacoity, shall be punished with rigorous imprisonment for a term which may extend to ten
+years, and shall also be liable to fine.
 
 ## Section 400. Punishment for belonging to gang of dacoits. Whoever, at any time after the passing (CHAPTER XVII)
 
@@ -5263,6 +5484,11 @@ seizes, or exercises control of, an aircraft is said to commit hijacking.
 1Subs. by the Law Reforms Ordinance, 1972 (12 of 1972), s. 2 and Sch., for “transportation for life”.
 2Subs. by the Criminal Laws (Amdt.) Ordinance, 1980 (3 of 1980), ss.7&10, for “may extend to”.
 3Ins. by the Pakistan Penal Code (Second Amendment) Ordinance, 1981 (30 of 1981), s. 2.
+
+## Section 402B. Punishment for hijacking. Whoever commits, or conspires or attempts to commit, or abets (CHAPTER XVII)
+
+the commission of, hijacking shall be punished with death or imprisonment for life, and shall also be liable
+to forfeiture of property and fine.
 
 ## Section 402C. Punishment for harbouring hijacker, etc.  Whoever knowingly harbours any person (CHAPTER XVII)
 
@@ -5381,6 +5607,11 @@ certain treasury all the public money which he holds. A dishonestly appropriates
 the money. A has committed criminal breach of trust.
 (f) A, a carrier, is entrused by Z with property to be carried by land or by water. A
 dishonestly misappropriates the property. A has committed criminal breach of trust.
+
+## Section 406. Punishment for criminal breach of trust. Whoever commits criminal breach of trust shall (CHAPTER XVII)
+
+be punished with imprisonment of either description for a term which may extend to 3[seven] years, or with
+fine, or with both.
 
 ## Section 407. Criminal breach of trust by carrier, etc.  Whoever, being entrusted with property as a (CHAPTER XVII)
 
@@ -5515,12 +5746,21 @@ by personation.
 (b) A cheats by pretending to be B, a person who is deceased. A cheats by
 personation.
 
+## Section 417. Punishment for cheating.  Whoever cheats shall be punished with imprisonment of (CHAPTER XVII)
+
+either description for a term which may extend to one year, or with fine, or with both.
+
 ## Section 418. Cheating with knowledge that wrongful loss may ensue to person whose interest (CHAPTER XVII)
 
 offender is bound to protect.  Whoever cheats with the knowledge that he is likely thereby to cause
 wrongful loss to a person whose interest in the transaction to which the cheating relates, he was bound
 either by law, or by legal contract, to protect, shall be punished with imprisonment of either description
 for a term which may extend to three years, or with fine, or with both.
+
+## Section 419. Punishment for cheating by personation.  Whoever cheats by personation shall be (CHAPTER XVII)
+
+punished with imprisonment of either description for a term which may extend to l[seven] years, or
+with fine, or with both.
 
 ## Section 420. Cheating and dishonestly inducing delivery of property.  Whoever cheats and (CHAPTER XVII)
 
@@ -5599,6 +5839,11 @@ to cause wrongful loss to Z. A has committed mischief.
 (h) A causes cattle to enter upon a field belonging to Z, intending to cause and
 knowing that he is likely to cause damage to Z’s crop. A has c ommitted
 mischief.
+
+## Section 426. Punishment for mischief.  Whoever commits mischief shall be punished with (CHAPTER XVII)
+
+imprisonment of either description for a term which may extend to three months, or with fine, or with
+both.
 
 ## Section 427. Mischief causing damage to the amount of fifty rupees. Whoever commits mischief (CHAPTER XVII)
 
@@ -5730,6 +5975,10 @@ to conceal such house­trespass from some person who has a right to exclude or e
 from the building, tent or vessel which is the subject of the trespass, is said to commit “lurking house­
 trespass”.
 
+## Section 444. Lurking house­trespass by night.  Whoever commits lurking house­trespass after (CHAPTER XVII)
+
+sunset and before sunrise, is said to commit “lurking house­trespass by night”.
+
 ## Section 445. House­breaking. A person is said to commit “house­breaking” who commits (CHAPTER XVII)
 
 house­trespass if he effects his entrance into the house or any part of it in any of the six ways hereinafter
@@ -5776,6 +6025,16 @@ commits house­ trespass by entering the house. This is house­breaking.
 by entering the house, having deterred Z from opposing him by threatening to
 beat him. This is house­ breaking.
 
+## Section 447. Punishment for criminal trespass.  Whoever commits criminal trespass shall be (CHAPTER XVII)
+
+punished with imprisonment of either description for a term which may extend t o three months, or
+with fine which may extend to 1[one thousand five hundred rupees], or with both.
+
+## Section 448. Punishment for house­trespass. Whoever commits house­trespass shall be punished (CHAPTER XVII)
+
+with imprisonment of either description for a term which may extend to one year, or with fine which
+may extend to 1[three thousand rupees], or with both.
+
 ## Section 449. House-trespass in order to commit offence punishable with death.  Whoever (CHAPTER XVII)
 
 commits house­trespass in order to the committing of any offence punishable with death, shall b e
@@ -5804,6 +6063,11 @@ commits house­trespass, having made preparation for causing hurt to any person 
 person, or for wrongfully restraining any person, or for putting any person in fear of hurt, or of assault,
 or of wrongful restraint, shall be punished with imprisonment of either description for a term which
 may extend to seven years, and shall also be liable to fine.
+
+## Section 453. Punishment for lurking house­trespass or house -breaking. Whoever commits (CHAPTER XVII)
+
+lurking house­trespass or house­breaking, shall be punished with imprisonment of either description
+for a term which may extend to two years, and shall also be liable to fine.
 
 ## Section 454. Lurking house­trespass or house-breaking in order to commit offence punishable (CHAPTER XVII)
 
@@ -6331,6 +6595,11 @@ Illustration
 A draws a bill of exchan ge upon a fictitious person, and fraudulently accepts the bill in the
 name of such fictitious person with intent to negotiate it. A commits forgery.
 
+## Section 465. Punishment for forgery.  Whoever commits forgery shall be punished with (CHAPTER XVIII)
+
+imprisonment of either descript ion for a term which may extend to two years, or with fine, or with
+both.
+
 ## Section 466. Forgery of record of Court or of public register, etc.  Whoever forges a document, (CHAPTER XVIII)
 
 purporting to be a record or proceeding of or in a Court of Justice, or a register of birth, ba ptism,
@@ -6362,6 +6631,11 @@ either description for a term which may extend to seven years, and shall also be
 that the document forged shall harm the reputation of any party, or knowing that it is likely to be used
 for that purpose, shall be punished with imprisonment of either description for a term which may
 extend to three years, and shall also be liable to fine.
+
+## Section 471. Using as genuine a forged document.  Whoever fraudulently or dishonestly uses as (CHAPTER XVIII)
+
+genuine any document which he knows or has reason to b elieve to be a forged document, shall be
+punished in the same manner as if he had forged such document.
 
 ## Section 472. Making or possessing counterfeit seal, etc., with intent to commit forgery (CHAPTER XVIII)
 
@@ -6621,6 +6895,10 @@ years and with fine.]
 
 OF THE CRIMINAL BREACH OF CONTRACTS OF SERVICE
 
+## Section 490. [Breach of contract of service during voyage or journey.] Rep. by the Workmen’s (CHAPTER XIX)
+
+Breach of Contract (Repealing) Act, 1925 (III of 1925), s. 2 and Sch.
+
 ## Section 491. Breach of contract to attend on and supply wa nts of helpless person.  Whoever, (CHAPTER XIX)
 
 being bound by a lawful contract to attend on or to supply the wants of any person who, by reason of
@@ -6628,6 +6906,16 @@ youth, or of unsoundness of mind, or of a disease or bodily weakness, is helples
 providing for his own sa fety or of supplying his own wants, voluntarily omits so to do, shall be
 punished with imprisonment of either description for a term which may extend to three months, or
 with fine which may extend to 1[six hundred rupees], or with both.
+
+## Section 492. [Breach of contract to serve at distant place to which servant is conveyed at master's (CHAPTER XIX)
+
+expense.] Rep. by the Workmen's Breach of Contract (Repealing) Act, 1925 (Ill of 1925), s. 2 and Sch.
+OF OFFENCES RELATING TO MARRIAGE
+
+## Section 493. [Cohabitation caused by a man deceitfully inducing a belief of lawful marriage.] Rep. (CHAPTER XX)
+
+by the Offences of Zina (Enforcement of Hudood) Ordinance, 1979 (VII of 1979), s. 19 (w.e.f. the 10th
+day of February, 1979).
 
 ## Section 493A. Cohabitation caused by a man deceitfully inducing a belief of lawful  marriage (CHAPTER XX)
 
@@ -6689,6 +6977,13 @@ Provided that a Presiding Officer of a Court dismissing a complaint under sectio
 Code of C riminal Procedure, 1898 and after providing the accused an opportunity to show cause if
 satisfied that an offence under this section has been committed shall not require any further proof and
 shall forthwith proceed to pass the sentence.]
+
+## Section 498. [Enticing or taking away or detaining with criminal intent a married woman.] Rep. by (CHAPTER XX)
+
+the Offence of Zina (Enforcement of Hudood) Ordinance, 1979 (VII of 1979), s. 19 (w.e.f the10th day
+of February, 1979).
+2[CHAPTER XXA
+OF OFFENCES AGAINST WOMEN
 
 ## Section 498A. Prohibition of depriving women from inheriting property (CHAPTER XX)
 

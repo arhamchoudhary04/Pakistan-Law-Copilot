@@ -1,5 +1,12 @@
 # The Punjab Consumer Protection Act, 2005
 
+## Section 1. Short title, extent and commencement (PART I)
+
+(1) This Act may be called  the
+Punjab Consumer Protection Act 2005.
+(2)  It shall extend to the whole of the Province of the Punjab.
+(3)  It shall come into force at once.
+
 ## Section 2. Definitions (PART I)
 
 In this Act, unless there is anything repugnant in the subject or
@@ -90,6 +97,13 @@ manufacturer and he could do no more; and
 (m)  “reasonably anticipated use” means a use or handling of a product that the
 product manufacturer should reasonably expect of an ordinary person in
 the same or similar circumstances.
+
+## Section 3. Act not in derogation of any other law (PART I)
+
+The provisions of this Act shall be in
+addition to and not in derogation of the provisions of any other law for the time being in
+force.
+LIABILITY ARISING FROM DEFECTIVE PRODUCTS
 
 ## Section 4. Liability for defective products (PART II)
 
@@ -204,6 +218,12 @@ this part to a consumer who has suffered damage shall not be limited or excluded
 terms of any contract or by any notice.
 LIABILITY ARISING OUT OF DEFECTIVE AND FAULTY SERVICES
 
+## Section 13. Liability for faulty or defective services (PART III)
+
+A provider of services shall be
+liable to a consumer for damages proximately caused by the provision of services
+that have caused damage.
+
 ## Section 14. Standard of provision of services (PART III)
 
 (1). Where the standard of provision of
@@ -254,6 +274,13 @@ sells any goods shall issue to the purchaser a receipt showing–
 (b)  description of goods sold;
 (c)  the quantity and price of the goods; and
 (d)  the name and address of the seller.
+
+## Section 20. Return and refund policy (PART IV)
+
+Return and refund policy of a seller shall be
+disclosed to the buyer clearly before the transactio n is completed by means of a sign
+at the point of purchase.
+UNFAIR PRACTICES
 
 ## Section 21. False, deceptive or misleading representation (PART V)
 
@@ -544,6 +571,16 @@ imprisonment for a term not less than one month which may extend to three years,
 with fine not less than five thousand rupees which may  extend to twenty thousand
 rupees or with both.
 
+## Section 33. Appeal (PART VIII)
+
+Any person aggrieved by any final order of the Consumer Court may
+file an appeal in the Lahore High Court within 30 days of such order.
+
+## Section 34. Finality of Order (PART VIII)
+
+Every order of the Consumer Court, if no appeal has been
+preferred against such order under the provisions of this Act, shall become final.
+
 ## Section 35. Dismissal of frivolous or vexatious claims (PART VIII)
 
 Where a claim is found to be
@@ -553,12 +590,22 @@ willfully instituted a false claim and shall award appropriate compensation to t
 defendant from the amount of fine so realized.
 MISCELLANEOUS
 
+## Section 36. Aid to the Consumer Court (PART IX)
+
+All agencies of the Government shall act in aid
+of the Consumer Court in the performance of its functions under this Act.
+
 ## Section 37. Immunity (PART IX)
 
 No suit, prosecution or other legal proceedings shall lie against any
 functionary under this Act, acting under the direction of the Consumer Council or the
 Government for anything which is in good faith done or intended to be done under this
 Act.
+
+## Section 38. Power to make rules (PART IX)
+
+The Government may, by notification in the official
+Gazette, make rules for carrying out the purposes of this Act.
 
 ## Section 39. Power to remove difficulties (PART IX)
 

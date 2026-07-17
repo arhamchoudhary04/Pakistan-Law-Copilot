@@ -83,6 +83,13 @@ of dowry, bridal gifts and presents, but including the  expenses on menhdi, bara
 incurred by or on behalf of either party to the marriage shall not exceed two thousand and five
 hundred rupees.
 
+## Section 7. [Display of Dowry etc.] Omitted by the Dowry and Bridal Gifts (Restriction) (Amdt.)
+
+Ordinance, 1980 (XXXVI of 1980), s. 3.
+
+ 1 Ins. by the Dowry and Bridal (lifts (Restriction) (Amdt.) Ordinance, 1980 (36 of 1980), s. 2”.
+ 2 Subs. ibid.
+
 ## Section 8. Declaration regarding expenditure to be submitted to Registrar
 
 (1) The father of
@@ -129,6 +136,11 @@ date of such rukhsati.
 (4) While trying an offence punishable under this Act, a Family Court shall follow the
 procedure prescribed by the Code of Criminal Procedure, 1898 (Act V of 1898), for the trial of
 offences by Magistrates.
+
+## Section 10. Power to make rules. The Federal Government, in respect of the Islamabad Capital
+
+Territory, and a Provincial Government, in Tespect of the Province, may, by noti fication in the
+official Gazette, make rules for carrying out the purposes of this Act].
 
 ## Section 11. [Repeal]. Omitted by the Federal Laws (Revision and Declaration) Ordinance,
 

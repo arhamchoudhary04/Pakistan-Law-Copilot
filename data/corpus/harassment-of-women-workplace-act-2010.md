@@ -372,6 +372,12 @@ as are admissible to Ombudsperson.
 1 Inserted vide Khyber Pakhtunkhwa Act No. VII of 2020.
 10
 
+## Section 7B. Oath of office
+
+An ombudsperson shall take oath before the Governor of the
+Province of the Khyber Pakhtunkhwa before he enters upon his office as prescribed in the
+SCHEDULE-II.]
+
 ## Section 8. Ombudsperson to enquire into complaint
 
 (1) Any employee shall have the
@@ -454,6 +460,11 @@ organization and the work place within six months of the commencement of this Ac
 any employee of an organization may file a petition before the District Court  and on
 having been found guilty the employer shall be liable to fine which may extend to one
 hundred thousand rupees but shall not be less than twenty-five thousand rupees.
+
+## Section 12. Provisions of the Act in addition to and not in derogation of any other law.-
+
+The provisions of  this Act shall be in addition to and not in derogation of any other law
+for the time being in force.
 
 ## Section 13. Power to make rules. -The 2[***] Government may make rules to  carry out the
 

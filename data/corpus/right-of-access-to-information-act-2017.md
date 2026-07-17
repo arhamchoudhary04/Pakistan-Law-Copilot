@@ -1,5 +1,12 @@
 # The Right of Access to Information Act, 2017
 
+## Section 1. Short title, application and commencement
+
+(1) This Act may be called the Right of
+Access to Information Act, 2017.
+ (2) It shall apply to all public bodies of the Federal Government.
+ (3) It shall come into force at once.
+
 ## Section 2. Definitions. In this Act, unless there is anything repugnant in the subject or context,—
 
 (i)  "appeal" means any grievance lodged in writing by an applicant with the
@@ -195,6 +202,12 @@ requests.
 
   (5) In no case shall an applicant be required to provide reasons for his request.
 
+## Section 12. Where information requested for is not held
+
+Where a public body does not hold
+information or record, the applicant shall be informed accordingly within ten working days of the
+receipt of the request.
+
 ## Section 13. Procedure for acceptance and refusal of requests
 
 (1) The designated official shall
@@ -238,6 +251,11 @@ records or records located in different offices or consultation is required with
 public bodies.
   (3) Information needed to protect the life and liberty of any individual shall be provided within
 three working days.
+
+## Section 15. Fee for requests
+
+Prescribed fee may be charged for the cost of reproducing information
+and sending it to the applicant.
 
 ## Section 16. Information exempt from disclosure
 
@@ -428,6 +446,11 @@ shall refer such matters to the relevant agencies.
 sub-section (1) may, if it has not been appealed against within thirty days, be dealt with in the same
 way as contempt of court.
 
+## Section 21. Funding for the Information Commission
+
+The Federal Government shall make annual
+budgetary allocation to the Information Commission to discharge its functions under this Act.
+
 ## Section 22. Offences
 
 (1) Any person who acts willfully to obstruct the implementation of this Act
@@ -460,6 +483,11 @@ Commissioner and Commissioners, appointment of officers and staff in Information
 BS-16 and above shall be made through Federal Public Service Commissio n in line with the Federal
 Public Service Commission Ordinance, 1977 (XLV of 1977).
 
+## Section 25. Act to override other laws
+
+The provisions of this Act shall have effect notwithstanding
+anything inconsistent therewith contained in any other law for the time being in force.
+
 ## Section 26. Power to make rules
 
 The Federal Government may, by notification in the official
@@ -481,3 +509,10 @@ provisions of this Act, the Federal Government may make such order, not inconsis
 provisions of this Act, as deemed necessary for the purpose of removing the difficulty:
 Provided that no such order shall be made after expiry of one year from the commencement of
 this Act.
+
+## Section 29. Repeal
+
+The Freedom of Information Ordinance, 2002 (XCVI of  2002) is hereby
+repealed.
+
+__________

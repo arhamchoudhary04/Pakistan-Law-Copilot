@@ -46,7 +46,10 @@ _TITLE_SPLIT_RE = re.compile(r"\.\s*(?:[—–⸺]|[-_]{2,})\s*")
 _PAGE_HEADER_RE = re.compile(r"^\s*Page \d+ of \d+\s*$")
 _PART_RE = re.compile(r"^(PART\b.*|CHAPTER\b.*)$")
 # Provisions with less body than this are treated as table-of-contents noise.
-_MIN_BODY_CHARS = 180
+# Kept low (60) so short-but-real provisions survive — e.g. punishment clauses like
+# PPC s.379 ("...may extend to three years, or with fine, or with both.", ~90 chars)
+# and Contract Act s.11 — while genuinely empty TOC stubs (0-60 chars) are dropped.
+_MIN_BODY_CHARS = 60
 # A line is only a real heading if it splits into a short title via ".—".
 _MAX_TITLE_CHARS = 90
 # Reject absurd provision numbers (footnote/date artifacts, e.g. "40164.").

@@ -1,5 +1,30 @@
 # The Code of Criminal Procedure, 1898 (CrPC)
 
+## Section 93C. Service and execution in Pakistan of processes received from outside Pakistan (CHAPTER VI)
+
+OF PROCESSES TO COMPEL THE PRODUCTION OF DOCUMENTS AND OTHER
+MOVEABLE PROPERTY, AND FOR THE DISCOVERY OF PERSONS WRONGFULLY
+CONFINED
+A.__ Summons to Produce
+
+## Section 119. Discharge of person informed against (CHAPTER VIII)
+
+C.__ Proceedings in all Cases subsequent to Order to furnish Security
+
+## Section 123. Imprisonment in default of security (CHAPTER VIII)
+
+Proceedings when to be laid before High Court or Court of Sessions
+Kind of imprisonment
+
+## Section 126A. Security for unexpired period of bond (CHAPTER VIII)
+
+UNLAWFUL ASSEMBLIES [AND MAINTENANCE OF PUBLIC PEACE AND SECURITY]
+
+## Section 198. Prosecution for breach of contract, defamation and offences against marriage (CHAPTER XV)
+
+198A. Prosecution for defamation against public servants in respect of their conduct in the discharge
+of public functions
+
 ## Section 3. References to Code of Criminal Procedure and other repealed enactments (CHAPTER I)
 
 (1) In every
@@ -434,6 +459,10 @@ aforesaid] by any Court constituted under this Code by which such offence is sho
 of the second schedule to be triable 1[.]
 1[* * * * * * *]
 
+## Section 29A. Trial of European British subjects by second  and third class Magistrates.] Omitted by the (CHAPTER III)
+
+Criminal Law (Extinction of Discriminatory Privileges) Act, 1949 (II of 1950), s.2 and sch.
+
 ## Section 29B. Jurisdiction in the case of Juveniles.  Any offence, other than one punishable with death (CHAPTER III)
 
 or imprisonment for life, committed by any person who at the date when he appears or is brought  before
@@ -507,6 +536,11 @@ of payment of the fine.
 (2) The imprisonment awarded under this section may be in addition to a substantive
 sentence of imprisonment for the maximum term awarded by the Magistrate under section 32.
 
+## Section 34. Higher powers of certain 8[* * * ] Magistrates. The Court of a Magistrate, specially (CHAPTER III)
+
+empowered under section 30, may pass any sentence authorized by law, except a sentence of death or of
+9[* * *] imprisonment for a term exceeding seven years.
+
 ## Section 34A. 10[Sentences which Courts and Magistrates may pass upon European British subjects] (CHAPTER III)
 
 Omitted by the Criminal Law (Extinction of Discriminatory Privile ges) Act, 1949(II of 1950), s. 2 and
@@ -545,6 +579,11 @@ ordinary jurisdiction, competent to inflict.
 section in case of convictions for several offences at one trial shall be deemed to be a single sentence.
 5[* * * * * * *]
 C.__ Ordinary and Additional Powers
+
+## Section 36. Ordinary Powers of Magistrates.  All 3[6[* *] Magistrates] have the powers hereinafter (CHAPTER III)
+
+respectively conferred upon them and specified in the third schedule. Such powers are called their
+“ordinary powers”.
 
 ## Section 37. Additional powers conferrable on Magistrates (CHAPTER III)
 
@@ -754,6 +793,10 @@ the officer making the arrest or, when the arrest is made by a private person, t
 police­officer to whom he makes over the person arrested, may search such per son, and place in safe
 custody all articles, other than necessary wearing­apparel, found upon him.
 
+## Section 52. Mode of searching women.  Whenever it is necessary to cause a woman to be (CHAPTER V)
+
+searched, the search shall be made by another woman, with strict regard to decency.
+
 ## Section 53. Power to seize offensive weapons.  The officer or other person making any arrest (CHAPTER V)
 
 under this Code may take from the person arrested any offensive weapons which he has about his
@@ -944,6 +987,11 @@ relation to such districts:
 Provided further that the aforesaid proviso shall cease to have effect, and shall be deemed to
 have been repealed, at the time when local Governments are installed in the districts as aforesaid.]
 
+## Section 63. Discharge of person appr ehended. No person who has been arrested by a (CHAPTER V)
+
+police­officer shall be discharged except on his own bond, or on bail, or under the special order of a
+Magistrate.
+
 ## Section 64. Offence committed in Magistrate’s presence. When any offence is committed in the (CHAPTER V)
 
 presence of a Magistrate within the local limits of his jurisdiction, he may himself arrest or order any
@@ -954,6 +1002,11 @@ commit the offender to custody.
 
 direct the arrest, in his presence, within the local limits of his jurisdiction, of any person for whose
 arrest he is competent at the time and in the circumstances to issue a warrant.
+
+## Section 66. Power, on escape, to pursue and retake.  If a person in lawful custody escapes or is (CHAPTER V)
+
+rescued, the person from whose custody he escaped or was rescued may immediately pursue and
+arrest him in any place in 3[Pakistan].
 
 ## Section 67. Provisions of sections 47, 48 and 49 to ap ply to arrests under section 66.  The (CHAPTER V)
 
@@ -1100,11 +1153,27 @@ or farm, or the land under his charge.
 over with the warrant to the nearest police­officer, who shall cause him to be taken before a
 Magistrate having jurisdiction in the case, unless security is taken under section 76.
 
+## Section 79. Warrant directed to police­officer.  A warrant directed to any police­officer may (CHAPTER VI)
+
+also be executed by any other police­officer wh ose name is endorsed upon the warrant by the officer
+to whom it is directed or endorsed.
+
+## Section 80. Notification of substance of warrant.  The police­officer or other person executing a (CHAPTER VI)
+
+warrant of arrest shall notify the substance thereof to the person to be arres ted, and, if so required,
+shall show him the warrant.
+
 ## Section 81. Person arrested to be brought before Court without delay.  The police­officer or (CHAPTER VI)
 
 other person executing a warrant of arrest shall (subject to the provisions of section 76 as to security)
 without unnecessary delay bring the person arrested before the Court before which he is required by
 law to produce such person.
+
+## Section 82. Where warrant may be executed.  A warrant of arrest may be executed at any place (CHAPTER VI)
+
+in 2[Pakistan].
+3[Explanation.__   In this section, “warrant  of arrest ”  includes a  warrant  of arrest  issued
+under this Code as in force in Azad Jammu and Kashmir.]
 
 ## Section 83. Warrant forwarded for execution outside jurisdiction (CHAPTER VI)
 
@@ -1622,6 +1691,11 @@ and the execution of orders passed thereon, and until such rules are framed, the
 Courts in proceedings other than suits and appeals shall apply, so far as may be practicable, to such
 applications.
 
+## Section 99G. Jurisdiction barred.  No order passed or action taken under section 99A shall be (CHAPTER VII)
+
+called in question in any Court otherwise than in accordance with the provisions of section 99B.]
+C.—Discovery of persons wrongfully confined
+
 ## Section 100. Search for persons wrongfully confined.  If any 6[* *], Magistrate of the first class (CHAPTER VII)
 
 7[* * *] has reason to believe that any person is confined under such circum stances that the
@@ -1630,6 +1704,11 @@ warrant is directed may search for the person so confined; and such search shal
 accordance therewith, and the person, if found, shall  be immediately taken before a Magistrate, who
 shall make such order as in the circumstances of the case seems proper.
 D.__ General Provisions relating to Searches
+
+## Section 101. Direction, etc., of search­warrants. The provisions of sections 43, 75, 77, 79, 82, 83 (CHAPTER VII)
+
+and 84 shall, so far as may be, apply, to all search­warrants issued under section 96, section 98,
+8[section 99A] or section 100.
 
 ## Section 102. Persons in charge of closed place to allow search (CHAPTER VII)
 
@@ -1679,6 +1758,10 @@ search under this section, when called upon to do so by an order in writing deli
 him, shall be deemed to have committed an offence under section 187 of the Pakistan Penal Code
 (XLV of 1860).]
 E.—Miscellaneous
+
+## Section 104. Power to impound document, etc., produced.  Any Court may, if it thinks fit, (CHAPTER VII)
+
+impound any document or thing produced before it under this Code.
 
 ## Section 105. Magistrate may direct search in his presence.  Any Magistrate may direct a search (CHAPTER VII)
 
@@ -2559,6 +2642,12 @@ reasonable.]
   _______
 PREVENTIVE ACTION OF THE POLICE
 
+## Section 149. Police  to  prevent cognizable offences (CHAPTER XIII)
+
+Every police­officer may interpose for the
+purpose of preventing, and shall, to the best of his ability, prevent, the commission of any cognizable
+offence.
+
 ## Section 150. Information of design to commit such offences.  Every police­officer receiving (CHAPTER XIII)
 
 information of a design to commit any cognizable offence shall communicate such information to the
@@ -3221,6 +3310,10 @@ ______
 OF THE JURISDICTION OF THE CRIMINAL COURTS IN INQUIRIES AND TRIALS.
 A.__ Place of Inquiry or Trial
 
+## Section 177. Ordinary place of inquiry and trial.  Every offence shall ordinarily be inquired into (CHAPTER XV)
+
+and tried by a Court within the local limits of whose jurisdiction it was committed.
+
 ## Section 178. Power to order cases to be tried in different sessions divisions.  Notwithstanding (CHAPTER XV)
 
 anything contained in section 177, the 1[Provincial Government] may direct that any cases or class of
@@ -3317,6 +3410,10 @@ by a Court having jurisdiction over any of such local areas.
 course of performing a journey or voyage may be inquired into or tried by a Court through or into the
 local limits of whose jurisdiction the offender, or the person against whom, or the thing in respect of
 which, the offence was committed, passed in the course of that journey or voyage.
+
+## Section 184. [Offences against Railway, Telegraph, Post Office and Arms Acts.] Rep. by the (CHAPTER XV)
+
+Federal Laws (Revision and Declaration) Act, 1951 (XXVI of 1951), s. 3 and Second Schedule.
 
 ## Section 185. High Court to decide, in case of doubt, district where inquiry or trial shall take (CHAPTER XV)
 
@@ -4022,6 +4119,11 @@ the manner in which A murdered B.
 (f) A is accused of disobeying a direction of the law with intent to save B from
 punishment. The charge must set out the disobedience charged and the law infringed.
 
+## Section 224. Words i n charge taken in sense of law under which offence is punishable.  In (CHAPTER XIX)
+
+every charge words used in describing an offence shall be deemed to have been used in the sense
+attached to them respectively by the law under which such offence is punishable.
+
 ## Section 225. Effect of errors. No error in stating either the offence or the particulars required to be (CHAPTER XIX)
 
 stated in the charge, and no omission to state the offence or those particulars, shall be regarded at any
@@ -4350,6 +4452,11 @@ Provided that the provisions of this sub­section shall not apply in any case in
 complaint has been made by a Court or by a public se rvant acting or purporting to act in the
 discharge of his official duties].
 
+## Section 242. Charge to be framed.  When the accused appears or is brought before the Magistrate, (CHAPTER XX)
+
+a formal charge shall be framed relating to the offence of which he is accused and he shall be asked
+whether he admits that he has committed the offence with which he is charged.]
+
 ## Section 243. Conviction on admission of truth of accusation.  If the accused admits that he has (CHAPTER XX)
 
 committed the offence 2[with which he is charged], his admission shall be recorded as nearly as
@@ -4655,6 +4762,18 @@ signed as aforesaid shall be the proper record.
 3[CHAPTER XXIIA
 TRIALS BEFORE HIGH COURTS AND COURTS OF SESSION
 
+## Section 265A. Trial before Court of Session to be conducted by Public Prosecutor (CHAPTER XXII)
+
+In every trial
+before a Court of Session, initiated upon a police report, the prosecution shall be conducted by the
+Public Prosecutor.
+
+## Section 265B. Procedure in cases triable by High Courts and Courts of Session (CHAPTER XXII)
+
+The following
+procedure shall be observed by the High Courts and the Courts of Session in the trial of cases triable
+by the said Courts.
+
 ## Section 265C. Supply of statements and documents to the accused (CHAPTER XXII)
 
 (1) In all cases instituted
@@ -4948,6 +5067,11 @@ trial, and put in evidence for or against him in any other inquiry into, or tria
 which such answers may tend to show he has committed.
 2[(4) Except as provided by sub­section (2) of section 340, no oath shall be administered to
 the accused.]
+
+## Section 343. No influence to be used to induce disclosures.  Except as provided in sections 337 (CHAPTER XXIV)
+
+and 338, no influence, by means of any promise or threat or otherwise, shall be used to an accused
+person to induce him to disclose or withhold any matter within his knowledge.
 
 ## Section 344. Power to postpone or adjourn proceedin gs (CHAPTER XXIV)
 
@@ -5354,6 +5478,11 @@ provided, all evidence taken under 1[Chapters XX, XXI, XXII and XXIIA] shall be 
 presence of the accused, or, when his personal attendance is dispensed with, in presence of his
 pleader.
 
+## Section 354. Manner of recording evidence.  In inquiries and trials (other than summary trials) (CHAPTER XXV)
+
+under this Code by or before a Magistrate 2[* * * ] or Sessions Judge, the evidence of the witnesses
+shall be recorded in the following manner.
+
 ## Section 355. 3[Record in trials of certain cases by first and Second class Magistrates] (CHAPTER XXV)
 
 (1)4[in
@@ -5461,6 +5590,11 @@ that language.
 (3) When documents are put in for the purpose of formal proof, it shall be in the
 discretion of the Court to interpret as much thereof as appears necessary.
 
+## Section 363. Remarks respecting demeanour of witness.  When a Sessions Judge or Magistrate (CHAPTER XXV)
+
+has recorded the evidence of a witness, he shall also record such remarks (if any) as he thinks
+material respecting the demeanour of such witness whilst under examination.
+
 ## Section 364. Examination of  accused how recorded (CHAPTER XXV)
 
 (1) Whenever the accused is examined
@@ -5561,6 +5695,12 @@ why sentence of death was not passed 2[.]
 4[(6) For the purposes of this section, an order under section 118 or section 123,
 sub­section (3), shall be deemed to be a judgment.]
 
+## Section 368. Sentence of death (CHAPTER XXVI)
+
+(1) When any person is sentenced to death, the sentence shall
+direct that he be hanged by the neck till he is dead.
+(2) 5[* * * * * * *]
+
 ## Section 369. Court not to alter judgment.  6[Save as otherwise provided by this Code or by any (CHAPTER XXVI)
 
 other law for the time being in force or, in the case of a High Court 7[*  *  *], by the Letters Patent of
@@ -5604,6 +5744,11 @@ sentence (if any) to the 5[officer­in­charge of prosecu tion in the district] 
 whose Jurisdiction the trial was held.
     _______
 OF THE SUBMISSION OF SENTENCES FOR CONFIRMATION
+
+## Section 374. Sentence of death to be submitted by Court of Session.  When the Court of Session (CHAPTER XXVII)
+
+passes sentence of death, the proceedings shall be submitted to the High Court and the sentence shall
+not be executed unless it is confirmed by the High Court.
 
 ## Section 375. Power to Direct further inquiry to be made or additional evidenc e to be taken (CHAPTER XXVII)
 
@@ -5795,6 +5940,15 @@ order for the payment of money has been made on non­recovery of which imprisonm
 awarded and the money is not paid forthwith; and, if the person against whom the order has been
 made, on being required to enter into a bond such as is referred to  in that sub­section, fails to do so,
 the Court may at once pass sentence of imprisonment.]
+
+## Section 389. Who may issue warrant.  Every warrant for the execution of any sentence may be (CHAPTER XXVIII)
+
+issued either by the Judge or Magistrate who passed the sentence, or by his successor in office.
+
+## Section 390. Execution of sentence of whipping only. When the accused is sentenced to whipping (CHAPTER XXVIII)
+
+only, the sentence shall 1[subject to the provisions of section 391] be executed at such place and time
+as the Court may direct.
 
 ## Section 391. Execution of sentence of whipping, in addition to imprisonment (CHAPTER XXVIII)
 
@@ -6002,6 +6156,11 @@ which he might have been sentenced, simple imprisonment for a like term, fine.
 11[(2) Nothing in this section shall affect the provisions of section 54 or section 55 of the
 Pakistan Penal Code (XLV of 1860).]
 
+## Section 402A. Sentences of death.  The powers conferred by sections 401 and 402 upon the (CHAPTER XXIX)
+
+Provincial Government may, in the case of sentence s of death, also be exercised by the 13[President]
+14[* * *].
+
 ## Section 402B. Certain restrictions on the exercise of powers by Provincial Government. (CHAPTER XXIX)
 
 Notwithstanding anything contained in section 401 or section 402, the Provincial Government shall
@@ -6102,6 +6261,11 @@ ______
 
 OF APPEALS1
 
+## Section 404. Unless otherwise provided, no appeal to lie.  No appeal shall lie from any judgment (CHAPTER XXXI)
+
+or order of a Criminal Court except as provided for by this Code or by any other law for the time
+being in force.
+
 ## Section 405. Appeal from order rejecting application for restoration of attached property. (CHAPTER XXXI)
 
 Any person whose app lication under section 89 for the delivery of property or the proceeds of the
@@ -6119,6 +6283,12 @@ of section 123.]
 
 1For periods of limitation, see the Limitation Act, 1908 (IX of 1908), s.3 and Sch. I, second division.
 2Subs. by Ord. No. XXXVII of 2001, s. 65.
+
+## Section 406A. Appeal from order refusing to accept or rejecting a surety (CHAPTER XXXI)
+
+Any person aggrieved
+by an  order refusing to accept or rejectin g a  surety under section 122 may appeal against  such order to
+the  Court  of Session.]
 
 ## Section 408. Appeal from sentence of Assistant Sessions Judge or 1[Judicial Magistrate]. Any person (CHAPTER XXXI)
 
@@ -6142,6 +6312,10 @@ Government may, by general  or special order, direct or as the Sessions Judge of
 over to him:
 Provided further that no such appeal shall be heard by an Assistant Sessions Judge unless the
 appeal is of a person convicted on a trial held by any Magistrate of the second class or third class.]
+
+## Section 410. Appeal from sentence of Court of Session.  Any person convicted on a trial held by a (CHAPTER XXXI)
+
+Sessions Judge, or an Additional Sessions Judge, may appeal to the High Court.
 
 ## Section 411A. Appeal  from sentence  of High  Court (CHAPTER XXXI)
 
@@ -6284,11 +6458,23 @@ sub­section (1).]
 377 or 377B of the Pakistan Penal Code, 1860 (Act XLV of 1860) shall be decided within six
 months.]
 
+## Section 418. Appeal on what matters admissible.­  (1)] An appeal may lie on a matter of fact as (CHAPTER XXXI)
+
+well as a matter of law 3* * *.
+(2) 4[* * * * * * *]
+Explanation.__ The  alleged severity of a sentence shall, for the purposes of this section, be
+deemed to be   a matter of law.
+
 ## Section 419. Petition of appeal.  Every appeal shall be made in the form of  a petition in writing (CHAPTER XXXI)
 
 presented by the appellant or his pleader, and every such petition shall (unless the Court to which it
 is presented otherwise directs) be accompanied by a copy of the judgment or order appealed aga inst
 5[* * *].
+
+## Section 420. Procedure when appellant in jail.  If the appellant is in jail, he may present his (CHAPTER XXXI)
+
+petition of appeal and the copies accompanying the same to the officer in charge of the jail, who
+shall thereupon forward such petition and copies to the proper Appellate Court.
 
 ## Section 421. Summary dismissal of appeal (CHAPTER XXXI)
 
@@ -6438,6 +6624,10 @@ composing the Court of Appeal are equally divided in opinion, the case, with the
 shall be laid before another Judge of the same Court, and such Judge, after such hearing (if any) as
 he thinks fit, shall deliver his opinion, and the judgment or order shall follow such opinion.
 
+## Section 430. Finality of orders on appeal.  Judgments and orders passed by an Appellate Court (CHAPTER XXXI)
+
+upon appeal shall be final, except in the cases provided for in section 417 and Chapter XXXII.
+
 ## Section 431. Abatement of appeals. Every appeal under 2[section 411­A, sub­section (2), or (CHAPTER XXXI)
 
 section 417] shall finally abate on the death of the accused, and every other appeal under this Chapter
@@ -6448,6 +6638,11 @@ ______
 OF REFERENCE AND REVISION
 432 and 433. [Reference by Presidency Magistrate to High Court. Disposal of case
 according  to  decision of High Court and direction as to costs.] Omitted by A.O.,1949, Schedule.
+
+## Section 434. [Power to reser ve questions arising in original jurisdiction of High Court and (CHAPTER XXXII)
+
+procedure when question reserved.] Omitted by Criminal Procedure Amendment Act, 1943 (XXVI of
+1943), s. 6.
 
 ## Section 435. Power to call for records of inferior Courts (CHAPTER XXXII)
 
@@ -6800,6 +6995,14 @@ person before such Court, or, if sufficient security is not given, shall forward
 to such Court.
 (2) The Court to which a case is forwarded under this section shall proceed to hear the
 complaint against the accused person in the manner hereinbefore provided.]
+
+## Section 477. [Power of Court of Session as to such offences comitted before itself.]  Omitted by the (CHAPTER XXXV)
+
+Code of Criminal Procedure (Amendment) Act, 1923 (XVIII of 1923), s.129.
+
+## Section 478. [Power of Civil or Revenue Courts to complete inquiry and commit to High Court or (CHAPTER XXXV)
+
+Court of Session.] Omitted by the Law Reforms Ordinance, 1972 (XII Of 1972), s. 2 and sch.
 
 ## Section 480. Procedure in certain cases of contempt (CHAPTER XXXV)
 
@@ -7387,6 +7590,11 @@ fresh security in accordance with the directions of the original order, and ,  i
 furnished, such Court or Magistrate may proceed as if there  had been a  default  in complying with
 such original order.
 
+## Section 514B. Bond required from a minor.  When the person required by any Court or officer to (CHAPTER XLII)
+
+execute a bond is a minor, such Court or officer may accept, in lieu thereof, a bond executed by a
+surety or sureties only.]
+
 ## Section 515. Appeals from, and revision of, orders under section 514 (CHAPTER XLII)
 
 All orders passed by any
@@ -7673,6 +7881,10 @@ rupees]  that  he  will  make  such application within a reasonable time to be f
 postpone the appeal for such a period as will afford sufficient time for the application to be made and
 an order to be obtained thereon.]
 
+## Section 526A. [High Court to transfer for trial to itself in certain cases.  Omitted by the Code of (CHAPTER XLIV)
+
+Criminal Procedure (Amdt.) Ordinance, 1969 (20 of 1969), S. 2 (w.e.f. 29­7­1969).
+
 ## Section 527. Power   of   Provincial   Government   to   transfer   cases   and   appeals (CHAPTER XLIV)
 
 (1)
@@ -7904,6 +8116,13 @@ by A.O., 1961, Art. 2 and Sch., for “Clerk of the Crown” (w.e.f 23.3.1956).
 Provinces and the Capital of the Federation”, which had been subs. by A.O., 1949, Arts. 3(2) and 4, for “British India”.
 5Certain words omitted by the Federal Laws (Revision and Declaration) Ordinance, 1981 (XXVII of 1981), s.3 and 2nd Sch.
 
+## Section 7S. 539B ins. by Act XVIII of 1923, s.150. (CHAPTER XLVI)
+
+8Subs. by Ordinance XII of 1972, s.2 and Sch., for colon.
+
+
+1[* * * * * * *]
+
 ## Section 540. Power to summon material witness or examine person present.  Any Court may, at (CHAPTER XLVI)
 
 any stage of any inquiry, trial or other proceeding under this Code, summon any person as a witness,
@@ -7941,6 +8160,11 @@ Section 5[58 of the Code of Civil Procedure, 1908 6[(Act V of 1908)],]: or
 (b) the Court which ordered his imprisonment in the civil jail has certified to the
 officer in charge of the criminal jail that he is entitled to be discharged under
 section 5[58 of the Code of Civil Procedure, 1908 6[(Act V of 1908)]].
+
+## Section 542. [Power of Presidency Magistrate to order prisoner in jail to be brought up for (CHAPTER XLVI)
+
+examination.] Rep. by the Federal Laws (Revision and Declaration) Act, 1951 (26 of 1951), S. 3 and
+II Schedule.
 
 ## Section 543. Interpreter to be bound to i nterpret truthfully. When the services of an interpreter (CHAPTER XLVI)
 
@@ -8046,6 +8270,11 @@ period not exceeding thirty days.
 (2) An order under this section may also be made by an Appellate Court, or by the High
 Court, when exercising its powers of revision.]
 
+## Section 547. Moneys ordered to be paid recoverable as fines.  Any money (other than a fine) (CHAPTER XLVI)
+
+payable by virtue of  any order made under this Cod e 3[and the method of recovery of which is not
+otherwise expressly provided for], shall be recoverable as if it were a fine.
+
 ## Section 548. Copies of proceedings.  If any person affected by a Judgment or order passed by a (CHAPTER XLVI)
 
 Criminal Court desires to have a copy of 4[* * *] any order or deposition or other part of the record
@@ -8100,6 +8329,10 @@ under the age of 8[sixteen] years, for any unlawful purpose, he may make an orde
 restoration of such woman to her liberty, or of such female child to her husband, parent, guardian or
 other person having the lawfu l charge of such child, and may compel compliance with such order,
 using such force as may be necessary.
+
+## Section 553. [Compensation to persons groundlessly given in charge in presidency­town.] Rep. by (CHAPTER XLVI)
+
+the Federal Laws (Revision and Declaration) Act, 1951 (XXVI of 1951), s. 3 and Schedule II.
 
 ## Section 554. Power of 9[*] High Courts to make rules for inspection of records of subordinate (CHAPTER XLVI)
 
@@ -8176,6 +8409,11 @@ read as above.
 4The words “or commit for trail” omitted by the Law Reforms Ordinance, 1972 (XII of 1972), s.2 and Sch.
 5The words “Presidency­town or” rep. by the Federal Laws (Revision and Declaration) Act, 1951 (XXVI of 1951), s.3 and Sch.II.
 
+## Section 558. Powers to decide language of Courts. The 1[Provincial Government] may determine (CHAPTER XLVI)
+
+what, for the purposes of this Code, shall be deemed to be the language of each Court within the
+territories administered by such Government, other than 2[the High Courts].
+
 ## Section 559. Provision for powers of Judges and Mag istrates being exercised by  their (CHAPTER XLVI)
 
 successors in office. __ (1) Subject to the other provisions of the Code, the powers and duties of a
@@ -8188,6 +8426,15 @@ successor in office of such Magistrate.
 Assistant Sessions Judge, the Sessions Judge shall determine by order in writing the Judge who shall,
 for the purposes of this Code or of any proceedings or order thereunder, be deemed to be the
 successor in office of such Additional or Assistant Sessions Judge.]
+
+## Section 560. Officers concerned in sales not to purchase or bid for property.  A public servant (CHAPTER XLVI)
+
+having any  duty to perform in connection with the sale of any property under this Code shall not
+purchase or bid for the property.
+
+## Section 561. [Special provisions with respect to offence of rape by a husband.] Rep. by  the Offence (CHAPTER XLVI)
+
+of Zina (Enforcement of Hadood), Ordinance, 1979 (VII of 1979), s.20.
 
 ## Section 561A. Saving of inherent power of High Court.  Nothing in this Code shall be deemed to (CHAPTER XLVI)
 

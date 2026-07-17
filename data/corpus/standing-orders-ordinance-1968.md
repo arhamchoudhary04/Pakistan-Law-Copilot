@@ -79,6 +79,18 @@ workmen employed in the industrial or commercial establishment on notice boards
 maintained at or n ear the main entrance of the establishment and at t he time -
 keeper's office, if any.
 
+## Section 4. Publication of holidays and pay days
+
+Notices specifying (a) the days
+observed by the industrial or commercial establishment as holidays and (b) pay days
+shall be posted on the said notice boards.
+
+## Section 5. Publication of wage rates
+
+Notices specifying the rates of wages payable to
+all classes of workmen and for all classes of work shall be displayed on the said
+notice boards.
+
 ## Section 6. Shift working
 
 More than one shift may be work ed in a department or any
@@ -638,6 +650,12 @@ remain in occupation thereof.
 [17. Provident Fund.– * * * * * * *   ]
 2
 [18. Grievance Procedure.–  * * * * * *   ]
+
+## Section 19. Certificate of termination of service
+
+Every permanent workman shall be
+entitled to a service certificate at the time of his dismissal, discharge, retr enchment
+or retirement from service.
 
 ## Section 20. Liability of employer
 

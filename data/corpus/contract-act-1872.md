@@ -150,6 +150,11 @@ reasonable time after the acceptance is communicated to him, insist that his pro
 shall be accepted in the prescribed manner, and not otherwise; but if he fails to do so, he
 accepts the acceptance.
 
+## Section 8. Acceptance by performing, conditions, or receiving consideration. Performance of the (CHAPTER I)
+
+conditions of a proposal, or the acceptance of any consideration for a reciprocal promise which may
+be offered with a proposal, is an acceptance of the proposal.
+
 ## Section 9. Promises, express and implied. In so far as the proposal or acceptance of any promise is (CHAPTER I)
 
 made in words, the promise is said to be express. In so far as such proposal or acceptance is made
@@ -166,6 +171,11 @@ are not hereby expressly declared to be void.
  Nothing herein contained shall affect any law in force in 1[Pakistan], and not hereby
 expressly repealed, by which any contract is required to be made in writing or in the presence of
 witnesses, or any law relating to the registration of documents.
+
+## Section 11. Who are competent to contract. Every person is competent to contract who is of the age (CHAPTER II)
+
+of majority according to the law to which he is subject, and who is of sound mind, and is not
+disqualified from contracting by any law to which he is subject.
 
 ## Section 12. What is a sound mind for the purposes of contracting . A person is said to be of sound (CHAPTER II)
 
@@ -446,6 +456,11 @@ the 1[Pakistan] Law of Limitation: the contract is not voidable.
 
  3[* * * * * * *]
 
+## Section 22. Contract caused by mistake of one party as to matter of fact. A contract is not (CHAPTER II)
+
+voidable merely because it was caused by one of the parties to it being under a mistake as to a matter
+of fact.
+
 ## Section 23. What considerations and objects are lawful and what not. The consideration or object (CHAPTER II)
 
 of an agreement is lawful, unless—it is forbidden by law; or
@@ -691,6 +706,11 @@ rupees or upwards, to be awarded to the winner or winners of any horse race.
 deemed to legalize any transaction connected with horse-racing, to which the provisions of section
 294A of the Pakistan Penal Code (XLV of 1860) apply.
 
+## Section 30A. Agreements collateral to wagering agreements void. All agreements knowingly (CHAPTER II)
+
+made to further or assist the entering into, effecting or carrying out, or to secure or guarantee the
+performance, of any agreement void under section 30, are void.
+
 ## Section 30B. No suit for recovery of money, commission etc., in respect of void agreements. No (CHAPTER II)
 
 suit or other proceeding shall lie for the recovery of—
@@ -895,6 +915,10 @@ and, if A dies before the time appointed for payment, his representatives must
 perform the promise, or employ some proper person to do so.
 
 (b)  A promises to paint a picture for B. A must perform this promise personally.
+
+## Section 41. Effect of accepting performance from third person. When a promisee accepts (CHAPTER IV)
+
+performance of the promise from a third person, he cannot afterwards enforce it against the promisor.
 
 ## Section 42. Devolution of Joint liabilities. When two or more persons have make a joint promise, (CHAPTER IV)
 
@@ -1344,6 +1368,11 @@ must refund to B the 1,000 rupees paid in advance.
 
 1Subs. by the Amending Act 1891 (XII of 1891), s. 2 and 2nd Sch.
 
+## Section 66. Mode of communicating or revoking rescission of voidable contract. The rescission of (CHAPTER IV)
+
+a voidable contract may be communicated or revoked in the same manner, and subject to the same
+rules, as apply to the communication or revocation of a proposal.
+
 ## Section 67. Effect of neglect of promisee to afford promisor reasonable facilities for (CHAPTER IV)
 
 performance. If any promisee neglects or refuses to afford the promisor reasonable facilities for the
@@ -1407,6 +1436,10 @@ his own. He is bound to pay A for them.
 
 (b)  A saves B’s property from fire. A is not entitled to compensation from B, if
 the circumstances show that he intended to act gratuitously.
+
+## Section 71. Responsibility of finder of goods. A person who finds goods belonging to another and (CHAPTER V)
+
+takes them into his custody, is subject to the same responsibility as a bailee.
 
 ## Section 72. Liability of person to whom money is paid or thing delivered by mistake or under (CHAPTER V)
 
@@ -1786,6 +1819,11 @@ A is liable to B for the 2,000 rupees, on default of C.
 that B shall draw upon him. B draws upon C. C accepts the bill. A gives notice
 of revocation. C dishonours the bill at maturity. A is liable upon his guarantee.
 
+## Section 131. Revocation of continuing guarantee by surety’s death. The death of the surety (CHAPTER VIII)
+
+operates, in the absence of any contract to the contrary, as a revocation of a continuing guarantee, so
+far as regards future transactions.
+
 ## Section 132. Liability of two persons primarily liable, not affected by arrangement between (CHAPTER VIII)
 
 them that one shall be surety on other’s default. Where two persons contract with a third person to
@@ -1897,6 +1935,11 @@ Illustration
  B owes to C a debt guaranteed by A. The debt becomes payable. C does not sue B for a year
 after the debt has become payable. A is not discharged from his suretyship.
 
+## Section 138. Release of one co-surety does not discharge others. Where there are co-sureties, a (CHAPTER VIII)
+
+release by the creditor of one of them does not discharge the others; neither does it free the surety so
+released from his responsibility to the other sureties.
+
 ## Section 139. Discharge of surety by creditor’s act or omission impairing surety’s eventual (CHAPTER VIII)
 
 remedy. If the creditor does any act which is inconsistent with the rights of the surety, or omits to do
@@ -1952,6 +1995,11 @@ tion. A is discharged.
 (c)  A, as surety for B, makes a bond jointly with B to C, to secure a loan from C
 to B. Afterwards, C obtains from B a further security for the same debt.
 Subsequently, C gives up the further security. A is not discharged.
+
+## Section 142. Guarantee obtained by misrepresentation invalid. Any guarantee which has been (CHAPTER VIII)
+
+obtained by means of misrepresentation made by the creditor, or with his knowledge and assent,
+concerning a material part of the transaction, is invalid.
 
 ## Section 143. Guarantee obtained by concealment invalid. Any guarantee which the creditor has (CHAPTER VIII)
 
@@ -2064,6 +2112,11 @@ delivered is called the “bailee”.
 them as a bailee, he thereby becomes the bailee, and the owner becomes the bailor, of such goods al-
 though they may not have been delivered by way of bailment.
 
+## Section 149. Delivery to bailee how made. The delivery to the bailee may be made by doing any- (CHAPTER IX)
+
+thing which has the effect of putting the goods in the possession of the intended bailee or of any
+person authorized to hold them on his behalf.
+
 ## Section 150. Bailor’s duty to disclose faults in goods bailed. The bailor is bound to disclose to the (CHAPTER IX)
 
 bailee faults in the goods bailed, of which the bailor is aware, and which materially interfere with the
@@ -2081,6 +2134,16 @@ is responsible to B for damage sustained.
 
 (b)  A hires a carriage of B. The carriage is unsafe, though B is not aware of it, and
 A is injured. B is responsible to A for the injury.
+
+## Section 151. Care to be taken by bailee. In all cases of bailment the bailee is bound to take as much (CHAPTER IX)
+
+care of the goods bailed to him as a man of ordinary prudence would, under similar circumstances,
+take of his own goods of the same bulk, quality and value as the goods bailed.
+
+## Section 152. Bailee when not liable for loss, etc., of thing bailed. The bailee, in the absence of any (CHAPTER IX)
+
+special contract, is not responsible for the loss, destruction or deterioration of the thing bailed, if he
+has taken the amount of care of it described in section 151.
 
 ## Section 153. Termination of bailment by bailee’s act inconsistent with conditions. A contract of (CHAPTER IX)
 
@@ -2178,10 +2241,25 @@ Illustration
  A leaves a cow in the custody of B to be taken care of. The cow has a calf B is bound to
 deliver the calf as well as the cow to A.
 
+## Section 164. Bailor’s responsibility to bailee. The bailor is responsible to the bailee for any loss (CHAPTER IX)
+
+which the bailee may sustain by reason that the bailor was not entitled to make the bailment, or to
+receive back the goods or to give directions, respecting them.
+
+## Section 165. Bailment by several joint owners. If several joint owners of goods bail them, the bailee (CHAPTER IX)
+
+may deliver them back to, or according to the directions of, one joint owner without the consent of
+all, in the absence of any agreement to the contrary.
+
 ## Section 166. Bailee not responsible on re-delivery to bailor without title. If the bailor has no title (CHAPTER IX)
 
 to the goods, and the bailee, in good faith, delivers them back to, or according to the directions of,
 the bailor, the bailee is not responsible to the owner in respect of such delivery.
+
+## Section 167. Right of third person claiming goods bailed . If a person, other than the bailor, claims (CHAPTER IX)
+
+goods bailed, he may apply to the Court to stop the delivery of the goods to the bailor, and to decide
+the title to the goods.
 
 ## Section 168. Right of finder of goods; may sue for specific reward offered. The finder of goods (CHAPTER IX)
 
@@ -2224,6 +2302,11 @@ express contract to that effect.
 
 Bailments of Pledges
 
+## Section 172. “Pledge,” “pawnor”, and “pawnee” defined. The bailment of goods as security for (CHAPTER IX)
+
+payment of a debt or performance of a promise is called “pledge”. The bailor is in this case called the
+“pawnor”. The bailee is called the “pawnee”.
+
 ## Section 173. Pawnee’s right of retainer. The pawnee may retain the goods pledged, not only for (CHAPTER IX)
 
 payment of the debt or the performance of the promise, but for the interest of the debt, and all necessary
@@ -2235,6 +2318,10 @@ Presumption incase of subsequent advances. The pawnee shall not, in the absence 
 effect retain the goods pledged for any debt or promise other than the debt or promise for which they are
 pledged; but such contract, in the absence of anything to the contrary, shall be presumed in regard to
 subsequent advances made by the pawnee.
+
+## Section 175. Pawnee’s right as to extraordinary expenses incurred. The pawnee is entitled to receive (CHAPTER IX)
+
+from the pawnor extraordinary expenses incurred by him for the preservation of the goods pledged.
 
 ## Section 176. Pawnee’s right where pawnor makes default. If the pawnor makes default in payment of (CHAPTER IX)
 
@@ -2274,6 +2361,12 @@ section 19A, but the contract has not been rescinded at the time of the pledge, 
 good title to the goods, provided he acts in good faith and without notice of the pawnor’s defect of
 title.]
 
+## Section 179. Pledge where pawnor has only a limited interest. Where a person pledges goods in (CHAPTER IX)
+
+which he has only a limited interest, the pledge is valid to the extent of that interest.
+
+Suits by Bailees or Bailors against Wrong-doers
+
 ## Section 180. Suit by bailor or bailee against wrongdoer. If a third person wrongfully deprives the (CHAPTER IX)
 
 bailee of the use or possession of the goods bailed, or does them any injury, the bailee is entitled to
@@ -2300,6 +2393,15 @@ be dealt with according to their respective interests.
 AGENCY
 
 Appointment and Authority of Agents
+
+## Section 182. “Agent” and “principal” defined. An “agent” is a person employed to do any act for (CHAPTER X)
+
+another or to represent another in dealings with third persons. The person for whom such act is done,
+or who is so represented, is called the “principal”.
+
+## Section 183. Who may employ agent. Any person who is of the age of majority according to the law (CHAPTER X)
+
+to which he is subject, and who is of sound mind, may employ an agent.
 
 ## Section 184. Who may be an agent. As between the principal and third persons any person may (CHAPTER X)
 
@@ -2360,6 +2462,10 @@ Sub-Agents
 
 which he has expressly or impliedly undertaken to perform personally, unless by the ordinary custom
 of trade a sub-agent may, or, from the nature of the agency, a sub-agent must, be employed.
+
+## Section 191. “Sub-agent” defined. A “sub-agent” is a person employed by, and acting under the (CHAPTER X)
+
+control of, the original agent in the business of the agency.
 
 ## Section 192. Representation of principal by sub-agent properly appointed. Where a sub-agent is (CHAPTER X)
 
@@ -2440,6 +2546,15 @@ by A.
 (b)  A, without B’s authority lends B’s money to C. Afterwards B accepts interest
 on the money from C. B’s conduct implies a ratification of the loan.
 
+## Section 198. Knowledge requisite for valid ratification. No valid ratification can be made by a (CHAPTER X)
+
+person whose knowledge of the facts of the case is materially defective.
+
+## Section 199. Effect of ratifying unauthorized act forming part of a transaction. A person (CHAPTER X)
+
+ratifying any unauthorised act done on his behalf ratifies the whole of the transaction of which such
+act fromed a part.
+
 ## Section 200. Ratification of unauthorized act cannot injure third person. An act done by one (CHAPTER X)
 
 person on  behalf  of  another, without  such  other  person’s  authority, which, if done with authority,
@@ -2487,6 +2602,11 @@ cotton, and desires B to sell the cotton, and to repay himself, out of the price
 the amount of his own advances. A cannot revoke this authority, nor is it
 terminated by his insanity or death.
 
+## Section 203. When principal may revoke agent’s authority. The principal may, save as is (CHAPTER X)
+
+otherwise provided by the last preceding section, revoke the authority given to his agent at any time
+before the authority has been exercised so as to bind the principal.
+
 ## Section 204. Revocation where authority has been partly exercised. The principal cannot revoke (CHAPTER X)
 
 the authority given to his agent after the authority has been partly exercised so far as regards such
@@ -2511,6 +2631,11 @@ revoke B’s authority to pay for the cotton.
 an express or implied contract that the agency should be continued for any period of time, the
 principal must make compensation to the agent, or the agent to the principal, as the case may be, for
 any previous revocation or renunciation of the agency without sufficient cause.
+
+## Section 206. Notice of revocation or renunciation. Reasonable notice must be given of such (CHAPTER X)
+
+revocation or renunciation; otherwise the damage thereby resulting to the principal or the agent, as
+the case may be, must be made good to the one by the other.
 
 ## Section 207. Revocation and renunciation may be expressed or implied. Revocation and (CHAPTER X)
 
@@ -2617,6 +2742,11 @@ Soon after her arrival the price of cotton rises. B is bound to make good to A
 the profit which he might have made by the 100 bales of cotton at the time the
 ship arrived, but not any profit he might have made by the subsequent rise.
 
+## Section 214. Agent’s duty to communicate with principal. It is the duty of an agent, in cases of (CHAPTER X)
+
+difficulty, to use all reasonable diligence in communicating with his principal, and in seeking to
+obtain his instructions.
+
 ## Section 215. Right of principal when agent deals, on his own account, in business of agency (CHAPTER X)
 
 without principal’s consent. If an agent deals on his own account in the business of the agency,
@@ -2661,6 +2791,10 @@ at the price he gave for it.
 retain, out of any sums received on account of the principal in the business of the agency, all moneys
 due to himself in respect of advances made or expenses properly incurred by him in conducting such
 business, and also such remuneration as may be payable to him for acting as agent.
+
+## Section 218. Agent’s duty to pay sums received for principal. Subject to such deductions, the agent (CHAPTER X)
+
+is bound to pay to his principal all sums received on his account.
 
 ## Section 219. When agent’s remuneration becomes due. In the absence of any special contract, (CHAPTER X)
 
@@ -2898,6 +3032,11 @@ principal respectively.
 rized agent of another, and thereby inducing a third person to deal with him as such agent, is liable, if
 his alleged employer does not ratify his acts, to make compensation to the other in respect of any loss
 or damage which he has incurred by so dealing.
+
+## Section 236. Person falsely contracting as agent not entitled to performance. A person with (CHAPTER X)
+
+whom a contract has been entered into in the character of agent is not entitled to require the
+performance of it if he was in reality acting, not as agent, but on his own account.
 
 ## Section 237. Liability of principal inducing belief that agent’s unauthorized acts were (CHAPTER X)
 

@@ -1,5 +1,12 @@
 # The Punjab Rented Premises Act, 2009
 
+## Section 1. Short title, extent and commencement (CHAPTER I)
+
+(1) This Act may be cited as the
+Punjab Rented Premises Act 2009.
+(2) It shall extend to the whole of the Punjab.
+(3) It shall come into force at once.
+
 ## Section 2. Definitions (CHAPTER I)
 
 In this Act:
@@ -52,6 +59,12 @@ landlord lets out a premises to a tenant.
 The Government may, for reasons to be recorded in writing and by
 notification in the official Gazette, direct that all or any of the provisions of this Act shall
 not apply to any class of premises or to any premises in any specified area.
+
+## Section 4. Act to override other laws (CHAPTER I)
+
+The provisions of this Act shall have effect
+notwithstanding anything contained in any other law for the time being in force.
+CREATION OF TENANCY
 
 ## Section 5. Agreement between landlord and tenant (CHAPTER II)
 
@@ -124,6 +137,12 @@ under the tenancy agreement, shall not affect the relationship of landlord and t
 unless the tenancy is revoked through a written agreement entered before the Rent
 Registrar in accordance with the provisions of section 5.
 OBLIGATIONS OF THE PARTIES AND GROUNDS FOR EVICTION
+
+## Section 11. Subletting (CHAPTER III)
+
+A tenant shall not, without the prior written consent of the
+landlord, sublet the whole or a part of the premises, or transfer or assign a right
+under the tenancy.
 
 ## Section 12. Obligations of landlord (CHAPTER III)
 
@@ -219,6 +238,11 @@ district or an area as it may deem necessary.
 tenancy agreement, agreement to sell or any other agreement in respect of rented
 premises.
 
+## Section 18. Staff and establishment (CHAPTER IV)
+
+The Government may appoint staff of a Rent
+Tribunal to perform such functions as may be prescribed.
+
 ## Section 19. Filing of application (CHAPTER IV)
 
 (1) An application in respect of a rented premises
@@ -293,6 +317,11 @@ within a period of fifteen days from the date of its filing.
 (6)  If the leave to contest is refused or the respondent has failed to file
 application for leave to contest within the stipulated time, the Rent Tribunal shall
 pass the final order.
+
+## Section 23. Written reply (CHAPTER IV)
+
+If the leave to contest is granted, the Rent Tribunal shall treat
+the application for leave to contest as a written reply.
 
 ## Section 24. Payment of rent and other dues pending proceedings (CHAPTER IV)
 
