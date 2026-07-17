@@ -12,12 +12,13 @@ import type { ChatEvent } from "./types";
 export async function* streamChat(
   message: string,
   history: { question: string; answer: string }[] = [],
+  docId: string | null = null,
   signal?: AbortSignal,
 ): AsyncGenerator<ChatEvent> {
   const resp = await fetch(`${API_URL}/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message, history }),
+    body: JSON.stringify({ message, history, doc_id: docId }),
     signal,
   });
 
