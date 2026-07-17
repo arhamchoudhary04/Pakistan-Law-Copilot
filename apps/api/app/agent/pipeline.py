@@ -55,6 +55,7 @@ def _sources_event(retrieved: list[RetrievedChunk]) -> SourcesEvent:
                 score=round(r.score, 4),
                 rerank_score=round(r.rerank_score, 4) if r.rerank_score is not None else None,
                 used=r.used,
+                via_graph=r.via_graph,
                 section=r.chunk.section,
                 source=r.chunk.source,
             )

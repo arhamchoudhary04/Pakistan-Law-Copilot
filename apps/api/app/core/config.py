@@ -61,6 +61,15 @@ class Settings(BaseSettings):
     verify_enabled: bool = True
     max_attempts: int = 2
 
+    # ---- Knowledge graph (Neo4j, optional) ----
+    # Hybrid retrieval augments vector hits with graph neighbours (cross-referenced
+    # provisions). Falls back to vector-only when disabled or Neo4j is unreachable.
+    graph_enabled: bool = False
+    neo4j_uri: str = ""
+    neo4j_username: str = "neo4j"
+    neo4j_password: str = ""
+    neo4j_database: str = "neo4j"
+
     # ---- API ----
     api_host: str = "0.0.0.0"
     api_port: int = 8000
@@ -79,6 +88,11 @@ class Settings(BaseSettings):
     def data_path(self) -> Path:
         """Absolute path to the index/data directory (resolved from repo root)."""
         return self._resolve(self.data_dir)
+
+    @property
+    def model_cache_path(self) -> Path:
+        """Persistent fastembed model cache (avoids the OS temp dir being cleaned)."""
+        return self.data_path / "models"
 
     @property
     def cors_origin_list(self) -> list[str]:

@@ -21,11 +21,11 @@ from app.models.schemas import RetrievedChunk
 class Reranker:
     """Reorders candidate chunks by cross-encoder relevance to the query."""
 
-    def __init__(self, model_name: str) -> None:
+    def __init__(self, model_name: str, cache_dir: str | None = None) -> None:
         from fastembed.rerank.cross_encoder import TextCrossEncoder
 
         self.model_name = model_name
-        self._model = TextCrossEncoder(model_name=model_name)
+        self._model = TextCrossEncoder(model_name=model_name, cache_dir=cache_dir)
 
     def rerank(
         self, query: str, candidates: list[RetrievedChunk], top_k: int
@@ -43,4 +43,8 @@ class Reranker:
 @lru_cache
 def get_reranker() -> Reranker:
     """Return a cached Reranker built from application settings."""
-    return Reranker(model_name=get_settings().rerank_model)
+    settings = get_settings()
+    return Reranker(
+        model_name=settings.rerank_model,
+        cache_dir=str(settings.model_cache_path),
+    )

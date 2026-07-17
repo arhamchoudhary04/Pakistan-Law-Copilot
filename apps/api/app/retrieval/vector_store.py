@@ -27,6 +27,21 @@ class VectorStore:
         self.dim = dim
         self.index = index
         self.chunks = chunks
+        # chunk id -> FAISS row, so we can recover a stored vector without re-embedding.
+        self._pos = {c.id: i for i, c in enumerate(chunks)}
+
+    def similarity(self, query_vector: np.ndarray, chunk: Chunk) -> float:
+        """Cosine similarity of a specific chunk to the query (uses the stored vector)."""
+        pos = self._pos.get(chunk.id)
+        if pos is None:
+            return 0.0
+        stored = self.index.reconstruct(pos)
+        query = np.asarray(query_vector, dtype=np.float32).reshape(-1)
+        return float(np.dot(query, stored))
+
+    def chunks_for_keys(self, keys: set[str], key_fn) -> list[Chunk]:
+        """Return chunks whose provision key (via key_fn) is in the given set."""
+        return [c for c in self.chunks if key_fn(c) in keys]
 
     @classmethod
     def build(cls, dim: int, chunks: list[Chunk], vectors: np.ndarray) -> VectorStore:

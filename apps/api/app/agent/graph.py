@@ -44,6 +44,8 @@ from app.core.config import get_settings
 from app.core.embeddings import get_embedder
 from app.core.llm import LLMError, get_llm
 from app.models.schemas import RetrievedChunk, StageEvent
+from app.retrieval.graph_refs import chunk_key
+from app.retrieval.graph_store import get_graph_store
 from app.retrieval.reranker import get_reranker
 
 IDK_MESSAGE = "I don't know based on the available sources."
@@ -117,23 +119,62 @@ async def retrieve_node(state: AgentState, config: RunnableConfig) -> dict:
     store = _store(config)
     embedder = get_embedder()
     merged: dict[str, RetrievedChunk] = {}
+    primary_vec = None
     for query in state["queries"]:
-        for rc in store.search(embedder.embed_one(query), settings.rerank_candidates):  # type: ignore[attr-defined]
+        qvec = embedder.embed_one(query)
+        if primary_vec is None:
+            primary_vec = qvec
+        for rc in store.search(qvec, settings.rerank_candidates):  # type: ignore[attr-defined]
             existing = merged.get(rc.chunk.id)
             if existing is None or rc.score > existing.score:
                 merged[rc.chunk.id] = rc
     candidates = list(merged.values())
+
+    # Hybrid: expand with graph neighbours (cross-referenced provisions) that
+    # vector search missed. Degrades silently to vector-only if Neo4j is down.
+    graph_added = _graph_expand(store, candidates, primary_vec)
+
     best = max((c.score for c in candidates), default=0.0)
+    extra = f"; +{graph_added} via graph" if graph_added else ""
     return {
         "candidates": candidates,
         "trace": [
             StageEvent(
                 stage="retrieve",
-                detail=f"{len(candidates)} candidates; best cosine {best:.3f}",
+                detail=f"{len(candidates)} candidates; best cosine {best:.3f}{extra}",
                 latency_ms=_ms(t),
             )
         ],
     }
+
+
+def _graph_expand(store: object, candidates: list[RetrievedChunk], query_vec: object) -> int:
+    """Add cross-referenced provisions from the graph to the candidate set.
+
+    Returns the number of chunks added. Any failure (graph disabled, Neo4j
+    unreachable) is swallowed so retrieval falls back to vector-only.
+    """
+    if not get_settings().graph_enabled:
+        return 0
+    graph = get_graph_store()
+    if graph is None:
+        return 0
+    try:
+        seeds = {k for c in candidates[:5] if (k := chunk_key(c.chunk))}
+        if not seeds:
+            return 0
+        existing = {chunk_key(c.chunk) for c in candidates}
+        new_keys = {k for k in graph.neighbors(list(seeds)) if k not in existing}
+        if not new_keys:
+            return 0
+        added = 0
+        for chunk in store.chunks_for_keys(new_keys, chunk_key):  # type: ignore[attr-defined]
+            score = store.similarity(query_vec, chunk)  # type: ignore[attr-defined]
+            candidates.append(RetrievedChunk(chunk=chunk, score=score, via_graph=True))
+            added += 1
+        return added
+    except Exception:
+        return 0
 
 
 def grade_node(state: AgentState, config: RunnableConfig) -> dict:

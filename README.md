@@ -47,12 +47,12 @@ Deliberately lean, free, and local-first:
 | Embeddings | `fastembed` local (`BAAI/bge-small-en-v1.5`, 384-dim), no API key |
 | Reranker | `fastembed` local cross-encoder (`Xenova/ms-marco-MiniLM-L-6-v2`, ONNX, no torch) |
 | Vector store | FAISS flat inner-product over L2-normalized vectors (cosine) |
+| Knowledge graph | Neo4j — provision cross-reference graph for hybrid retrieval (optional) |
 | Ingestion | `pypdf` → structured markdown (per Article/Section), then header + token chunking |
 | Eval | Golden set + custom retrieval/refusal metrics + ablation |
 | Web UI | Next.js (App Router) + TypeScript + Tailwind, custom SSE-over-fetch client |
 
-Qdrant, Neo4j graph retrieval, Postgres/Redis, document upload, and auth are
-**intentionally deferred** to later phases.
+Qdrant, Postgres/Redis, document upload, and auth are **intentionally deferred**.
 
 ## Architecture (agent flow)
 
@@ -114,6 +114,35 @@ per Section/Article) by `app/ingestion/legal_pdf.py`. To add or refresh one, dro
 the official PDF in `data/corpus/../data/raw/` and run `python -m app.ingestion.legal_pdf`.
 The Constitution's Fundamental Rights chapter is **hand-verified** (not auto-parsed)
 because citation accuracy is critical — see the note in `legal_pdf.py`.
+
+## Knowledge graph & hybrid retrieval (optional)
+
+Legal provisions cite each other ("subject to Article 251", "under section 7"). A
+Neo4j graph captures those links so retrieval can *follow* them, not just match text:
+
+```
+(:Provision {key, act, number, title}) -[:REFERENCES]-> (:Provision)   # same Act
+(:Provision) -[:IN_ACT]-> (:Act)
+```
+
+References are extracted **deterministically** from provision text (`graph_refs.py`) —
+no LLM, no cost, no hallucination. Build the graph after indexing:
+
+```bash
+# set GRAPH_ENABLED=true + NEO4J_* in .env first
+cd apps/api
+python -m app.ingestion.build_graph      # e.g. 223 provisions, 46 references
+```
+
+At query time the agent's `retrieve` node runs **hybrid retrieval**: vector search
+*plus* a 1-hop graph expansion that pulls in cross-referenced provisions the vector
+score ranked below the cutoff (flagged `via_graph` in the inspector). Example — asking
+*"how can a marriage be dissolved other than by talaq?"* retrieves §8 (Dissolution) by
+vector, and the graph adds §2 (Definitions) that §8 references.
+
+**Graceful by design:** if `GRAPH_ENABLED=false` or Neo4j is unreachable, retrieval
+silently falls back to vector-only. Connection uses `neo4j+s://`; on a TLS-inspecting
+proxy use `neo4j+ssc://` (encrypted, skips cert verification).
 
 ## Run the API
 

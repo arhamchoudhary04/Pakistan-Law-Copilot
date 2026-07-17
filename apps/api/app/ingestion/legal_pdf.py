@@ -191,8 +191,10 @@ def _split_provisions(text: str) -> list[Provision]:
             context = part.group(1).strip()
             continue
         heading = _HEADING_RE.match(stripped)
-        if heading and int(re.match(r"\d+", heading.group(1)).group()) > _MAX_PROVISION_NUM:
-            heading = None  # footnote/date artifact, not a real provision number
+        if heading:
+            digits = "".join(ch for ch in heading.group(1) if ch.isdigit())
+            if int(digits) > _MAX_PROVISION_NUM:
+                heading = None  # footnote/date artifact, not a real provision number
         parsed = _parse_heading(heading.group(2)) if heading else None
         if heading and parsed:
             title, inline = parsed

@@ -36,6 +36,7 @@ class RetrievedChunk(BaseModel):
     score: float
     rerank_score: float | None = None
     used: bool = False
+    via_graph: bool = False  # added by graph expansion (cross-reference), not vector search
 
 
 # ---- API request models ----
@@ -78,6 +79,7 @@ class SourceItem(BaseModel):
     score: float
     rerank_score: float | None = None
     used: bool
+    via_graph: bool = False
     section: str = ""
     source: str = ""
 
