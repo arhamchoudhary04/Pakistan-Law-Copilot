@@ -258,7 +258,7 @@ def main() -> None:
 # sits below the current baseline (~0.88) to catch regressions with some margin.
 _THRESHOLDS = {
     "retrieval_hit_rate": (0.90, "min"),
-    "article_hit_rate": (0.80, "min"),
+    "article_hit_rate": (0.90, "min"),
     "refusal_accuracy": (0.90, "min"),
     "over_refusal_rate": (0.10, "max"),
 }
