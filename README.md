@@ -12,9 +12,11 @@ arrested?"*, *"Do I have a right to a fair trial?"*, *"Someone shared my private
 photos without consent — what does the law say?"* — grounding each answer in the
 Constitution or a statute and linking to the exact Article/Section.
 
-**Corpus (v1, everyday-rights) — 8 acts, ~270 chunks:**
+**Corpus (v1, everyday-rights) — 10 acts, ~1,440 chunks:**
 - **Constitution of Pakistan — Fundamental Rights** (Part II, Chapter 1, Articles 8–28),
   hand-verified against the official text for citation accuracy.
+- **Pakistan Penal Code, 1860 (PPC)** — offences: theft, murder (qatl), cheating, cheque fraud.
+- **Code of Criminal Procedure, 1898 (CrPC)** — arrest, bail, FIR / cognizable offences.
 - **Muslim Family Laws Ordinance, 1961** — marriage, talaq/divorce, maintenance, polygamy.
 - **Prevention of Electronic Crimes Act, 2016 (PECA)** — cybercrime, online harassment.
 - **Protection against Harassment of Women at the Workplace Act, 2010** — workplace harassment.
@@ -253,8 +255,8 @@ python eval/run_eval.py --generate  # + generation/citation metrics (needs GROQ_
 ```
 
 Reports retrieval hit rate, context precision, refusal accuracy (unanswerable
-questions correctly refused), and over-refusal rate over the 33-item golden set in
-`eval/golden_set.jsonl` (31 answerable across all 8 acts, 2 uncovered).
+questions correctly refused), and over-refusal rate over the 40-item golden set in
+`eval/golden_set.jsonl` (38 answerable across all 10 acts, 2 uncovered).
 
 Current results: `retrieval_hit_rate 1.00`, `over_refusal_rate 0.00`,
 `refusal_accuracy 1.00`. Two layers guard against wrong answers: the cosine **gate**
@@ -267,10 +269,10 @@ context doesn't actually answer them (verified end-to-end).
 
 | config | hit_rate@k | context_precision@k |
 |---|---|---|
-| vector-only | 1.000 | **0.742** |
-| vector + rerank | 1.000 | 0.729 |
+| vector-only | 1.000 | **0.695** |
+| vector + rerank | 1.000 | 0.684 |
 
-On this legal corpus (8 acts, ~270 chunks), the cross-encoder reranker **slightly
+On this legal corpus (10 acts, ~1,440 chunks), the cross-encoder reranker **slightly
 hurts** precision — the `ms-marco` reranker is trained on web passages, not statutes,
 so it's less calibrated on legal text. (On the earlier FastAPI corpus it helped:
 0.71 → 0.75.) The lesson: reranking is not a universal win; measure it per corpus.

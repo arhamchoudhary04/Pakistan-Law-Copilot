@@ -19,6 +19,8 @@ const EXAMPLES = [
 // What the corpus currently covers — shown so users know the scope up front.
 const COVERAGE = [
   "Fundamental Rights (Constitution)",
+  "Crime — Penal Code (PPC) 1860",
+  "Criminal Procedure — CrPC 1898",
   "Family — Muslim Family Laws 1961",
   "Cybercrime — PECA 2016",
   "Workplace Harassment — 2010",

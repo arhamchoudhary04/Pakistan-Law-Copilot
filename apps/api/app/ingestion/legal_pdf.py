@@ -50,7 +50,9 @@ _MIN_BODY_CHARS = 180
 # A line is only a real heading if it splits into a short title via ".—".
 _MAX_TITLE_CHARS = 90
 # Reject absurd provision numbers (footnote/date artifacts, e.g. "40164.").
-_MAX_PROVISION_NUM = 500
+# 999 covers the big codes (PPC to 511, CrPC to 565) while still rejecting
+# 4+ digit page/footnote artifacts.
+_MAX_PROVISION_NUM = 999
 
 
 @dataclass
@@ -114,6 +116,20 @@ SOURCES: list[Source] = [
         pdf="rti-2017.pdf",
         out="right-of-access-to-information-act-2017.md",
         title="The Right of Access to Information Act, 2017",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="ppc-1860.pdf",
+        out="pakistan-penal-code-1860.md",
+        title="The Pakistan Penal Code, 1860 (PPC)",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="crpc-1898.pdf",
+        out="code-of-criminal-procedure-1898.md",
+        title="The Code of Criminal Procedure, 1898 (CrPC)",
         unit="Section",
         source_url="https://pakistancode.gov.pk/",
     ),
