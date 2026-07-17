@@ -20,6 +20,7 @@ export interface SourceItem {
   score: number;
   rerank_score: number | null;
   used: boolean;
+  via_graph?: boolean;
   section: string;
   source: string;
 }

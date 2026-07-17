@@ -7,9 +7,9 @@ const LABELS: Record<AnswerStatus, string> = {
 };
 
 const STYLES: Record<AnswerStatus, string> = {
-  grounded: "bg-grounded/15 text-grounded ring-grounded/30",
-  idk: "bg-idk/15 text-idk ring-idk/30",
-  partial: "bg-partial/15 text-partial ring-partial/40",
+  grounded: "bg-grounded/10 text-grounded ring-grounded/30",
+  idk: "bg-idk/10 text-idk ring-idk/30",
+  partial: "bg-partial/10 text-partial ring-partial/40",
 };
 
 /**
@@ -19,7 +19,7 @@ const STYLES: Record<AnswerStatus, string> = {
 export function StatusBadge({ status }: { status: AnswerStatus }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ${STYLES[status]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium ring-1 ring-inset ${STYLES[status]}`}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-current" />
       {LABELS[status]}

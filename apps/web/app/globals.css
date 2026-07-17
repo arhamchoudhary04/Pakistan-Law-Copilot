@@ -7,14 +7,33 @@
 }
 
 body {
-  @apply bg-slate-950 text-slate-100 antialiased;
+  background-color: #0a0a0c;
+  @apply text-zinc-100 antialiased;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Thin scrollbars inside panels. */
+/* Subtle accent glow anchored to the top of the page — premium depth, no clutter. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(55% 40% at 50% -8%, rgba(99, 102, 241, 0.12), transparent 70%);
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+}
+
+/* Thin, subtle scrollbars inside panels. */
 .scroll-thin::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 .scroll-thin::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-slate-700;
+  @apply rounded-full bg-white/10;
+}
+.scroll-thin:hover::-webkit-scrollbar-thumb {
+  @apply bg-white/20;
 }

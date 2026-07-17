@@ -36,24 +36,24 @@ export function MessageBubble({
     const last = message.stages[message.stages.length - 1];
     const label = last ? `${last.stage}…` : "searching the law…";
     return (
-      <div className="rounded-2xl rounded-tl-sm bg-slate-900 p-4 ring-1 ring-slate-800">
-        <div className="flex items-center gap-2 text-sm text-slate-400">
+      <div className="rounded-2xl rounded-bl-md border border-white/[0.08] bg-white/[0.03] p-4 shadow-card">
+        <div className="flex items-center gap-2.5">
           <span className="flex gap-1">
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:-0.3s]" />
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:-0.15s]" />
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-400/70 [animation-delay:-0.3s]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-400/70 [animation-delay:-0.15s]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-indigo-400/70" />
           </span>
-          <span className="font-mono text-xs text-slate-500">{label}</span>
+          <span className="font-mono text-xs text-zinc-500">{label}</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl rounded-tl-sm bg-slate-900 p-4 ring-1 ring-slate-800">
+    <div className="rounded-2xl rounded-bl-md border border-white/[0.08] bg-white/[0.03] p-4 shadow-card">
       <div
         dir={dirOf(message.text)}
-        className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-slate-100"
+        className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-zinc-100"
       >
         {parts.map((part, i) => {
           const m = /^\[(\d+)\]$/.exec(part);
@@ -68,14 +68,14 @@ export function MessageBubble({
           }
           return <span key={i}>{part}</span>;
         })}
-        {message.streaming && <span className="ml-0.5 animate-pulse text-slate-500">▍</span>}
+        {message.streaming && <span className="ml-0.5 animate-pulse text-indigo-400">▍</span>}
       </div>
 
       {(message.status || message.attempts > 1) && (
-        <div className="mt-3 flex items-center gap-3 border-t border-slate-800 pt-3">
+        <div className="mt-3 flex items-center gap-3 border-t border-white/10 pt-3">
           {message.status && <StatusBadge status={message.status} />}
           {message.attempts > 1 && (
-            <span className="text-xs text-slate-500">{message.attempts} attempts</span>
+            <span className="text-xs text-zinc-500">{message.attempts} attempts</span>
           )}
         </div>
       )}
