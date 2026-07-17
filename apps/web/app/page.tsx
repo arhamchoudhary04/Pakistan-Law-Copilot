@@ -13,8 +13,8 @@ export default function Home() {
         <p className="mt-1 text-xs text-idk">
           ⚖️ Legal information, not legal advice. Answers come only from a limited set
           of Pakistani laws (constitutional rights, crime &amp; criminal procedure,
-          family, cybercrime, harassment, information, rent, consumer &amp; employment) —
-          verify against the cited source and consult a qualified lawyer.
+          family, divorce, dowry, contracts, cybercrime, harassment, information, rent,
+          consumer &amp; employment) — verify against the cited source and consult a lawyer.
         </p>
       </header>
       <div className="min-h-0 flex-1">

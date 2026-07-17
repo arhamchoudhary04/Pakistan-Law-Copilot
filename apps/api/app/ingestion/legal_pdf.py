@@ -133,6 +133,27 @@ SOURCES: list[Source] = [
         unit="Section",
         source_url="https://pakistancode.gov.pk/",
     ),
+    Source(
+        pdf="dissolution-muslim-marriages-1939.pdf",
+        out="dissolution-of-muslim-marriages-act-1939.md",
+        title="The Dissolution of Muslim Marriages Act, 1939",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="dowry-bridal-gifts-1976.pdf",
+        out="dowry-and-bridal-gifts-act-1976.md",
+        title="The Dowry and Bridal Gifts (Restriction) Act, 1976",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="contract-act-1872.pdf",
+        out="contract-act-1872.md",
+        title="The Contract Act, 1872",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
 ]
 
 
