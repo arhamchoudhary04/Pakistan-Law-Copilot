@@ -2,25 +2,23 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex h-[100dvh] max-w-3xl flex-col px-4">
-      <header className="flex flex-col gap-2.5 py-4">
-        <div className="flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-500/15 text-base ring-1 ring-inset ring-indigo-400/30">
-            ⚖️
-          </div>
-          <div className="leading-tight">
-            <h1 className="text-[15px] font-semibold tracking-tight text-white">
-              Pakistan Law Copilot
-            </h1>
-            <p className="text-xs text-zinc-500">grounded · cited · refuses when unsure</p>
-          </div>
+    <main className="mx-auto flex h-[100dvh] max-w-2xl flex-col px-5">
+      <header className="pt-6">
+        <div className="flex items-baseline justify-between gap-4">
+          <h1 className="font-display text-[22px] font-semibold leading-none tracking-tight text-ink">
+            Pakistan Law Copilot
+          </h1>
+          <span className="hidden text-[10px] uppercase tracking-[0.22em] text-faint sm:block">
+            Statutes of Pakistan
+          </span>
         </div>
-        <p className="rounded-lg border border-amber-400/15 bg-amber-400/5 px-3 py-2 text-[11px] leading-relaxed text-amber-200/80">
-          Legal information, not legal advice. Answers come only from a limited set of
-          Pakistani laws (constitutional rights, crime &amp; procedure, family, divorce,
-          dowry, contracts, cybercrime, harassment, information, rent, consumer &amp;
-          employment) — verify against the cited source and consult a qualified lawyer.
-        </p>
+        <div className="mt-3.5 flex items-center gap-2 border-t border-line pt-2.5">
+          <span className="h-1 w-1 rounded-full bg-accent" />
+          <p className="text-[11px] text-muted">
+            Legal information, not legal advice — grounded in cited statutes, and may be
+            incomplete. Verify against the source and consult a lawyer.
+          </p>
+        </div>
       </header>
       <div className="min-h-0 flex-1">
         <ChatWindow />

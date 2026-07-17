@@ -3,37 +3,45 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background-color: #0a0a0c;
-  @apply text-zinc-100 antialiased;
+  background-color: #fbfaf7;
+  color: #1b1a17;
+  @apply antialiased;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "kern", "liga", "calt";
 }
 
-/* Subtle accent glow anchored to the top of the page — premium depth, no clutter. */
+/* Faint warm vignette at the top — subtle paper depth, no clutter. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(55% 40% at 50% -8%, rgba(99, 102, 241, 0.12), transparent 70%);
+  background: radial-gradient(60% 42% at 50% -6%, rgba(124, 45, 42, 0.05), transparent 70%);
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.35);
+  background: rgba(124, 45, 42, 0.14);
 }
 
-/* Thin, subtle scrollbars inside panels. */
+/* Serif display gets tighter tracking + optical sizing for a masthead feel. */
+.font-display {
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
 .scroll-thin::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 .scroll-thin::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-white/10;
+  border-radius: 9999px;
+  background: rgba(27, 26, 23, 0.12);
 }
 .scroll-thin:hover::-webkit-scrollbar-thumb {
-  @apply bg-white/20;
+  background: rgba(27, 26, 23, 0.22);
 }
