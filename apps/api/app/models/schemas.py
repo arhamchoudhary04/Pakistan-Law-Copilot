@@ -59,6 +59,8 @@ class ChatRequest(BaseModel):
     # Recent prior turns (client-supplied) for follow-up context; the agent stays
     # otherwise stateless. Newest last.
     history: list[HistoryTurn] = Field(default_factory=list)
+    # When set, answer from this uploaded document instead of the law corpus.
+    doc_id: str | None = None
     options: ChatOptions = Field(default_factory=ChatOptions)
 
 

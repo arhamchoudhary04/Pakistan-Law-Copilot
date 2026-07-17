@@ -55,6 +55,7 @@ _MARKER_RE = re.compile(r"\[(\d+)\]")
 class AgentState(TypedDict, total=False):
     question: str
     history: list[tuple[str, str]]
+    mode: str  # "law" (default) | "document" (answering from an uploaded PDF)
     feedback: str
     attempts: int
     queries: list[str]
@@ -72,12 +73,18 @@ def _ms(t0: float) -> float:
     return round((perf_counter() - t0) * 1000, 1)
 
 
-def refusal_text(question: str, candidates: list[RetrievedChunk]) -> str:
+def refusal_text(question: str, candidates: list[RetrievedChunk], mode: str = "law") -> str:
     best = max((c.score for c in candidates), default=0.0)
+    where = "the uploaded document" if mode == "document" else "the corpus"
+    tail = (
+        "Try rephrasing your question."
+        if mode == "document"
+        else "Try rephrasing, or add sources that cover this topic."
+    )
     return (
-        f'{IDK_MESSAGE} I searched the corpus for "{question}" but the most '
+        f'{IDK_MESSAGE} I searched {where} for "{question}" but the most '
         f"relevant passage scored only {best:.2f}, below the confidence threshold. "
-        "Try rephrasing, or add sources that cover this topic."
+        f"{tail}"
     )
 
 
@@ -133,8 +140,10 @@ async def retrieve_node(state: AgentState, config: RunnableConfig) -> dict:
     candidates = list(merged.values())
 
     # Hybrid: expand with graph neighbours (cross-referenced provisions) that
-    # vector search missed. Degrades silently to vector-only if Neo4j is down.
-    graph_added = _graph_expand(store, candidates, primary_vec)
+    # vector search missed. Only for the law corpus — uploaded docs aren't in the graph.
+    graph_added = 0
+    if state.get("mode", "law") == "law":
+        graph_added = _graph_expand(store, candidates, primary_vec)
 
     best = max((c.score for c in candidates), default=0.0)
     extra = f"; +{graph_added} via graph" if graph_added else ""
@@ -226,7 +235,7 @@ async def generate_node(state: AgentState, config: RunnableConfig) -> dict:
     parts: list[str] = []
     try:
         async for tok in get_llm().stream(
-            build_messages(state["question"], retrieved, feedback)
+            build_messages(state["question"], retrieved, feedback, state.get("mode", "law"))
         ):
             parts.append(tok)
         answer = "".join(parts).strip()
@@ -298,7 +307,7 @@ def fallback_node(state: AgentState, config: RunnableConfig) -> dict:
     t = perf_counter()
     candidates = state.get("candidates", [])
     return {
-        "answer": refusal_text(state["question"], candidates),
+        "answer": refusal_text(state["question"], candidates, state.get("mode", "law")),
         "retrieved": candidates,
         "used_markers": [],
         "status": "idk",

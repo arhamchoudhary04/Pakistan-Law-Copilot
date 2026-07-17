@@ -64,10 +64,11 @@ def _sources_event(retrieved: list[RetrievedChunk]) -> SourcesEvent:
     )
 
 
-def _initial_state(question: str, history: list[tuple[str, str]]) -> AgentState:
+def _initial_state(question: str, history: list[tuple[str, str]], mode: str) -> AgentState:
     return {
         "question": question,
         "history": history,
+        "mode": mode,
         "feedback": "",
         "attempts": 0,
         "queries": [],
@@ -86,6 +87,7 @@ async def run_chat(
     question: str,
     store: VectorStore,
     history: list[tuple[str, str]] | None = None,
+    mode: str = "law",
 ) -> AsyncIterator[Event]:
     """Run the agent for one question, yielding SSE events.
 
@@ -102,7 +104,7 @@ async def run_chat(
     final: AgentState = {}
     emitted = 0
     async for state in graph.astream(
-        _initial_state(question, history or []),
+        _initial_state(question, history or [], mode),
         config={"configurable": {"store": store}},
         stream_mode="values",
     ):

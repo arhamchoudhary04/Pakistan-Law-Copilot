@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
 from app.retrieval.vector_store import VectorStore
-from app.routers import chat, health
+from app.routers import chat, documents, health
 
 
 @asynccontextmanager
@@ -48,6 +48,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(health.router, tags=["health"])
     app.include_router(chat.router, tags=["chat"])
+    app.include_router(documents.router, tags=["documents"])
     return app
 
 

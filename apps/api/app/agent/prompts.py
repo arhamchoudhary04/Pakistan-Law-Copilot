@@ -29,6 +29,20 @@ when the rest of the answer is in Urdu or Roman Urdu.
 - This is legal information, not legal advice. If the question concerns a specific personal \
 situation, add one short closing line advising the person to consult a qualified lawyer."""
 
+# Used when answering from a user-uploaded document instead of the law corpus.
+DOCUMENT_SYSTEM = """You are a grounded assistant that answers questions strictly from \
+the provided excerpts of the user's uploaded document.
+
+Rules:
+- Use ONLY the information in the numbered context below. Do not use outside knowledge.
+- Cite every claim with the matching source marker, e.g. "... [1]" or "... [2][3]".
+- Only cite markers that actually appear in the context (1..N).
+- If the context does not contain enough information to answer, reply exactly: \
+"I don't know based on the available sources." and nothing else.
+- Reply in the same language the user used. Be concise and do not fabricate anything."""
+
+_SYSTEM_BY_MODE = {"law": SYSTEM_PROMPT, "document": DOCUMENT_SYSTEM}
+
 
 def build_context_block(retrieved: list[RetrievedChunk]) -> str:
     """Render retrieved chunks as a numbered context block for the prompt."""
@@ -40,12 +54,16 @@ def build_context_block(retrieved: list[RetrievedChunk]) -> str:
 
 
 def build_messages(
-    question: str, retrieved: list[RetrievedChunk], feedback: str = ""
+    question: str,
+    retrieved: list[RetrievedChunk],
+    feedback: str = "",
+    mode: str = "law",
 ) -> list[dict[str, str]]:
     """Build the chat messages for a grounded answer.
 
     ``feedback`` carries the self-verification note from a previous attempt so the
-    model can correct unsupported claims on the retry.
+    model can correct unsupported claims on the retry. ``mode`` selects the system
+    prompt: the legal assistant ("law") or the generic uploaded-document one.
     """
     context = build_context_block(retrieved)
     hint = f"\n\nNote from a previous attempt: {feedback}" if feedback else ""
@@ -55,7 +73,7 @@ def build_messages(
         "Answer using only the context above, with [n] citations."
     )
     return [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": _SYSTEM_BY_MODE.get(mode, SYSTEM_PROMPT)},
         {"role": "user", "content": user_content},
     ]
 
