@@ -41,6 +41,7 @@ from app.agent.pipeline import run_chat  # noqa: E402
 from app.core.config import get_settings  # noqa: E402
 from app.core.embeddings import get_embedder  # noqa: E402
 from app.models.schemas import DoneEvent, RetrievedChunk, TokenEvent  # noqa: E402
+from app.retrieval.graph_refs import chunk_key  # noqa: E402
 from app.retrieval.reranker import get_reranker  # noqa: E402
 from app.retrieval.vector_store import VectorStore  # noqa: E402
 
@@ -67,6 +68,8 @@ def retrieval_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
     precision_sum = 0.0
     precision_n = 0
     over_refusals = 0
+    article_hits = 0
+    article_n = 0
 
     for r in answerable:
         retrieved = store.search(embedder.embed_one(r["question"]), settings.top_k)
@@ -85,6 +88,14 @@ def retrieval_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
                 precision_sum += relevant / len(retrieved_docs)
                 precision_n += 1
 
+        # Article-level: was the EXACT expected provision (not just its act) retrieved?
+        expected_provisions = set(r.get("expected_provisions", []))
+        if expected_provisions:
+            article_n += 1
+            retrieved_keys = {k for x in retrieved if (k := chunk_key(x.chunk))}
+            if expected_provisions & retrieved_keys:
+                article_hits += 1
+
     correct_refusals = 0
     for r in unanswerable:
         retrieved = store.search(embedder.embed_one(r["question"]), settings.top_k)
@@ -94,6 +105,7 @@ def retrieval_metrics(rows: list[dict], store: VectorStore) -> dict[str, float]:
 
     return {
         "retrieval_hit_rate": hits / len(answerable) if answerable else 0.0,
+        "article_hit_rate": article_hits / article_n if article_n else 0.0,
         "context_precision": precision_sum / precision_n if precision_n else 0.0,
         "over_refusal_rate": over_refusals / len(answerable) if answerable else 0.0,
         "refusal_accuracy": correct_refusals / len(unanswerable) if unanswerable else 0.0,
@@ -242,8 +254,11 @@ def main() -> None:
 
 
 # Minimum acceptable offline metrics; CI fails the build if any is breached.
+# article_hit_rate (exact-provision) is the strict, honest signal; the threshold
+# sits below the current baseline (~0.88) to catch regressions with some margin.
 _THRESHOLDS = {
     "retrieval_hit_rate": (0.90, "min"),
+    "article_hit_rate": (0.80, "min"),
     "refusal_accuracy": (0.90, "min"),
     "over_refusal_rate": (0.10, "max"),
 }

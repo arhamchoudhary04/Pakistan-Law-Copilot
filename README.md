@@ -257,16 +257,32 @@ python eval/run_eval.py --ablation  # + vector-only vs vector+rerank comparison
 python eval/run_eval.py --generate  # + generation/citation metrics (needs GROQ_API_KEY)
 ```
 
-Reports retrieval hit rate, context precision, refusal accuracy (unanswerable
-questions correctly refused), and over-refusal rate over the 44-item golden set in
-`eval/golden_set.jsonl` (42 answerable across all 13 acts, 2 uncovered).
+Reports hit rate (document- and article-level), context precision, refusal accuracy
+(unanswerable questions correctly refused), and over-refusal rate over the 44-item
+golden set in `eval/golden_set.jsonl` (42 answerable across all 13 acts, 2 uncovered).
+Each answerable question is annotated with its **expected provision** (e.g.
+`pakistan-penal-code-1860.md#302`).
 
-Current results: `retrieval_hit_rate 1.00`, `over_refusal_rate 0.00`,
-`refusal_accuracy 1.00`. Two layers guard against wrong answers: the cosine **gate**
-refuses clearly off-topic questions (e.g. "capital of France", 0.47), and for
-questions that are *legally adjacent but uncovered* (e.g. a tax question that
-retrieves a near-miss just over the gate) the **LLM refuses** because the retrieved
-context doesn't actually answer them (verified end-to-end).
+Current results:
+
+| metric | value | what it measures |
+|---|---|---|
+| `retrieval_hit_rate` (document) | **1.00** | correct *Act* retrieved in top-k |
+| `article_hit_rate` (provision) | **0.88** | correct *Section/Article* retrieved in top-k |
+| `refusal_accuracy` | **1.00** | genuinely unanswerable questions refused |
+| `over_refusal_rate` | **0.00** | answerable questions wrongly refused |
+
+The two hit-rate numbers are deliberately both reported: document-level flatters
+(any PPC chunk counts), while **article-level is the honest one** — it drops to 0.88
+because a few questions retrieve the right Act but a near-miss section (e.g. "murder"
+→ PPC §396 dacoity-with-murder instead of §302 *qatl-i-amd*, since the statute avoids
+the word "murder"; the query-rewrite step recovers these live). The **CI gate**
+enforces `article_hit_rate ≥ 0.80`, not just the flattering document number.
+
+Two layers guard against wrong answers: the cosine **gate** refuses clearly off-topic
+questions (e.g. "capital of France", 0.47), and for questions that are *legally
+adjacent but uncovered* the **LLM refuses** because the retrieved context doesn't
+actually answer them (verified end-to-end).
 
 ### Retrieval ablation — an honest, non-obvious result
 
