@@ -208,6 +208,11 @@ def main() -> None:
         action="store_true",
         help="Compare vector-only vs vector+rerank retrieval.",
     )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="CI gate: exit non-zero if offline metrics fall below thresholds.",
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -219,7 +224,8 @@ def main() -> None:
     rows = load_golden()
     print(f"Loaded {len(rows)} golden Q/A pairs; index has {len(store)} chunks.")
 
-    print_table("Retrieval + refusal metrics", retrieval_metrics(rows, store))
+    metrics = retrieval_metrics(rows, store)
+    print_table("Retrieval + refusal metrics", metrics)
 
     if args.ablation:
         ablation(rows, store)
@@ -230,6 +236,31 @@ def main() -> None:
         else:
             gen = asyncio.run(generation_metrics(rows, store))
             print_table("Generation metrics", gen)
+
+    if args.check:
+        _enforce_gate(metrics)
+
+
+# Minimum acceptable offline metrics; CI fails the build if any is breached.
+_THRESHOLDS = {
+    "retrieval_hit_rate": (0.90, "min"),
+    "refusal_accuracy": (0.90, "min"),
+    "over_refusal_rate": (0.10, "max"),
+}
+
+
+def _enforce_gate(metrics: dict[str, float]) -> None:
+    failures = []
+    for name, (bound, kind) in _THRESHOLDS.items():
+        value = metrics[name]
+        if (kind == "min" and value < bound) or (kind == "max" and value > bound):
+            failures.append(f"{name}={value:.3f} violates {kind} {bound}")
+    if failures:
+        print("\nEVAL GATE FAILED:")
+        for f in failures:
+            print(f"  - {f}")
+        raise SystemExit(1)
+    print("\nEVAL GATE PASSED")
 
 
 if __name__ == "__main__":

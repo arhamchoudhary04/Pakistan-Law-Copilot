@@ -1,5 +1,7 @@
 # Pakistan Law Copilot
 
+[![CI](https://github.com/arhamchoudhary04/Knowledge-Copilot-/actions/workflows/ci.yml/badge.svg)](https://github.com/arhamchoudhary04/Knowledge-Copilot-/actions/workflows/ci.yml)
+
 A **grounded, citation-first** assistant over Pakistani law. It answers **only**
 from official legal sources, cites the exact provision, and says *"I don't know"*
 when the law doesn't cover the question — the opposite of a chatbot that

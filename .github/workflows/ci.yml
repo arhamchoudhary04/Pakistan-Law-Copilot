@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api:
+    name: API (lint · types · tests · eval gate)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install (editable + dev extras)
+        run: pip install -e "./apps/api[dev]"
+
+      - name: Lint (ruff)
+        working-directory: apps/api
+        run: ruff check . ../../eval
+
+      - name: Type check (mypy)
+        working-directory: apps/api
+        run: mypy app
+
+      - name: Tests (pytest)
+        working-directory: apps/api
+        run: pytest -q
+
+      # Cache the fastembed model so the index build doesn't re-download it each run.
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: .data/models
+          key: fastembed-${{ runner.os }}-bge-small-en-v1.5
+
+      - name: Build index (offline — local embeddings, no API keys)
+        working-directory: apps/api
+        run: python -m app.ingestion.build_index
+
+      - name: Eval gate (retrieval + refusal thresholds)
+        run: python eval/run_eval.py --check
+
+  web:
+    name: Web (types · build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install
+        working-directory: apps/web
+        run: npm ci
+
+      - name: Type check
+        working-directory: apps/web
+        run: npm run typecheck
+
+      - name: Build
+        working-directory: apps/web
+        run: npm run build
