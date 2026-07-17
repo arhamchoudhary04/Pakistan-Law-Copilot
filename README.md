@@ -30,12 +30,12 @@ used (labelled as such). Sources: official public texts via
 [kpcode.kp.gov.pk](https://kpcode.kp.gov.pk/). The architecture is domain-agnostic —
 drop more acts' PDFs in and swap `data/corpus/` to retarget it.
 
-This repo implements the backend through **Phase 2**: ingestion (PDF → structured
-markdown → chunk → embed → FAISS), a **LangGraph agent** with query rewrite,
+**What's built:** ingestion (PDF → structured markdown → chunk → embed → FAISS); a
+**LangGraph agent** with query rewrite, hybrid retrieval (vector + Neo4j graph),
 cross-encoder reranking, a relevance gate with graceful refusal, and
 self-verification; a streaming `/chat` endpoint with inline citations and a
-per-stage inspector trace; a Next.js web UI; and an evaluation harness with a
-retrieval ablation.
+per-stage inspector trace; a Next.js web UI; **English / Urdu / Roman-Urdu** input;
+an evaluation harness with a retrieval ablation; and CI with an eval gate.
 
 ## Stack
 
@@ -56,7 +56,28 @@ Deliberately lean, free, and local-first:
 
 Qdrant, Postgres/Redis, document upload, and auth are **intentionally deferred**.
 
-## Architecture (agent flow)
+## Architecture
+
+```mermaid
+flowchart LR
+    U["User (EN / Urdu / Roman Urdu)"] --> WEB["Next.js UI<br/>streaming · citation chips · inspector"]
+    WEB -- "POST /chat (SSE)" --> API["FastAPI"]
+    API --> AGENT["LangGraph agent"]
+
+    AGENT -->|"embed query"| EMB["fastembed (bge-small)"]
+    AGENT -->|"vector top-k"| FAISS[("FAISS")]
+    AGENT -->|"1-hop cross-refs"| NEO[("Neo4j graph")]
+    AGENT -->|"rerank"| RR["cross-encoder"]
+    AGENT -->|"generate (grounded, cited)"| LLM["Groq LLM"]
+
+    subgraph Ingestion
+      PDF["Official PDFs"] --> MD["structured markdown<br/>(per Article/Section)"]
+      MD --> CH["chunk + embed"] --> FAISS
+      MD --> XR["cross-reference extract"] --> NEO
+    end
+```
+
+## Agent flow
 
 The `/chat` request is driven by a LangGraph agent (`app/agent/graph.py`):
 
@@ -268,6 +289,39 @@ pytest
 
 Drop your own markdown files into `data/corpus/` (or point `CORPUS_DIR` elsewhere),
 re-run `build_index`, and restart the API. Nothing else changes.
+
+## Design decisions
+
+The interesting parts of this project are the decisions, not the framework glue.
+
+- **Trust-first, not answer-first.** Three layers stop confident-but-wrong answers:
+  a cosine **relevance gate** that refuses off-topic questions before the LLM is even
+  called; **structured citations** (chunk ids, not free text the model can fabricate);
+  and a **self-verification** step that checks every claim maps to a cited provision.
+- **Verify before streaming.** The agent finishes and verifies the answer *before* the
+  first token reaches the client, so a user never sees a claim that later gets retracted.
+  The trade-off is latency, mitigated by streaming per-stage progress to the UI.
+- **The gate stays cosine-based** even though the reranker reorders afterwards — cosine
+  is what's calibrated to the tuned `RELEVANCE_THRESHOLD` (0.65 for `bge-small`, chosen
+  from a measured on-topic/off-topic score gap); cross-encoder logits are not comparable.
+- **Reranking is measured, not assumed.** The ablation showed the web-trained
+  cross-encoder *slightly hurts* precision on legal text (helped on generic docs) — a
+  reminder to measure per corpus rather than cargo-cult "rerank always helps".
+- **Citation accuracy > coverage for law.** The Constitution's Fundamental Rights chapter
+  is **hand-verified** rather than auto-parsed, because a mislabelled "Article 25" is worse
+  than missing content. Statutes with clean structure are auto-converted from official PDFs.
+- **Hybrid retrieval via a graph.** Legal provisions cross-reference each other; a Neo4j
+  graph (edges extracted deterministically, no LLM) lets retrieval *follow* those links for
+  multi-hop questions. It degrades silently to vector-only if Neo4j is unavailable.
+- **Multilingual by translating the query, not the corpus.** The authoritative English text
+  stays the source of truth; the agent translates Urdu/Roman-Urdu questions to English for
+  retrieval and answers back in the user's language — cheap (reuses the rewrite call) and
+  avoids the risk of a mistranslated statute.
+- **Local-first and free.** Local embeddings/reranker (fastembed, ONNX, no torch), FAISS,
+  and a free LLM tier — the whole thing runs at ~$0. The LLM sits behind an interface, so
+  the provider is swappable.
+- **It's measured, and CI enforces it.** A golden set + retrieval/refusal metrics run as a
+  CI gate that fails the build on regression.
 
 ## Disclaimer & attribution
 
