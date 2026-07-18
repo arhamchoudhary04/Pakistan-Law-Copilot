@@ -1,5 +1,19 @@
 # The Dowry and Bridal Gifts (Restriction) Act, 1976
 
+## Section 11. [Repeal]
+
+THE DOWRY AND BRIDAL GIFTS (RESTRICTION) ACT, 1976
+1ACT No. XLIII OF 1976
+
+[4th June, 1976]
+
+An Act to provide for restrictions on dowry and bridal gifts.
+
+WHEREAS it is expedient to provide for restrictions on dowry and bridal gifts and for
+matters connected therewith or ancillary thereto;
+
+It is hereby enacted as follows:—
+
 ## Section 1. Short title, extent and commencement
 
 (1) This Act may be called the Dowry and
@@ -83,8 +97,7 @@ of dowry, bridal gifts and presents, but including the  expenses on menhdi, bara
 incurred by or on behalf of either party to the marriage shall not exceed two thousand and five
 hundred rupees.
 
-## Section 7. [Display of Dowry etc.] Omitted by the Dowry and Bridal Gifts (Restriction) (Amdt.)
-
+7. [Display of Dowry etc.] Omitted by the Dowry and Bridal Gifts (Restriction) (Amdt.)
 Ordinance, 1980 (XXXVI of 1980), s. 3.
 
  1 Ins. by the Dowry and Bridal (lifts (Restriction) (Amdt.) Ordinance, 1980 (36 of 1980), s. 2”.
@@ -142,8 +155,7 @@ offences by Magistrates.
 Territory, and a Provincial Government, in Tespect of the Province, may, by noti fication in the
 official Gazette, make rules for carrying out the purposes of this Act].
 
-## Section 11. [Repeal]. Omitted by the Federal Laws (Revision and Declaration) Ordinance,
-
+11. [Repeal]. Omitted by the Federal Laws (Revision and Declaration) Ordinance,
 1981 (XXVII of 1981), s. 3 and Sen., II.
 
  1 Subs. by the Dowry and Bridal Gifts (Restriction) (Amdt.) Ordinance, 1980 (36 of 1980), s. 4.

@@ -41,8 +41,10 @@ CORPUS_DIR = REPO_ROOT / "data" / "corpus"
 # number ("9", "9A", "2B"), then the rest of the line.
 _HEADING_RE = re.compile(r"^(?:\d+\[)?(\d+[A-Z]{0,3})\.\s+(\S.*)$")
 # In Pakistani drafting a section's title ends with a dash before the body text.
-# The dash is extracted variably: em/en/two-em dash, or 2+ hyphens/underscores.
-_TITLE_SPLIT_RE = re.compile(r"\.\s*(?:[—–⸺]|[-_]{2,})\s*")
+# The dash is extracted variably across statutes: em dash (U+2014), en dash (U+2013),
+# horizontal bar (U+2015, used e.g. by the Family Courts Act 1964), two-em dash
+# (U+2E3A), or 2+ hyphens/underscores.
+_TITLE_SPLIT_RE = re.compile(r"\.\s*(?:[—–―⸺]|[-_]{2,})\s*")
 _PAGE_HEADER_RE = re.compile(r"^\s*Page \d+ of \d+\s*$")
 _PART_RE = re.compile(r"^(PART\b.*|CHAPTER\b.*)$")
 # Provisions with less body than this are treated as table-of-contents noise.
@@ -52,6 +54,10 @@ _PART_RE = re.compile(r"^(PART\b.*|CHAPTER\b.*)$")
 _MIN_BODY_CHARS = 60
 # A line is only a real heading if it splits into a short title via ".—".
 _MAX_TITLE_CHARS = 90
+# Amendment footnotes ("S. 4A ins. by the ... (Amdt.) Act, 1926, s. 2.") can start
+# with a stray number and get mistaken for a heading. No real provision title uses
+# this footnote shorthand, so reject any heading whose title matches it.
+_FOOTNOTE_TITLE_RE = re.compile(r"(?i)\b(?:ins|subs|rep|added|omitted)\.?\s+by\b|\(Amdt\.\)")
 # Reject absurd provision numbers (footnote/date artifacts, e.g. "40164.").
 # 999 covers the big codes (PPC to 511, CrPC to 565) while still rejecting
 # 4+ digit page/footnote artifacts.
@@ -65,6 +71,12 @@ class Source:
     title: str  # act title (H1)
     unit: str  # "Article" | "Section"
     source_url: str
+    # Some acts end with a single bare "SCHEDULE" whose numbered items (1., 2., ...)
+    # collide with section numbers and would override the real sections via
+    # _dedupe_keep_last. When True, stop section parsing at that schedule and
+    # re-emit it as one "## Schedule" block instead (e.g. Family Courts Act 1964,
+    # whose Schedule lists the matters within a Family Court's jurisdiction).
+    preserve_schedule: bool = False
 
 
 # NOTE: The Constitution's Fundamental Rights chapter is NOT auto-converted here.
@@ -157,6 +169,28 @@ SOURCES: list[Source] = [
         unit="Section",
         source_url="https://pakistancode.gov.pk/",
     ),
+    Source(
+        pdf="guardians-and-wards-1890.pdf",
+        out="guardians-and-wards-act-1890.md",
+        title="The Guardians and Wards Act, 1890",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="qazf-hadd-1979.pdf",
+        out="offence-of-qazf-ordinance-1979.md",
+        title="The Offence of Qazf (Enforcement of Hadd) Ordinance, 1979",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+    ),
+    Source(
+        pdf="family-courts-1964.pdf",
+        out="family-courts-act-1964.md",
+        title="The Family Courts Act, 1964",
+        unit="Section",
+        source_url="https://pakistancode.gov.pk/",
+        preserve_schedule=True,
+    ),
 ]
 
 
@@ -201,6 +235,37 @@ def _truncate_before_schedules(text: str) -> str:
     return text[: match.start()] if match else text
 
 
+# A single bare "SCHEDULE" on its own line (all caps), used by acts like the Family
+# Courts Act whose one Schedule is substantive and must be preserved, not dropped.
+_BARE_SCHEDULE_RE = re.compile(r"^\s*SCHEDULE\s*$", re.MULTILINE)
+# Trailing footnote block is fenced off by a run of underscores.
+_FOOTNOTE_FENCE_RE = re.compile(r"\n_{6,}")
+
+
+def _split_schedule(text: str) -> tuple[str, str]:
+    """Split off a trailing bare 'SCHEDULE', returning (body_without_schedule, block).
+
+    ``block`` is a ready-to-append markdown section for the Schedule, or "" if the
+    act has no such schedule. Section parsing must run on ``body_without_schedule``
+    so the Schedule's numbered items don't shadow real sections.
+    """
+    floor = len(text) // 3  # skip the table-of-contents copy near the top
+    match = _BARE_SCHEDULE_RE.search(text, floor)
+    if not match:
+        return text, ""
+    body = text[: match.start()]
+    schedule = text[match.end() :]
+    fence = _FOOTNOTE_FENCE_RE.search(schedule)  # drop trailing footnotes/date stamp
+    if fence:
+        schedule = schedule[: fence.start()]
+    schedule = "\n".join(ln.rstrip() for ln in schedule.splitlines() if ln.strip()).strip()
+    block = (
+        "## Schedule. Matters within the jurisdiction of the Family Courts (see section 5)\n\n"
+        f"{schedule}\n"
+    )
+    return body, block
+
+
 def _parse_heading(rest: str) -> tuple[str, str] | None:
     """Split a heading line's remainder into (title, inline_body).
 
@@ -210,11 +275,11 @@ def _parse_heading(rest: str) -> tuple[str, str] | None:
     if m:
         title = rest[: m.start()].strip()
         inline = rest[m.end() :].strip()
-        if 0 < len(title) <= _MAX_TITLE_CHARS:
+        if 0 < len(title) <= _MAX_TITLE_CHARS and not _FOOTNOTE_TITLE_RE.search(title):
             return title, inline
         return None
     # No ".—" delimiter: only accept if the whole remainder is a short title.
-    if len(rest) <= _MAX_TITLE_CHARS:
+    if len(rest) <= _MAX_TITLE_CHARS and not _FOOTNOTE_TITLE_RE.search(rest):
         return rest.strip(), ""
     return None
 
@@ -272,8 +337,14 @@ def _to_markdown(source: Source, provisions: list[Provision]) -> tuple[str, int]
 
 def convert(source: Source) -> int:
     text = _truncate_before_schedules(_clean(_extract_text(RAW_DIR / source.pdf)))
+    schedule_block = ""
+    if source.preserve_schedule:
+        text, schedule_block = _split_schedule(text)
     provisions = _dedupe_keep_last(_split_provisions(text))
     markdown, kept = _to_markdown(source, provisions)
+    if schedule_block:
+        markdown = f"{markdown}\n{schedule_block}"
+        kept += 1
     CORPUS_DIR.mkdir(parents=True, exist_ok=True)
     (CORPUS_DIR / source.out).write_text(markdown, encoding="utf-8")
     return kept

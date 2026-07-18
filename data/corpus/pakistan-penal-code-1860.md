@@ -117,16 +117,22 @@ of this Code is used in every part of this Code in conformity with the explanati
 
 number include the plural number, and words importing the plural number include the singular number.
 
+## Section 12. “Public”. The word “public” includes any class of the public or any community. (CHAPTER II)
+
+13. [Definition of “Queen”.] Omitted by A.O., 1961, Art. 2 and Sch. (w.e.f. the 23rd March,
+1956).
+
 ## Section 14. “Servant of the State”. The words “servant of the State” denote all officers or servants (CHAPTER II)
 
 continued, appointed or employed in Pakistan, by or under the authority of the 2[Federal Government]
 or any Provincial Government.]
+15. [Definition of “British India”.] Rep. by A. O., 1937.
+16. [Definition of “Government of India”.] Rep. by A.O., 1937.
 
 ## Section 17. “Government”. The word “Government” denotes the person or persons authorized by (CHAPTER II)
 
 law to administer executive Government in 3[Pakistan, or in any part thereof].
-
-## Section 18. [Definition of “Presidency”.] Rep. by A. O., 1937. (CHAPTER II)
+18. [Definition of “Presidency”.] Rep. by A. O., 1937.
 
 1The original section 14 has successively been amended by A.O., 1937, A. O., 1949, Sch. and A. O., 196 1, Art. 2 and Sch., (w.e.f. 23rd March, 1956), to read as above.
 2Subs. by the Federal Adaptation of Laws Order, 1975 (P. O. No.4 of 1975), Art. 2 and Table, for “Central Government”.
@@ -462,9 +468,7 @@ shall derogate from the right of 8[the President] to grant pardons, reprieves, r
 punishment 3[:]
 3[Provided that such right shall not, without the consent of the victim or, as the case may be, of
 the heirs of the victim, be exercised for any sentence awarded under Chapter XVI.]
-
-## Section 56. [Sentence of Europeans and Americans to penal servitude.] Rep. by the Criminal Law (CHAPTER III)
-
+56. [Sentence of Europeans and Americans to penal servitude.] Rep. by the Criminal Law
 (Extinction of Discriminatory Privileges) Act, 1949 (II of 1950), Schedule.
 
 1Subs. by A.O., 1937, for “the G. of I. or the Government of the place”.
@@ -481,10 +485,10 @@ the heirs of the victim, be exercised for any sentence awarded under Chapter XVI
 
 punishment,1[imprisonment for life] shall be reckoned as equivalent to 1[imprisonment] for 2[twenty­
 five years.]
-
-## Section 58. [Offenders sentenced to transportation how de alt with until, transported.] Omitted by (CHAPTER III)
-
+58. [Offenders sentenced to transportation how de alt with until, transported.] Omitted by
 the Law Reforms Ordinance, 1972 (XII of 1972), s. 2 and Sch.
+59. [Transportation instead of imprisonment.] Omitted by the Law Reforms Ordinance,
+1972 (XII of 1972), s. 2 and Sch.
 
 ## Section 60. Sentence may be (in certain case s of imprisonment) wholly or partly rigorous or (CHAPTER III)
 
@@ -492,6 +496,8 @@ simple. In every case in which an offender is punishable with imprisonment which
 description, it shall be competent to the Court which sentences such offender to direct in the sentence
 that such imprisonment shall be wholly rigorous, or that such imprisonment shall be wholly simple, or
 that any part of such imprisonment shall be rigorous and the rest simple.
+61. [Sentence of forfeiture of property.] Rep. by the India Penal Code (Amdt.) Act, 19 21
+(XVI of 1921), s. 4.
 
 ## Section 62. [Forfeiture of property, in respect of offenders punishable with death, transportation (CHAPTER III)
 
@@ -1567,6 +1573,11 @@ six months, or with fine, or with both.
 3Subs. by A. O., 1961, Art. 2 and Sch., for "the Queen" (w.e.f. 23rd March, 1956).
 4Subs. by the Law Reforms Ordinance, 1972 (12 of 1972), s. 2 and sch., for “Transportation for life”.
 5Subs by Ord. LXXXVI of 2002, Sch.I, for “five hundred rupees”.
+
+
+
+138A. [Application of foregoing sections to the Indian Marine Service.] Rep. by the Amending
+Act, 1934 (XXXV of 1934), s. 2 and Sch.
 
 ## Section 139. Persons subject to ce rtain Acts. No person subject to the Pakistan Army Act, 1952, (CHAPTER VII)
 
@@ -2765,6 +2776,8 @@ Explanation.__ For the purposes of this section it is immaterial whether the rob
 is intended to be committed, or has been committed, within or without 1[Pakistan].
 Exception.__ This provision does not extend to the case in which the harbour is by the husband
 or wife of the offender.
+216B. [Definition of " harbour" in sections 212, 216 and 216 A.] Omitted by the Penal Code
+(Amdt.) Act, 1942 (VIII of 1942), s. 3.
 
 ## Section 217. Public servant disobeying direction of law with intent to save person from (CHAPTER XI)
 
@@ -2919,6 +2932,9 @@ custody in which he is lawfully detained, or rescues or attempts to rescue any o
 
 custody in which that person is lawfully detained, shall be punished with imprisonment of either
 description for a term which may extend to six months, or with fine, or with both.]
+
+226. [Unlawful return from transportation.] Omitted by the Law Reforms Ordinance, 1972
+(XII of 1972), s. 2 and Sch.
 
 ## Section 227. Violation of condition of remission of punishment.  Whoever, having accepted any (CHAPTER XI)
 
@@ -3239,6 +3255,24 @@ uses for any postal purpose any fictitious stamp, or
 or materials for making any fictitious stamp,
 shall be punished with fine which may extend to 2[six hundred rupees].
 
+1S. 263A ins. by the Indian Criminal Law (Amdt.) Act, 1895 (3 of 1895), s.2.
+2Subs. by Ord. 86 of 02, s.2 and Sch. I.
+
+
+
+(2) Any such stamp, die, plate, instrument or materials in the possession of any person for
+making any fictitious stamp may be seized and shall be forfeited.
+(3) In this section “fictitious stamp” means any stamp falsely purporting to be issued by
+Government for the purpose of denoting a rate of postage or any facsimile or imitation or re­
+presentation, whether on paper or otherwise, of any stamp issued by Government for that purpose.
+(4) In this section and also in sections 255 to 263, both inclusive, the word "Government"
+when used in connection with, or in reference to, any stamp issued for the  purpose of denoting a rate
+of postage, shall, notwithstanding anything in section 17, be deemed to include the person or persons
+authorised by law to administer executive government in any part of 1[Pakistan], and also 2[* * *] in
+any foreign country.]
+
+OF OFFENCES RELATING TO WEIGHTS AND MEASURES
+
 ## Section 264. Fraudulent use of false instrument for weighing.  Whoever fraudulently uses any (CHAPTER XIII)
 
 instrument for weighing which he knows to be false, shall be punished with imprisonment of either
@@ -3555,16 +3589,12 @@ purpose shall be punishable with imprisonment for life.]
 either spoken or written, or by visible representation, or by any imputation, innuendo, or insinuation,
 directly or indirectly, defiles the sacred name of the Holy Prophet Muhammad (peace be upon h im) shall
 be punished with death, [*] and shall also be liable to fine.]
-
-## Section 1S. 294A ins. by the Indian Penal Code Amdt.Act, 1870 (27 of 1870), s. 10. (CHAPTER XV)
-
+1S. 294A ins. by the Indian Penal Code Amdt.Act, 1870 (27 of 1870), s. 10.
 2Subs. by A.O., 1937, for “not authorized by Government”.
 *cease to have effect from 30­06­92 see PLD 1992, S.C. 153.
 3Subs. by the Ord. 86 of 02, s.2 &Sch.I.
 4S.294B added by the Pakistan Penal Code (Amdt.) Act, 1965 (20 of 1965), s. 3.
-
-## Section 5S. 295A ins. by the Criminal Law Amdt. Act, 1927 (25 of 1927), s. 2. (CHAPTER XV)
-
+5S. 295A ins. by the Criminal Law Amdt. Act, 1927 (25 of 1927), s. 2.
 6Subs. by A.O., 1961, Art. 2 and Sch., for “His Majesty's subjects” (w.e.f. 23rd March 1956).
 7Subs.by Act XVI of 1991(Second Amendment), s. 2.
 81ns. by the Pakistan Penal Code (Amdt.) Ordinance, 1982 (1 of 1982) s. 2.
@@ -4917,9 +4947,7 @@ of compulsion, induces any woman to go from any place with intent that she may b
 1Subs. by the Central Laws (Statue Reform) Ordinance, 1960 (21 of 1960), s. 3 and 2nd Sch. (w.e.f. 14th October, 1955), for “the Provinces and
 the Capital of the Federation” which had been subs. by A. O., 1949, Arts. 3(2) ad 4, for “British India”.
 2Subs. by the Law Reforms Ordinance, 1972 (12 of 1972), s. 2 and Sch., for “transportation for life”.
-
-## Section 3S. 364A  ins. by the Criminal Laws Amdt. Act, 1958 (34 of 1958), s. 2. (CHAPTER XVI)
-
+3S. 364A  ins. by the Criminal Laws Amdt. Act, 1958 (34 of 1958), s. 2.
 4Subs. & Ins. by Act III of 1990, s.2 & s.3.
 5Ins. by Act II of 1991, s.2.
 6Ins. by Act. VI of 06, ss. 2 & 3.
@@ -6720,9 +6748,7 @@ mark” includes any trade mark which is registered in the register of trade mar
 Marks Act, 1940 (V of 1940).]
 
 1Subs. by the Law Reforms Ordinance, 1972 (12 of 1972), s. 2 and Sch., for “transportation for life”.
-
-## Section 2S. 477A ins. by the Criminal Law Amdt. Act, 1895 (3 of 1895), s. 4. (CHAPTER XVIII)
-
+2S. 477A ins. by the Criminal Law Amdt. Act, 1895 (3 of 1895), s. 4.
 3Ss. 478 to 489 were subs. by the Indian Merchandise Marks Act,1889 (4 of 1889), s. 3, for the original sections.
 4Subs. by the Federal Laws (Revision and Declaration) Ordinance, 1981 (27 of 1981), s. 3 and II Sch., for section 478.
 
@@ -6894,9 +6920,7 @@ years and with fine.]
 
 
 OF THE CRIMINAL BREACH OF CONTRACTS OF SERVICE
-
-## Section 490. [Breach of contract of service during voyage or journey.] Rep. by the Workmen’s (CHAPTER XIX)
-
+490. [Breach of contract of service during voyage or journey.] Rep. by the Workmen’s
 Breach of Contract (Repealing) Act, 1925 (III of 1925), s. 2 and Sch.
 
 ## Section 491. Breach of contract to attend on and supply wa nts of helpless person.  Whoever, (CHAPTER XIX)
@@ -6977,9 +7001,9 @@ Provided that a Presiding Officer of a Court dismissing a complaint under sectio
 Code of C riminal Procedure, 1898 and after providing the accused an opportunity to show cause if
 satisfied that an offence under this section has been committed shall not require any further proof and
 shall forthwith proceed to pass the sentence.]
-
-## Section 498. [Enticing or taking away or detaining with criminal intent a married woman.] Rep. by (CHAPTER XX)
-
+497. [Adultery.] Rep. by the Offence of Zina (Enforcement of Hudood) Ordinance, 1979 (VII
+of 1979), s. 19 (w.e.f the 10th day of February, 1979).
+498. [Enticing or taking away or detaining with criminal intent a married woman.] Rep. by
 the Offence of Zina (Enforcement of Hudood) Ordinance, 1979 (VII of 1979), s. 19 (w.e.f the10th day
 of February, 1979).
 2[CHAPTER XXA

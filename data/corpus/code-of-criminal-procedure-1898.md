@@ -458,9 +458,7 @@ such Court.
 aforesaid] by any Court constituted under this Code by which such offence is shown in the eighth column
 of the second schedule to be triable 1[.]
 1[* * * * * * *]
-
-## Section 29A. Trial of European British subjects by second  and third class Magistrates.] Omitted by the (CHAPTER III)
-
+3[29A. Trial of European British subjects by second  and third class Magistrates.] Omitted by the
 Criminal Law (Extinction of Discriminatory Privileges) Act, 1949 (II of 1950), s.2 and sch.
 
 ## Section 29B. Jurisdiction in the case of Juveniles.  Any offence, other than one punishable with death (CHAPTER III)
@@ -1647,9 +1645,7 @@ or
 (b) in respect of a newspaper, book or other document on the conviction, in
 respect of such newspaper, book or other document, of the au thor or editor
 thereof for any of the offences referred to in sub­section (1) of section 99A.]
-
-## Section 99C. [Hearing by Special Bench.] Omitted by the Law Reforms Ordinance, 1 972(XII of (CHAPTER VII)
-
+99C. [Hearing by Special Bench.] Omitted by the Law Reforms Ordinance, 1 972(XII of
 1972), s. 2 and Sch.
 __________________________________________________________________________________________________________________________________________________________________________________________________
 1Subs. by A.O., 1937, for “L.G.”.
@@ -1906,9 +1902,7 @@ hazardous to the community,
 such Magistrate may, in manner hereinafter provided, require such person to show cause why he should
 not be ordered to execute a bond, with sureties, for his good behaviou r for such period, not exceeding
 three years, as the Magistrate thinks fit to fix.
-
-## Section 111. [Proviso as to European vagrants.] Rep. by the Criminal Law Amendment Act, 1923  (XII (CHAPTER VIII3)
-
+111. [Proviso as to European vagrants.] Rep. by the Criminal Law Amendment Act, 1923  (XII
 of 1923), s. 8.
 7, 8112. Order to be made.  When a Magistrate acting under section 107, section 108, section 109
 or section 110 deems it necessary to require any person to show cause under such section, he shall make
@@ -3410,9 +3404,7 @@ by a Court having jurisdiction over any of such local areas.
 course of performing a journey or voyage may be inquired into or tried by a Court through or into the
 local limits of whose jurisdiction the offender, or the person against whom, or the thing in respect of
 which, the offence was committed, passed in the course of that journey or voyage.
-
-## Section 184. [Offences against Railway, Telegraph, Post Office and Arms Acts.] Rep. by the (CHAPTER XV)
-
+184. [Offences against Railway, Telegraph, Post Office and Arms Acts.] Rep. by the
 Federal Laws (Revision and Declaration) Act, 1951 (XXVI of 1951), s. 3 and Second Schedule.
 
 ## Section 185. High Court to decide, in case of doubt, district where inquiry or trial shall take (CHAPTER XV)
@@ -4510,6 +4502,8 @@ charged under the provisions of section 221, sub­section (7), and the accused d
 been previously convicted as alleged in the charge, the Magistrate may, after he has convicted the
 accused under section 243, or under section 245, sub­section (2), take evidence in respect of the alleged
 previous conviction, and, if he does so, shall record a finding thereon.]
+246. [Finding not limited by compliant or summons.] Omitted by the Law Reforms Ordinan ce,
+1972 (XII of 1972), s.2. and Sch.
 
 ## Section 247. Non­appearance of complainant.  If the summons has been issued on complaint, and (CHAPTER XX)
 
@@ -5589,6 +5583,7 @@ language of the Court, and not understood by the pleader, it shall be interprete
 that language.
 (3) When documents are put in for the purpose of formal proof, it shall be in the
 discretion of the Court to interpret as much thereof as appears necessary.
+362. [Record of evidence in Presidency Magistrate's Court.] Omitted by A.O., 1949, Sch.
 
 ## Section 363. Remarks respecting demeanour of witness.  When a Sessions Judge or Magistrate (CHAPTER XXV)
 
@@ -5706,8 +5701,9 @@ direct that he be hanged by the neck till he is dead.
 other law for the time being in force or, in the case of a High Court 7[*  *  *], by the Letters Patent of
 such High Court, no Court], when it has signed its judgment, shall alter or review the same, except
 8[*   *   *] to correct a clerical error.
+370. [Presidency Magistrate's judgment.] Omitted by A.O. 1949, Sch.
 
-## Section 370. [Presidency Magistrate's judgment.] Omitted by A.O. 1949, Sch. (CHAPTER XXVI)
+
 
 1Added by the Code of Criminal Procedure (Amdt.) Act, 1923 (XVIII of 1923), s.100.
 2Subs. by the Law Reforms Ordinance, 1972 (XII of 1972), s.2 and Sch.
@@ -6316,6 +6312,7 @@ appeal is of a person convicted on a trial held by any Magistrate of the second 
 ## Section 410. Appeal from sentence of Court of Session.  Any person convicted on a trial held by a (CHAPTER XXXI)
 
 Sessions Judge, or an Additional Sessions Judge, may appeal to the High Court.
+411. [Appeal from sentence of Presidency Magistrate.] Omitted by A.O., 1949, Sch.
 
 ## Section 411A. Appeal  from sentence  of High  Court (CHAPTER XXXI)
 
@@ -6424,9 +6421,7 @@ which two  or more punishments are combined within the meaning of this section.
 Chapter, when more persons than one are convicted in one trial, and an appealable judgment or order
 has been passed in respect of any of such persons, all or any of the persons convicted at such trial
 shall have a right of appeal.]
-
-## Section 416. [Saving of sentences on European British subjects.] Rep. by the criminal law (CHAPTER XXXI)
-
+416. [Saving of sentences on European British subjects.] Rep. by the criminal law
 Amendment Act, 1923 (XII of 1923), S.26.
 6[4l7.  Appeal in case of acquittal.__ (1)  Subject  to  the  provisions  of  sub­section  (4),  the
 Provincial Government may, in any case, direct the Public Prosecutor to present an appeal to the
@@ -6681,6 +6676,8 @@ which has been dism issed under section 203 or sub­ section (3) of section 204
 further inquiry into any proceeding in which an order of discharge or release
 has been made under section 119:
 4[* * * * * * * *]]
+5[437. Power to order commitment]. Omitted by the Law Reforms Ordinance, 1972 (XII of
+1972), s. 2 and Sch.
 
 ## Section 439. High Court’s powers of revision (CHAPTER XXXII)
 
@@ -6877,6 +6874,8 @@ the Lunacy Act, 1912.]
 functions.  The 2[Provincial Government] may empower the officer incharge of the jail in which a
 person is confined under the provisions of section 466 or this section, to discharge all or any of the
 functions of the Inspector General of Prisons under 3[* *] section 473 or section 474.
+472. [Lunatic prisoner to be visited by Inspector General] Rep. by the Lunacy Act, 1912
+(IV of 1912), S.101 and Schedule II.
 
 ## Section 473. Procedure where lunatic prisoner is reported capable of making his defence.  If (CHAPTER XXXIV)
 
@@ -6995,14 +6994,15 @@ person before such Court, or, if sufficient security is not given, shall forward
 to such Court.
 (2) The Court to which a case is forwarded under this section shall proceed to hear the
 complaint against the accused person in the manner hereinbefore provided.]
-
-## Section 477. [Power of Court of Session as to such offences comitted before itself.]  Omitted by the (CHAPTER XXXV)
-
+476B. [Appeals.] Omitted by the Law Reforms Ordinance, 1972 (XII of 1972), s.2 and Sch.
+477. [Power of Court of Session as to such offences comitted before itself.]  Omitted by the
 Code of Criminal Procedure (Amendment) Act, 1923 (XVIII of 1923), s.129.
 
 ## Section 478. [Power of Civil or Revenue Courts to complete inquiry and commit to High Court or (CHAPTER XXXV)
 
 Court of Session.] Omitted by the Law Reforms Ordinance, 1972 (XII Of 1972), s. 2 and sch.
+479. [Procedure of Civil or Revenue Court in such case s.]  Omitted by the Law Reforms
+Ordinance 1972 (XII of 1972), s. 2 and sch.
 
 ## Section 480. Procedure in certain cases of contempt (CHAPTER XXXV)
 
@@ -7397,6 +7397,8 @@ trials of 3[cases] under this Code.
 he may, in lieu of proceeding in the manner provided in sub­section (3), delegate his powers and
 duties under the commission to any officer subordinate to him whose powers are not less than those
 of a Magistrate of the first class in Pakistan.]
+504. [Commission in case of witness being within Presidency­town] Omitted by A,O.,1949,
+Schedule.
 
 ## Section 505. Parties may examine witnesses (CHAPTER XL)
 
@@ -7880,9 +7882,7 @@ executing, if so required, a  bond  without  suret ies  of  an  amount  not  exc
 rupees]  that  he  will  make  such application within a reasonable time to be fixed by the Court,
 postpone the appeal for such a period as will afford sufficient time for the application to be made and
 an order to be obtained thereon.]
-
-## Section 526A. [High Court to transfer for trial to itself in certain cases.  Omitted by the Code of (CHAPTER XLIV)
-
+2[526A.  [High Court to transfer for trial to itself in certain cases.  Omitted by the Code of
 Criminal Procedure (Amdt.) Ordinance, 1969 (20 of 1969), S. 2 (w.e.f. 29­7­1969).
 
 ## Section 527. Power   of   Provincial   Government   to   transfer   cases   and   appeals (CHAPTER XLIV)
@@ -8115,9 +8115,8 @@ by A.O., 1961, Art. 2 and Sch., for “Clerk of the Crown” (w.e.f 23.3.1956).
 4Subs. by the Central Laws (Statute Reform) Ordinance, 1960 (XXI of 1960), s.3 and 2nd Sch., (with effect from the 14th October, 1955), for “the
 Provinces and the Capital of the Federation”, which had been subs. by A.O., 1949, Arts. 3(2) and 4, for “British India”.
 5Certain words omitted by the Federal Laws (Revision and Declaration) Ordinance, 1981 (XXVII of 1981), s.3 and 2nd Sch.
-
-## Section 7S. 539B ins. by Act XVIII of 1923, s.150. (CHAPTER XLVI)
-
+6S. 539A ins. by the Code of Criminal Procedure (Amdt.) Act, 1923 (XVIII of 1923), s. 150.
+7S. 539B ins. by Act XVIII of 1923, s.150.
 8Subs. by Ordinance XII of 1972, s.2 and Sch., for colon.
 
 
@@ -8329,9 +8328,7 @@ under the age of 8[sixteen] years, for any unlawful purpose, he may make an orde
 restoration of such woman to her liberty, or of such female child to her husband, parent, guardian or
 other person having the lawfu l charge of such child, and may compel compliance with such order,
 using such force as may be necessary.
-
-## Section 553. [Compensation to persons groundlessly given in charge in presidency­town.] Rep. by (CHAPTER XLVI)
-
+553. [Compensation to persons groundlessly given in charge in presidency­town.] Rep. by
 the Federal Laws (Revision and Declaration) Act, 1951 (XXVI of 1951), s. 3 and Schedule II.
 
 ## Section 554. Power of 9[*] High Courts to make rules for inspection of records of subordinate (CHAPTER XLVI)
@@ -8431,9 +8428,7 @@ successor in office of such Additional or Assistant Sessions Judge.]
 
 having any  duty to perform in connection with the sale of any property under this Code shall not
 purchase or bid for the property.
-
-## Section 561. [Special provisions with respect to offence of rape by a husband.] Rep. by  the Offence (CHAPTER XLVI)
-
+561. [Special provisions with respect to offence of rape by a husband.] Rep. by  the Offence
 of Zina (Enforcement of Hadood), Ordinance, 1979 (VII of 1979), s.20.
 
 ## Section 561A. Saving of inherent power of High Court.  Nothing in this Code shall be deemed to (CHAPTER XLVI)
@@ -8461,9 +8456,7 @@ Government of India Act, 1935”, which had been subs. by A.O., 1937, for “the
 5Subs. by ord. XII of 1972, s.2.sch.
 6Omitted. by ord. XXXVII of 2001, s.77.
 7The words “outside such towns” omitted by A.O., 1949, Sch.
-
-## Section 8S. 561A ins. by the Code of Criminal Procedure (Amdt.) Act 1923 (XVIII of 1923), s. 156. (CHAPTER XLVI)
-
+8S. 561A ins. by the Code of Criminal Procedure (Amdt.) Act 1923 (XVIII of 1923), s. 156.
 9Ss. 380, 562, 563 and 564 have been rep. by the Probation of Offenders Ordinance, 1960 (45 of 1960), s. 16, only in its application to__
 (i) the Provinces of West Pakistan with effect from the 1st July, 1961; see Gaz. of P., 1961, Ext., p.957, and
 10Subs. by Act No. XVIII of 1923, s.157, for the original s. 562.
