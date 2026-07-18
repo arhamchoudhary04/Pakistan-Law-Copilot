@@ -5,9 +5,15 @@ import { MessageBubble } from "./MessageBubble";
 import { RetrievalInspector } from "./RetrievalInspector";
 import { SourceDrawer } from "./SourceDrawer";
 import { streamChat } from "@/lib/sse";
-import { uploadDocument, type UploadedDoc } from "@/lib/api";
+import {
+  createConversation,
+  saveTurn,
+  uploadDocument,
+  type ConversationSummary,
+  type UploadedDoc,
+} from "@/lib/api";
 import { dirOf } from "@/lib/text";
-import type { AssistantMessage, ChatTurn, SourceItem } from "@/lib/types";
+import type { AssistantMessage, CitationEvent, ChatTurn, SourceItem } from "@/lib/types";
 
 const EXAMPLES = [
   "What are my rights if I am arrested by the police?",
@@ -47,8 +53,22 @@ function emptyAnswer(): AssistantMessage {
   };
 }
 
-export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
-  const [turns, setTurns] = useState<ChatTurn[]>([]);
+export function ChatWindow({
+  seed,
+  conversationId = null,
+  initialTurns,
+  token,
+  onConversationCreated,
+  onSaved,
+}: {
+  seed?: { q: string; id: number };
+  conversationId?: string | null;
+  initialTurns?: ChatTurn[];
+  token: string;
+  onConversationCreated?: (summary: ConversationSummary) => void;
+  onSaved?: () => void;
+}) {
+  const [turns, setTurns] = useState<ChatTurn[]>(initialTurns ?? []);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [drawerSource, setDrawerSource] = useState<SourceItem | null>(null);
@@ -56,9 +76,11 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const turnsRef = useRef<ChatTurn[]>([]);
+  const turnsRef = useRef<ChatTurn[]>(initialTurns ?? []);
   const docRef = useRef<UploadedDoc | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  // The conversation this chat saves into. Set lazily on the first question.
+  const convIdRef = useRef<string | null>(conversationId);
 
   useEffect(() => {
     docRef.current = doc;
@@ -92,6 +114,25 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
       setInput("");
       setTurns((prev) => [...prev, { question: q, answer: emptyAnswer() }]);
 
+      // Uploaded-document chats are ephemeral (the doc lives only in memory), so
+      // only the law-corpus conversation is persisted to the user's history.
+      const persist = !docRef.current;
+      if (persist && !convIdRef.current) {
+        try {
+          const summary = await createConversation(q.slice(0, 80), token);
+          convIdRef.current = summary.id;
+          onConversationCreated?.(summary);
+        } catch {
+          /* couldn't create — answer anyway, just don't persist this turn */
+        }
+      }
+
+      // Accumulate the finished answer locally so we can persist it after streaming.
+      let text = "";
+      const citations: CitationEvent[] = [];
+      let sources: SourceItem[] = [];
+      let status: AssistantMessage["status"] = null;
+      let attempts = 1;
       try {
         for await (const ev of streamChat(q, history, docRef.current?.doc_id ?? null)) {
           switch (ev.event) {
@@ -99,15 +140,20 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
               patchLast((a) => ({ ...a, stages: [...a.stages, ev.data] }));
               break;
             case "token":
+              text += ev.data.text;
               patchLast((a) => ({ ...a, text: a.text + ev.data.text }));
               break;
             case "citation":
+              citations.push(ev.data);
               patchLast((a) => ({ ...a, citations: [...a.citations, ev.data] }));
               break;
             case "sources":
+              sources = ev.data.retrieved;
               patchLast((a) => ({ ...a, sources: ev.data.retrieved }));
               break;
             case "done":
+              status = ev.data.answer_status;
+              attempts = ev.data.attempts;
               patchLast((a) => ({
                 ...a,
                 status: ev.data.answer_status,
@@ -115,6 +161,18 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
                 streaming: false,
               }));
               break;
+          }
+        }
+        if (persist && convIdRef.current && status) {
+          try {
+            await saveTurn(
+              convIdRef.current,
+              { question: q, answer: text, meta: { status, attempts, citations, sources } },
+              token,
+            );
+            onSaved?.();
+          } catch {
+            /* non-fatal: the answer is shown even if saving history fails */
           }
         }
       } catch (err) {
@@ -130,7 +188,7 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
         setBusy(false);
       }
     },
-    [busy, patchLast],
+    [busy, patchLast, token, onConversationCreated, onSaved],
   );
 
   const onFile = useCallback(async (file: File | undefined) => {
@@ -158,6 +216,7 @@ export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
     setDoc(null);
     setUploadError(null);
     setTurns([]);
+    convIdRef.current = null; // back to the law corpus — start a fresh saved chat
   }, []);
 
   // A question deep-linked from Home / Browse: submit it once when it arrives.
