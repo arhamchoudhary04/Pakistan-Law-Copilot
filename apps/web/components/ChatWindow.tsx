@@ -11,8 +11,8 @@ import type { AssistantMessage, ChatTurn, SourceItem } from "@/lib/types";
 
 const EXAMPLES = [
   "What are my rights if I am arrested by the police?",
-  "On what grounds can a landlord evict a tenant?",
-  "What is the punishment for theft under the Penal Code?",
+  "How does a court decide who gets custody of a child?",
+  "What is the punishment for falsely accusing someone of a crime?",
   "Kya mujhe taleem ka haq hasil hai?", // Roman Urdu: do I have the right to education?
   "What is the capital of France?", // triggers the honest refusal
 ];
@@ -22,6 +22,9 @@ const COVERAGE = [
   "Penal Code",
   "Criminal Procedure",
   "Family & Divorce",
+  "Child Custody",
+  "Guardianship",
+  "False Accusation",
   "Dowry",
   "Contracts",
   "Cybercrime",
