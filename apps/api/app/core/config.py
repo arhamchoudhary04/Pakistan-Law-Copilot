@@ -70,6 +70,16 @@ class Settings(BaseSettings):
     neo4j_password: str = ""
     neo4j_database: str = "neo4j"
 
+    # ---- Auth & chat history (local SQLite, separate from the Neo4j graph) ----
+    # HMAC secret used to sign session tokens. MUST be set to a long random value
+    # in production; the default is only for local development.
+    auth_secret: str = "dev-insecure-change-me"
+    auth_token_ttl_hours: int = 168  # 7 days
+    # No email service is wired up, so password-reset tokens can't be emailed. When
+    # true (local dev), the reset token is returned in the API response so the flow
+    # works end to end. In production set this false and deliver the token by email.
+    auth_dev_reset: bool = True
+
     # ---- API ----
     api_host: str = "0.0.0.0"
     api_port: int = 8000
@@ -93,6 +103,11 @@ class Settings(BaseSettings):
     def model_cache_path(self) -> Path:
         """Persistent fastembed model cache (avoids the OS temp dir being cleaned)."""
         return self.data_path / "models"
+
+    @property
+    def app_db_path(self) -> Path:
+        """SQLite file for user accounts and chat history (under the gitignored .data)."""
+        return self.data_path / "app.db"
 
     @property
     def cors_origin_list(self) -> list[str]:

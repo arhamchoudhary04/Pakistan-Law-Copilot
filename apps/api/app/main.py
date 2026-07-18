@@ -16,8 +16,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
+from app.db.store import get_account_store
 from app.retrieval.vector_store import VectorStore
-from app.routers import chat, documents, health
+from app.routers import auth, chat, conversations, documents, health
 
 
 @asynccontextmanager
@@ -29,6 +30,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     except FileNotFoundError as exc:
         app.state.store = None
         print(f"No index loaded ({exc}). /chat will return 503 until you ingest.")
+    # Open (and create, first run) the accounts/history database up front.
+    get_account_store()
+    print(f"Accounts DB ready at {settings.app_db_path}")
     yield
 
 
@@ -47,6 +51,8 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
     app.include_router(health.router, tags=["health"])
+    app.include_router(auth.router, tags=["auth"])
+    app.include_router(conversations.router, tags=["conversations"])
     app.include_router(chat.router, tags=["chat"])
     app.include_router(documents.router, tags=["documents"])
     return app
