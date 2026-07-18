@@ -47,7 +47,7 @@ function emptyAnswer(): AssistantMessage {
   };
 }
 
-export function ChatWindow() {
+export function ChatWindow({ seed }: { seed?: { q: string; id: number } }) {
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -159,6 +159,12 @@ export function ChatWindow() {
     setUploadError(null);
     setTurns([]);
   }, []);
+
+  // A question deep-linked from Home / Browse: submit it once when it arrives.
+  useEffect(() => {
+    if (seed?.q) void ask(seed.q);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed?.id]);
 
   return (
     <div className="flex h-full flex-col">
