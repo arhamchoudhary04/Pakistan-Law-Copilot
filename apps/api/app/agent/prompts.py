@@ -8,6 +8,7 @@ insufficient rather than guessing.
 
 from __future__ import annotations
 
+from app.agent.language import language_directive
 from app.models.schemas import RetrievedChunk
 
 SYSTEM_PROMPT = """You are Pakistan Law Copilot, a grounded assistant that explains \
@@ -67,10 +68,13 @@ def build_messages(
     """
     context = build_context_block(retrieved)
     hint = f"\n\nNote from a previous attempt: {feedback}" if feedback else ""
+    # Deterministic per-turn language instruction — the small model does not reliably
+    # match the question's language from the system prompt alone.
+    directive = language_directive(question)
     user_content = (
         f"Context:\n{context}\n\n"
         f"Question: {question}{hint}\n\n"
-        "Answer using only the context above, with [n] citations."
+        f"Answer using only the context above, with [n] citations. {directive}"
     )
     return [
         {"role": "system", "content": _SYSTEM_BY_MODE.get(mode, SYSTEM_PROMPT)},
