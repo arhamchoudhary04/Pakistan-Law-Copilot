@@ -12,7 +12,7 @@ arrested?"*, *"Do I have a right to a fair trial?"*, *"Someone shared my private
 photos without consent — what does the law say?"* — grounding each answer in the
 Constitution or a statute and linking to the exact Article/Section.
 
-**Corpus (v1, everyday-rights) — 13 acts, ~1,790 chunks:**
+**Corpus (v1, everyday-rights) — 16 acts, ~1,870 chunks:**
 - **Constitution of Pakistan — Fundamental Rights** (Part II, Chapter 1, Articles 8–28),
   hand-verified against the official text for citation accuracy.
 - **Pakistan Penal Code, 1860 (PPC)** — offences: theft, murder (qatl), cheating, cheque fraud.
@@ -20,6 +20,11 @@ Constitution or a statute and linking to the exact Article/Section.
 - **Contract Act, 1872** — valid agreements, breach, remedies.
 - **Muslim Family Laws Ordinance, 1961** — marriage, talaq/divorce, maintenance, polygamy.
 - **Dissolution of Muslim Marriages Act, 1939** — a woman's grounds for divorce (khula).
+- **Family Courts Act, 1964** — jurisdiction & procedure for maintenance, dower, custody and
+  guardianship suits (its Schedule enumerates what a Family Court decides).
+- **Guardians and Wards Act, 1890** — custody and guardianship of minors (the welfare-of-the-minor test).
+- **Offence of Qazf (Enforcement of Hadd) Ordinance, 1979** — the offence of falsely accusing
+  someone of *zina*.
 - **Dowry and Bridal Gifts (Restriction) Act, 1976** — limits on dowry.
 - **Prevention of Electronic Crimes Act, 2016 (PECA)** — cybercrime, online harassment.
 - **Protection against Harassment of Women at the Workplace Act, 2010** — workplace harassment.
@@ -39,8 +44,11 @@ drop more acts' PDFs in and swap `data/corpus/` to retarget it.
 **LangGraph agent** with query rewrite, hybrid retrieval (vector + Neo4j graph),
 cross-encoder reranking, a relevance gate with graceful refusal, and
 self-verification; a streaming `/chat` endpoint with inline citations and a
-per-stage inspector trace; a Next.js web UI; **English / Urdu / Roman-Urdu** input;
-an evaluation harness with a retrieval ablation; and CI with an eval gate.
+per-stage inspector trace; **conversation memory** for follow-ups and
+**bring-your-own-PDF** document Q&A; **user accounts with per-user chat history**;
+a Next.js web UI (landing, a *Browse the law* explorer, and the chat); **English /
+Urdu / Roman-Urdu** input; an evaluation harness with a retrieval ablation; and CI
+with an eval gate.
 
 ## Stack
 
@@ -56,10 +64,14 @@ Deliberately lean, free, and local-first:
 | Vector store | FAISS flat inner-product over L2-normalized vectors (cosine) |
 | Knowledge graph | Neo4j — provision cross-reference graph for hybrid retrieval (optional) |
 | Ingestion | `pypdf` → structured markdown (per Article/Section), then header + token chunking |
+| Accounts & history | SQLite (stdlib `sqlite3`) — email/password (PBKDF2-HMAC), signed session tokens (HMAC), per-user conversations |
 | Eval | Golden set + custom retrieval/refusal metrics + ablation |
 | Web UI | Next.js (App Router) + TypeScript + Tailwind, custom SSE-over-fetch client |
 
-Qdrant, Postgres/Redis, document upload, and auth are **intentionally deferred**.
+Auth and history add **no new dependencies** — the standard library covers storage,
+password hashing, and token signing. Qdrant and a Postgres/Redis tier are
+**intentionally deferred**: the vector index is in-process FAISS and app data is
+local SQLite, which keeps the whole thing single-process and free to run.
 
 ## Architecture
 
@@ -109,9 +121,29 @@ Citations are **structured data** (chunk ids), not free text the model can fabri
 Verification runs *before* any token reaches the client, so the user only ever sees a
 self-verified answer — never an unsupported claim that later gets retracted.
 
+## Repository layout
+
+```
+apps/
+  api/                 FastAPI backend
+    app/
+      agent/           LangGraph graph, prompts, deterministic language detection
+      retrieval/       FAISS vector store, cross-encoder reranker, Neo4j graph store
+      ingestion/       PDF → markdown converter, index/graph builders, PDF uploads
+      auth/            password hashing (PBKDF2) + signed session/reset tokens (HMAC)
+      db/              SQLite store for accounts + chat history
+      routers/         /chat, /documents, /auth, /conversations, /health
+  web/                 Next.js frontend — chat, landing, Browse-the-law, auth + history
+data/
+  corpus/              structured-markdown statutes (the retrieval corpus, committed)
+  raw/                 official source PDFs (gitignored)
+eval/                  golden set + evaluation harness
+.github/workflows/     CI — lint, types, tests, index build, eval gate, web build
+```
+
 ## Setup
 
-Requires Python 3.11+.
+Requires Python 3.11+ and Node 18+.
 
 ```bash
 # 1. Create a virtualenv and install the API (editable) with dev extras
@@ -159,7 +191,7 @@ no LLM, no cost, no hallucination. Build the graph after indexing:
 ```bash
 # set GRAPH_ENABLED=true + NEO4J_* in .env first
 cd apps/api
-python -m app.ingestion.build_graph      # e.g. 1,526 provisions, 569 references
+python -m app.ingestion.build_graph      # e.g. 1,595 provisions, 599 references
 ```
 
 At query time the agent's `retrieve` node runs **hybrid retrieval**: vector search
@@ -207,10 +239,11 @@ fabricated citations.
 
 ## Web UI
 
-A Next.js chat UI (`apps/web`) consumes the SSE stream: streaming answer, inline
-clickable citation chips → source drawer, a collapsible **Retrieval Inspector**
-(per-stage latency + ranked chunks with cosine/rerank scores), and a trust-state
-badge (grounded / I-don't-know / partial).
+A Next.js app (`apps/web`): a landing page, a **Browse the law** explorer over the
+covered statutes, and the chat itself — consuming the SSE stream with a streaming
+answer, inline clickable citation chips → source drawer, a collapsible **Retrieval
+Inspector** (per-stage latency + ranked chunks with cosine/rerank scores), and a
+trust-state badge (grounded / I-don't-know / partial).
 
 ```bash
 cd apps/web
@@ -220,6 +253,30 @@ npm run dev        # http://localhost:3000  (expects the API on :8000)
 
 Set `NEXT_PUBLIC_API_URL` if the API is not at `http://localhost:8000`. The API's
 `CORS_ORIGINS` allows `http://localhost:3000` and `:3001` (Next's fallback port).
+
+## Accounts, chat history & document upload
+
+The app is gated behind sign-in, so each user gets their own saved history:
+
+- **Accounts** — email/password sign-up (with name + confirmed password), login, and
+  a token-based password reset. Passwords are hashed with PBKDF2-HMAC-SHA256; session
+  and reset tokens are HMAC-signed and *typed* (a reset token can't stand in as a
+  session token), and forgot-password never reveals whether an email exists. This uses
+  only the Python standard library — **no auth dependency**.
+- **Per-user chat history** — a left sidebar lists your conversations; each turn is
+  saved with its citations, so reopening a conversation restores its clickable sources.
+  Every history endpoint is scoped to the signed-in account (verified: one user can't
+  read or delete another's).
+- **Storage** — a local SQLite file (`DATA_DIR/app.db`), kept **separate from the Neo4j
+  graph** (which is wiped and rebuilt with the corpus). Nothing extra to run.
+- **Bring your own document** — upload a PDF and ask questions grounded in *its* pages
+  instead of the law corpus; the same grounded / cited / refuse behaviour applies.
+  Uploaded documents are held in memory (ephemeral) and never persisted.
+
+> Password reset has no email service wired up, so in local dev (`AUTH_DEV_RESET=true`)
+> the reset token is returned in the API response to keep the flow usable end to end; in
+> production set it `false` and email the token instead. This is demo-grade auth (tokens
+> in `localStorage`, no rate limiting) — fine for a portfolio, hardened before real use.
 
 ## Languages — English, Urdu & Roman Urdu
 
@@ -234,8 +291,13 @@ ends:
   provision names and citations in English (e.g. answers in Urdu still cite
   "Article 25A"). The UI renders Urdu-script messages right-to-left.
 
-Translation reuses the existing Groq call, so it adds no extra API cost. Requires
-the `GROQ_API_KEY` (non-English retrieval depends on the translation step).
+Because the small model doesn't reliably infer the answer language from the prompt
+alone (an English question would sometimes come back in Urdu), a **deterministic
+detector** (`app/agent/language.py`) tags each question — Urdu script, Roman-Urdu
+function words, or an explicit *"answer in English/Urdu"* override — and hands the
+generator an explicit language instruction. Translation reuses the existing Groq call,
+so it adds no extra API cost. Requires the `GROQ_API_KEY` (non-English retrieval depends
+on the translation step).
 
 ## SSE event contract
 
@@ -258,8 +320,8 @@ python eval/run_eval.py --generate  # + generation/citation metrics (needs GROQ_
 ```
 
 Reports hit rate (document- and article-level), context precision, refusal accuracy
-(unanswerable questions correctly refused), and over-refusal rate over the 44-item
-golden set in `eval/golden_set.jsonl` (42 answerable across all 13 acts, 2 uncovered).
+(unanswerable questions correctly refused), and over-refusal rate over the 50-item
+golden set in `eval/golden_set.jsonl` (48 answerable across all 16 acts, 2 uncovered).
 Each answerable question is annotated with its **expected provision** (e.g.
 `pakistan-penal-code-1860.md#302`).
 
@@ -267,25 +329,27 @@ Current results:
 
 | metric | value | what it measures |
 |---|---|---|
-| `retrieval_hit_rate` (document) | **1.00** | correct *Act* retrieved in top-k |
-| `article_hit_rate` (provision) | **0.98** | correct *Section/Article* retrieved in top-k |
+| `retrieval_hit_rate` (document) | **0.979** | correct *Act* retrieved in top-k |
+| `article_hit_rate` (provision) | **0.958** | correct *Section/Article* retrieved in top-k |
 | `refusal_accuracy` | **1.00** | genuinely unanswerable questions refused |
 | `over_refusal_rate` | **0.00** | answerable questions wrongly refused |
 
 Both hit-rate numbers are reported on purpose: document-level flatters (any chunk from
-the right Act counts), while **article-level is the honest one** (0.976). It's not a
-forced 1.00 — the single remaining miss is a semantic near-miss ("cyberstalking" ranks
-the exact section §24 at position 8, just outside the top-5). We deliberately do **not**
-reword it to pass; a believable 0.98 with one documented miss beats a gamed 1.00. The
-**CI gate** enforces `article_hit_rate ≥ 0.90`. Each golden question is annotated with
-all genuinely-correct provisions (some answers legitimately span several sections, e.g.
-a harassment complaint covers the Inquiry Committee, its powers, and the Ombudsperson).
+the right Act counts), while **article-level is the honest one** (0.958 = 46/48). It's
+not a forced 1.00 — the remaining misses are semantic near-misses where a closely related
+section outranks the exact expected one (e.g. a false-accusation question surfaces PPC
+§496C — itself a correct provision — over the Qazf Ordinance section the golden set
+expects). We deliberately do **not** reword questions to pass; a believable 0.96 with
+documented misses beats a gamed 1.00. The **CI gate** enforces `article_hit_rate ≥ 0.90`.
+Each golden question is annotated with all genuinely-correct provisions (some answers
+legitimately span several sections, e.g. a harassment complaint covers the Inquiry
+Committee, its powers, and the Ombudsperson).
 
-Getting here was a real fix, not tuning: the earlier 0.88 was partly caused by a
-chunking filter that dropped short-but-real provisions (e.g. the theft *punishment*
-clause §379, ~90 chars, discarded as "table-of-contents noise"). Lowering that threshold
-recovered ~150 legitimate provisions across the corpus and lifted the honest metric to
-0.976.
+Getting here was a real fix, not tuning: an earlier 0.88 was partly caused by a chunking
+filter that dropped short-but-real provisions (e.g. the theft *punishment* clause §379,
+~90 chars, discarded as "table-of-contents noise"). Lowering that threshold recovered
+~150 legitimate provisions across the corpus, and the metric then held up as the corpus
+grew to 16 acts and the golden set to 50 questions — including deliberately harder ones.
 
 Two layers guard against wrong answers: the cosine **gate** refuses clearly off-topic
 questions (e.g. "capital of France", 0.47), and for questions that are *legally
@@ -296,15 +360,15 @@ actually answer them (verified end-to-end).
 
 | config | hit_rate@k | context_precision@k |
 |---|---|---|
-| vector-only | 1.000 | 0.714 |
-| vector + rerank | 1.000 | **0.724** |
+| vector-only | 0.979 | 0.717 |
+| vector + rerank | 0.979 | **0.742** |
 
-On this legal corpus (13 acts, ~1,790 chunks) the cross-encoder reranker gives a
-**small precision gain** (0.714 → 0.724). Notably this *flipped* with chunking: on the
-earlier coarse chunks the same reranker slightly *hurt* (0.70 → 0.695), and it helped on
-a generic docs corpus (0.71 → 0.75). The lesson isn't "rerank always helps" — it's that
-reranking's value is corpus- and chunking-dependent, so you **measure it**, you don't
-assume it. The ablation is one flag (`--ablation`) away.
+On this legal corpus (16 acts, ~1,870 chunks) the cross-encoder reranker gives a
+**modest precision gain** (0.717 → 0.742) without changing which Act is found. Notably
+this *flipped* with chunking: on earlier coarse chunks the same reranker slightly *hurt*
+(0.70 → 0.695), and it helped on a generic docs corpus (0.71 → 0.75). The lesson isn't
+"rerank always helps" — it's that reranking's value is corpus- and chunking-dependent, so
+you **measure it**, you don't assume it. The ablation is one flag (`--ablation`) away.
 
 ## Quality gates
 
@@ -351,6 +415,11 @@ The interesting parts of this project are the decisions, not the framework glue.
 - **Local-first and free.** Local embeddings/reranker (fastembed, ONNX, no torch), FAISS,
   and a free LLM tier — the whole thing runs at ~$0. The LLM sits behind an interface, so
   the provider is swappable.
+- **App data in SQLite, not the graph.** User accounts and chat history live in a local
+  SQLite file, deliberately *separate* from the Neo4j corpus graph — which is wiped and
+  rebuilt on every corpus change, so app data must not share it. Auth pulls in no
+  third-party service or dependency: PBKDF2 hashing and HMAC-signed, typed tokens are all
+  standard library, keeping the app single-process and free.
 - **It's measured, and CI enforces it.** A golden set + retrieval/refusal metrics run as a
   CI gate that fails the build on regression.
 
