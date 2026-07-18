@@ -13,6 +13,10 @@ import numpy as np
 
 from app.core.config import get_settings
 
+# Cap each fastembed call to one internal batch so it never spawns a worker pool
+# (which hangs on Windows spawn — see Embedder.embed).
+_EMBED_BATCH = 128
+
 
 class Embedder:
     """Thin wrapper over fastembed that returns normalized float32 vectors."""
@@ -27,10 +31,22 @@ class Embedder:
         self._model = TextEmbedding(model_name=model_name, cache_dir=cache_dir)
 
     def embed(self, texts: list[str]) -> np.ndarray:
-        """Embed a list of texts -> ``(n, dim)`` L2-normalized float32 array."""
+        """Embed a list of texts -> ``(n, dim)`` L2-normalized float32 array.
+
+        We feed fastembed one small batch at a time and let it run in-process
+        (``parallel`` unset). Handed a large list, fastembed spins up a
+        multiprocessing worker pool to embed it — and on Windows (spawn, not fork)
+        each worker re-loads the ONNX model, which balloons to several GB and can
+        orphan a worker that never exits. A single small batch stays under that
+        threshold, so embedding runs in-process at a steady, fast rate.
+        """
         if not texts:
             return np.zeros((0, self.dim), dtype=np.float32)
-        vectors = np.array(list(self._model.embed(texts)), dtype=np.float32)
+        out: list[np.ndarray] = []
+        for i in range(0, len(texts), _EMBED_BATCH):
+            batch = texts[i : i + _EMBED_BATCH]
+            out.extend(self._model.embed(batch, batch_size=len(batch)))
+        vectors = np.array(out, dtype=np.float32)
         return self._normalize(vectors)
 
     def embed_one(self, text: str) -> np.ndarray:
