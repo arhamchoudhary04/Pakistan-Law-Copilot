@@ -12,10 +12,7 @@ const STYLES: Record<AnswerStatus, string> = {
   partial: "bg-partial/10 text-partial ring-partial/40",
 };
 
-/**
- * The answer-status badge makes the trust state legible in ~2 seconds — a
- * refusal ("I don't know") looks visibly different from a grounded answer.
- */
+/** Answer-status badge: a refusal looks visibly different from a grounded answer. */
 export function StatusBadge({ status }: { status: AnswerStatus }) {
   return (
     <span

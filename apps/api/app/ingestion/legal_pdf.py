@@ -1,27 +1,18 @@
 """Convert official Pakistani legal PDFs into structured markdown for ingestion.
 
-Legal statutes have a natural citable unit: the numbered Article (Constitution)
-or Section (Acts). This converter extracts the PDF text, cleans the repeating
-page headers and mojibake, drops the table-of-contents, and emits one markdown
-file per act where each provision is a `##` heading (e.g. "## Article 9. Security
-of person"). The existing MarkdownHeaderTextSplitter then produces chunks whose
-`section` label is the exact provision — which is what makes legal citations
-precise and verifiable.
+The citable unit is the numbered Article (Constitution) or Section (Act). This
+extracts the PDF text, strips page headers and mojibake, drops the table-of-contents,
+and emits one markdown file per act with each provision as a ``##`` heading. Chunking
+then keeps that heading as the ``section`` label, which is what makes citations exact.
+It transforms text extracted verbatim from the PDF; it never invents legal text.
 
-This is a source-prep step, run once when adding an act:
+Run once when adding an act (reads SOURCES from the raw dir, writes to the corpus dir):
 
     python -m app.ingestion.legal_pdf
 
-It reads PDFs listed in SOURCES from the raw dir and writes to the corpus dir.
-It intentionally does NOT invent any legal text — it only transforms text
-extracted verbatim from the official PDF.
-
-Heuristics for Pakistani legal drafting:
-- A section's title ends with ".—" (period + dash) before the substantive text,
-  so we split the heading line there to get a clean title + inline body.
-- The table-of-contents lists every provision number before the body repeats
-  them; we keep the LAST occurrence of each number (the real body), which drops
-  the TOC and the stray preamble text that attaches to the last TOC entry.
+Two drafting quirks drive the heuristics: a section title ends with ".—" before its
+body (so we split the heading there), and the table-of-contents repeats every number
+before the real body, so we keep the last occurrence of each.
 """
 
 from __future__ import annotations

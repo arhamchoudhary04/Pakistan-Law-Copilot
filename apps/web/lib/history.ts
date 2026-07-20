@@ -2,10 +2,9 @@ import type { StoredMessage } from "./api";
 import type { AnswerStatus, ChatTurn, CitationEvent, SourceItem } from "./types";
 
 /**
- * Rebuild renderable chat turns from a conversation's stored messages. Messages
- * are saved as alternating user/assistant pairs; the assistant message carries a
- * `meta` blob (status, citations, sources) so a reloaded answer keeps its clickable
- * citations. Stages aren't persisted — the retrieval inspector is a live-run detail.
+ * Rebuild chat turns from a conversation's stored messages (alternating user/assistant).
+ * The assistant `meta` blob (status, citations, sources) keeps reloaded answers clickable;
+ * stages aren't persisted since the inspector is a live-run detail.
  */
 export function turnsFromMessages(messages: StoredMessage[]): ChatTurn[] {
   const turns: ChatTurn[] = [];

@@ -1,27 +1,15 @@
-"""Evaluation harness for Knowledge Copilot.
+"""Evaluation harness: runs the golden set and reports quality metrics.
 
-Runs the golden set against the retriever and (optionally) the full generation
-pipeline, then reports quantified quality metrics.
-
-Two tiers of metrics:
-
-1. Retrieval + refusal metrics (default) — computed offline from embeddings only,
-   so they run WITHOUT a GROQ_API_KEY:
-     * retrieval hit rate @k   (expected source appears in retrieved chunks)
-     * context precision @k    (fraction of retrieved chunks from expected sources)
-     * refusal accuracy        (genuinely unanswerable questions correctly refused)
-     * over-refusal rate       (answerable questions wrongly refused by the gate)
-
-2. Generation metrics (--generate) — require GROQ_API_KEY:
-     * citation validity       (every [n] marker maps to a real retrieved chunk)
-     * answered rate           (answerable questions actually answered)
-
-RAGAS (--ragas) is attempted if installed and configured; it is optional and the
-harness degrades gracefully if it cannot run.
+Two tiers:
+  - Retrieval + refusal (default, offline, no key): hit rate @k, context precision @k,
+    refusal accuracy, over-refusal rate.
+  - Generation (--generate, needs GROQ_API_KEY): citation validity, answered rate.
 
 Usage (from repo root):
-    python eval/run_eval.py                # retrieval + refusal metrics (offline)
-    python eval/run_eval.py --generate     # + generation/citation metrics (needs key)
+    python eval/run_eval.py              # retrieval + refusal (offline)
+    python eval/run_eval.py --ablation   # + vector-only vs vector+rerank
+    python eval/run_eval.py --generate   # + generation/citation metrics (needs key)
+    python eval/run_eval.py --check      # CI gate: exit non-zero on a threshold breach
 """
 
 from __future__ import annotations
@@ -253,9 +241,9 @@ def main() -> None:
         _enforce_gate(metrics)
 
 
-# Minimum acceptable offline metrics; CI fails the build if any is breached.
-# article_hit_rate (exact-provision) is the strict, honest signal; the threshold
-# sits below the current baseline (~0.88) to catch regressions with some margin.
+# Minimum acceptable offline metrics; CI fails the build on a breach. article_hit_rate
+# (exact provision) is the strict signal; thresholds sit below the current baselines
+# so real regressions fail but noise doesn't.
 _THRESHOLDS = {
     "retrieval_hit_rate": (0.90, "min"),
     "article_hit_rate": (0.90, "min"),

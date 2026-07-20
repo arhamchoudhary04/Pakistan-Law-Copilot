@@ -3,10 +3,7 @@
 import { useAuth } from "./AuthProvider";
 import type { ConversationSummary } from "@/lib/api";
 
-/**
- * Left sidebar: start a new chat, revisit or delete past conversations, and sign
- * out. Conversations are the current user's own, newest first.
- */
+/** Left sidebar: new chat, revisit/delete past conversations, sign out. */
 export function HistorySidebar({
   conversations,
   activeId,

@@ -1,13 +1,9 @@
 """Rule-based extraction of legal cross-references.
 
-Legal provisions cite each other explicitly ("subject to Article 251", "under
-section 7"). We extract those references deterministically from the provision
-text — no LLM, no cost, no hallucination — to build a citation graph:
-
-    (Provision)-[:REFERENCES]->(Provision)     within the same Act
-
-These pure helpers are shared by the graph builder (ingestion) and the hybrid
-retriever (query time), so both agree on how a chunk maps to a provision key.
+Provisions cite each other explicitly ("subject to Article 251", "under section 7").
+We extract those references from the text with regex (no LLM) to build the edges of
+the citation graph. These helpers are shared by the graph builder and the hybrid
+retriever, so both agree on how a chunk maps to a provision key.
 """
 
 from __future__ import annotations

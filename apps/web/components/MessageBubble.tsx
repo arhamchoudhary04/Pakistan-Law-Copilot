@@ -8,9 +8,8 @@ import type { AssistantMessage, SourceItem } from "@/lib/types";
 const MARKER_RE = /(\[\d+\])/g;
 
 /**
- * Renders the assistant answer as a document card with inline superscript
- * citations. Clicking a citation opens its source. Citations map
- * marker -> chunk_id (citation events) -> full source metadata (sources event).
+ * Assistant answer as a document card with inline superscript citations.
+ * Citations map marker -> chunk_id (citation event) -> source metadata (sources event).
  */
 export function MessageBubble({
   message,

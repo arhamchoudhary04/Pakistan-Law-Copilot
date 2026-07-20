@@ -13,10 +13,7 @@ const SUBTITLE: Record<Mode, string> = {
   reset: "Choose a new password for your account.",
 };
 
-/**
- * The auth gate: sign in, create an account (name + confirmed password), or reset
- * a forgotten password. Every conversation is tied to a user, so history is theirs.
- */
+/** Auth gate: sign in, sign up, or reset a forgotten password. */
 export function AuthScreen() {
   const { login, signup, resetPassword } = useAuth();
   const [mode, setMode] = useState<Mode>("login");

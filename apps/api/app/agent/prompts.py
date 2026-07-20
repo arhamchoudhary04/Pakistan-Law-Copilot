@@ -1,9 +1,8 @@
 """Prompt construction for grounded, citation-first generation.
 
-The system prompt is the primary guardrail against hallucination: the model is
-instructed to answer *only* from the numbered context, cite every claim with
-``[n]`` markers that map to the provided chunks, and refuse when the context is
-insufficient rather than guessing.
+The system prompt is the main guardrail against hallucination: answer only from
+the numbered context, cite every claim with [n] markers, and refuse when the
+context is insufficient.
 """
 
 from __future__ import annotations
@@ -68,8 +67,6 @@ def build_messages(
     """
     context = build_context_block(retrieved)
     hint = f"\n\nNote from a previous attempt: {feedback}" if feedback else ""
-    # Deterministic per-turn language instruction — the small model does not reliably
-    # match the question's language from the system prompt alone.
     directive = language_directive(question)
     user_content = (
         f"Context:\n{context}\n\n"

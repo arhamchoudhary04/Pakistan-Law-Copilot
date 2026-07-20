@@ -1,13 +1,11 @@
 """Cross-encoder reranker (local, via fastembed).
 
-A cross-encoder jointly scores the (query, passage) pair, which is far more
-precise than the bi-encoder cosine similarity used for the initial recall. We
-pull a larger candidate pool from the vector store, then rerank down to top-k.
-This is usually the single biggest precision win in a RAG pipeline; the eval
-harness quantifies it (``python eval/run_eval.py --ablation``).
+A cross-encoder jointly scores each (query, passage) pair, which is more precise
+than the bi-encoder cosine used for initial recall. We pull a larger candidate pool
+from the vector store, then rerank down to top-k. Its actual effect here is corpus-
+dependent (measure it with ``python eval/run_eval.py --ablation``).
 
-The model is an ONNX cross-encoder served by fastembed, so no torch dependency
-is needed and it runs fully locally.
+The model is an ONNX cross-encoder served by fastembed, so there's no torch dependency.
 """
 
 from __future__ import annotations

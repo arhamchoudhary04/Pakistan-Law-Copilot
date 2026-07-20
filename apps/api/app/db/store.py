@@ -1,12 +1,10 @@
-"""SQLite-backed storage for user accounts and per-user chat history.
+"""SQLite storage for user accounts and per-user chat history.
 
-Deliberately separate from the Neo4j knowledge graph: that graph holds the legal
-corpus (provisions + cross-references) and is wiped and rebuilt whenever the
-corpus changes, so application data must not live in it. This is a small,
-dependency-free store built on the standard-library ``sqlite3`` module.
+Kept separate from the Neo4j corpus graph (which is wiped and rebuilt on every
+corpus change), and built on the stdlib ``sqlite3`` module so it adds no dependency.
 
 Schema:
-    users(id, email, password_hash, created_at)
+    users(id, email, name, password_hash, created_at)
     conversations(id, user_id -> users, title, created_at, updated_at)
     messages(id, conversation_id -> conversations, ordinal, role, content, meta, created_at)
 """
@@ -55,8 +53,7 @@ class AccountStore:
 
     @contextmanager
     def _conn(self) -> Iterator[sqlite3.Connection]:
-        # A fresh connection per operation keeps this safe across FastAPI's request
-        # threadpool; SQLite serialises the (infrequent) writes itself.
+        # Fresh connection per operation: safe across FastAPI's request threadpool.
         conn = sqlite3.connect(self._path)
         conn.row_factory = sqlite3.Row
         conn.execute("PRAGMA foreign_keys = ON")

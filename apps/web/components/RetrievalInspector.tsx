@@ -3,10 +3,7 @@
 import { useState } from "react";
 import type { AssistantMessage, SourceItem } from "@/lib/types";
 
-/**
- * Collapsible "show your work" panel: the per-stage trace (with latency) and
- * every retrieved chunk with its scores and `used` / `via_graph` flags.
- */
+/** Collapsible "show your work" panel: per-stage trace + retrieved chunks with scores. */
 export function RetrievalInspector({
   message,
   onOpenSource,

@@ -1,11 +1,7 @@
-"""``POST /chat`` — streams a grounded answer over Server-Sent Events.
+"""``POST /chat``: streams a grounded answer over Server-Sent Events.
 
-Event contract (spec §11, extended with ``stage`` for the Retrieval Inspector):
-    stage    -> pipeline node result: {stage, detail, latency_ms}
-    token    -> {text}
-    citation -> {marker, chunk_id, source, section}
-    sources  -> {retrieved: [{chunk_id, score, rerank_score, used}, ...]}
-    done     -> {message_id, answer_status: grounded|idk|partial, attempts}
+Emits ``stage`` (per pipeline node), ``token``, ``citation``, ``sources``, and a
+final ``done`` event. Payload shapes are in ``app.models.schemas``.
 """
 
 from __future__ import annotations

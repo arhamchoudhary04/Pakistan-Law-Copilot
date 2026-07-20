@@ -1,17 +1,9 @@
 """Deterministic answer-language detection.
 
-The generation model (a small 8B) does not reliably honour a soft "reply in the
-user's language" instruction — an English question sometimes comes back in Urdu.
-So we detect the question's language here and give the model an explicit, per-turn
-directive instead of trusting it to infer. Detection is intentionally simple and
-dependency-free:
-
-1. an explicit request ("answer in Urdu", "english mein batao") wins;
-2. any Urdu (Arabic) script -> Urdu;
-3. otherwise it's Latin script — split Roman Urdu vs English by function words.
-
-Provision names ("Article 10A") and the ``[n]`` citation markers always stay in
-English, whatever the answer language.
+The small generation model doesn't reliably honour a soft "reply in the user's
+language" instruction, so we detect the language here and pass an explicit per-turn
+directive. Order: an explicit request ("answer in Urdu") wins, then Urdu script,
+then Roman-Urdu function words vs English.
 """
 
 from __future__ import annotations

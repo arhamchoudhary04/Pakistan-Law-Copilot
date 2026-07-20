@@ -1,8 +1,8 @@
 """Local embedding provider backed by fastembed.
 
-Uses ``BAAI/bge-small-en-v1.5`` (384-dim) by default. Vectors are L2-normalized
-so that a FAISS inner-product search yields cosine similarity in ``[0, 1]``,
-which the relevance gate compares against ``RELEVANCE_THRESHOLD``.
+Uses ``BAAI/bge-small-en-v1.5`` (384-dim). Vectors are L2-normalized so a FAISS
+inner-product search yields cosine similarity in [0, 1], which the relevance gate
+compares against ``RELEVANCE_THRESHOLD``.
 """
 
 from __future__ import annotations
@@ -13,8 +13,7 @@ import numpy as np
 
 from app.core.config import get_settings
 
-# Cap each fastembed call to one internal batch so it never spawns a worker pool
-# (which hangs on Windows spawn — see Embedder.embed).
+# Feed fastembed one small batch at a time so it never spawns a worker pool.
 _EMBED_BATCH = 128
 
 
@@ -22,8 +21,7 @@ class Embedder:
     """Thin wrapper over fastembed that returns normalized float32 vectors."""
 
     def __init__(self, model_name: str, dim: int, cache_dir: str | None = None) -> None:
-        # Imported lazily so importing this module (e.g. in tests) is cheap and
-        # doesn't trigger a model download until embeddings are actually needed.
+        # Lazy import so tests can import this module without a model download.
         from fastembed import TextEmbedding
 
         self.model_name = model_name
@@ -31,14 +29,12 @@ class Embedder:
         self._model = TextEmbedding(model_name=model_name, cache_dir=cache_dir)
 
     def embed(self, texts: list[str]) -> np.ndarray:
-        """Embed a list of texts -> ``(n, dim)`` L2-normalized float32 array.
+        """Embed texts into an ``(n, dim)`` L2-normalized float32 array.
 
-        We feed fastembed one small batch at a time and let it run in-process
-        (``parallel`` unset). Handed a large list, fastembed spins up a
-        multiprocessing worker pool to embed it — and on Windows (spawn, not fork)
-        each worker re-loads the ONNX model, which balloons to several GB and can
-        orphan a worker that never exits. A single small batch stays under that
-        threshold, so embedding runs in-process at a steady, fast rate.
+        Batches are kept small on purpose. Given a large list, fastembed forks a
+        multiprocessing pool, and on Windows (spawn) each worker reloads the ONNX
+        model, ballooning to several GB and sometimes orphaning a worker that never
+        exits. One small batch stays in-process and runs fast.
         """
         if not texts:
             return np.zeros((0, self.dim), dtype=np.float32)

@@ -3,11 +3,7 @@
 import { useState } from "react";
 import { TOPICS } from "@/lib/topics";
 
-/**
- * "Browse the law" — an explorer over the covered statutes, grouped into
- * everyday topics. Expanding a topic reveals example questions that jump
- * straight into the chat, and the exact acts each topic draws on.
- */
+/** "Browse the law": statutes grouped into everyday topics, each with example questions. */
 export function BrowseLaw({ onAsk }: { onAsk: (q: string) => void }) {
   const [openId, setOpenId] = useState<string | null>(TOPICS[0]?.id ?? null);
 

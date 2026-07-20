@@ -2,10 +2,7 @@
 
 import type { SourceItem } from "@/lib/types";
 
-/**
- * Right-side drawer showing the exact source provision behind a citation:
- * its title, document, and retrieval scores.
- */
+/** Right-side drawer: the source provision behind a citation, with its scores. */
 export function SourceDrawer({
   source,
   onClose,

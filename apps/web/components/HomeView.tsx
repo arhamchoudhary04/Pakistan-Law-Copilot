@@ -2,11 +2,7 @@
 
 import { TOPICS } from "@/lib/topics";
 
-/**
- * The landing view. Instead of dropping straight into a chat box, it explains
- * what the tool is, how to trust it, and offers clear ways in (ask, browse, or
- * bring your own document).
- */
+/** Landing view: explains the tool and offers ways in (ask, browse, or upload a PDF). */
 export function HomeView({
   onStartAsk,
   onBrowse,

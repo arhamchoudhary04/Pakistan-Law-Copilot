@@ -1,9 +1,9 @@
 """Structure-aware chunking.
 
-We first split on markdown headers (so each chunk stays within one section and
-carries a human-readable ``section`` label for citations), then enforce a token
-budget with a recursive character splitter. Token counts are approximated
-(~4 chars/token) to avoid pulling in a tokenizer dependency for the MVP.
+Split on markdown headers first (so each chunk stays within one section and carries
+a ``section`` label for citations), then enforce a token budget with a recursive
+character splitter. Token counts are approximated (~4 chars/token) to avoid a
+tokenizer dependency.
 """
 
 from __future__ import annotations

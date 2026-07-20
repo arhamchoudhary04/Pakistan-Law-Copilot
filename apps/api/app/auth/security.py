@@ -1,9 +1,8 @@
-"""Password hashing and stateless session tokens — standard library only.
+"""Password hashing and stateless session tokens, standard library only.
 
-Passwords are hashed with PBKDF2-HMAC-SHA256 (per-user random salt). Session
-tokens are a compact, HMAC-SHA256-signed ``payload.signature`` pair — the same
-idea as a JWT, without pulling in a JWT dependency. The signing key is
-``settings.auth_secret``; set it to a long random value in production.
+Passwords use PBKDF2-HMAC-SHA256 with a per-user random salt. Session tokens are a
+compact HMAC-SHA256-signed ``payload.signature`` pair (a JWT without the dependency),
+signed with ``settings.auth_secret``.
 """
 
 from __future__ import annotations

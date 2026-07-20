@@ -1,16 +1,14 @@
-"""The RAG pipeline — drives the LangGraph agent and emits SSE events.
+"""RAG pipeline: drives the LangGraph agent and emits SSE events.
 
-The agent graph (see ``graph.py``) runs the full rewrite -> retrieve -> grade ->
-rerank -> generate -> verify loop to completion *before* any answer token is
-sent. This is deliberate for a trust-first product: the user only ever sees a
-self-verified answer, never an unsupported claim that later gets retracted.
+The graph runs to completion (verify included) before any answer token is sent, so
+the client only ever receives a self-verified answer.
 
-Events emitted (see project spec §11, extended with ``stage`` for the inspector):
-    stage    -> {"stage": "...", "detail": "...", "latency_ms": 12.3}   (one per node)
-    token    -> {"text": "..."}
-    citation -> {"marker": 1, "chunk_id": "...", "source": "...", "section": "..."}
-    sources  -> {"retrieved": [{"chunk_id": "...", "score": .., "rerank_score": .., "used": true}]}
-    done     -> {"message_id": "...", "answer_status": "grounded|idk|partial", "attempts": 1}
+Events:
+    stage    -> {"stage", "detail", "latency_ms"}   (one per node; powers the inspector)
+    token    -> {"text"}
+    citation -> {"marker", "chunk_id", "source", "section"}
+    sources  -> {"retrieved": [{"chunk_id", "score", "rerank_score", "used"}]}
+    done     -> {"message_id", "answer_status", "attempts"}
 """
 
 from __future__ import annotations
@@ -91,11 +89,9 @@ async def run_chat(
 ) -> AsyncIterator[Event]:
     """Run the agent for one question, yielding SSE events.
 
-    We stream the graph with ``astream`` so each node's ``stage`` event is emitted
-    the moment that node finishes — giving the client live progress during the
-    (multi-second) rewrite/retrieve/rerank/generate run, instead of a silent wait.
-    The answer itself is still emitted only after the full verified run completes.
-    ``history`` (recent prior turns) lets the rewrite node resolve follow-ups.
+    Streams the graph with ``astream`` so each node's ``stage`` event fires as it
+    finishes (live progress during the multi-second run); the answer is emitted only
+    once the verified run completes. ``history`` lets the rewrite node resolve follow-ups.
     """
     message_id = str(uuid.uuid4())
     graph = get_graph()

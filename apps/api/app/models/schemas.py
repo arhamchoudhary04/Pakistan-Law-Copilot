@@ -1,7 +1,7 @@
 """Pydantic schemas shared across ingestion, retrieval, the agent, and the API.
 
 These also define the structured payloads for the ``/chat`` SSE event stream
-(``token`` / ``citation`` / ``sources`` / ``done``) described in the project spec.
+(``token`` / ``citation`` / ``sources`` / ``done``).
 """
 
 from __future__ import annotations

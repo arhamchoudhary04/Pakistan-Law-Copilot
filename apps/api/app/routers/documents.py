@@ -1,7 +1,7 @@
-"""``POST /documents`` — upload a PDF to ask questions grounded in it.
+"""``POST /documents``: upload a PDF to ask questions grounded in it.
 
 Returns a ``doc_id`` the client passes to ``/chat`` to answer from the uploaded
-document ("understand your document" mode) instead of the law corpus.
+document instead of the law corpus.
 """
 
 from __future__ import annotations
