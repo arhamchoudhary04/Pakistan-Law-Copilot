@@ -22,22 +22,25 @@ class _StubEmbedder:
 
 class _StubLLM:
     async def stream(self, messages, **kwargs) -> AsyncIterator[str]:
-        for tok in ["Use ", "a type annotation [1]. ", "See also [2]."]:
+        for tok in ["You must be produced before a magistrate within 24 hours [1]. ",
+                    "You also have the right to a fair trial [2]."]:
             yield tok
+
+
+_SRC = "constitution-fundamental-rights.md"
 
 
 def _candidates() -> list[RetrievedChunk]:
     return [
         RetrievedChunk(
-            chunk=Chunk(id="path-parameters.md#2", doc_id="path-parameters.md",
-                        ordinal=2, content="...", section="Path Parameters",
-                        source="path-parameters.md"),
+            chunk=Chunk(id=f"{_SRC}#10", doc_id=_SRC, ordinal=0, content="...",
+                        section="Article 10. Safeguards as to arrest and detention",
+                        source=_SRC),
             score=0.87,
         ),
         RetrievedChunk(
-            chunk=Chunk(id="path-parameters.md#1", doc_id="path-parameters.md",
-                        ordinal=1, content="...", section="Declaring a path parameter",
-                        source="path-parameters.md"),
+            chunk=Chunk(id=f"{_SRC}#10A", doc_id=_SRC, ordinal=1, content="...",
+                        section="Article 10A. Right to fair trial", source=_SRC),
             score=0.84,
         ),
     ]
@@ -54,11 +57,13 @@ async def test_grounded_answer_emits_citations(monkeypatch):
     monkeypatch.setattr(graph, "get_embedder", lambda: _StubEmbedder())
     monkeypatch.setattr(graph, "get_llm", lambda: _StubLLM())
 
-    events = [e async for e in pipeline.run_chat("How do I type a path param?", _StubStore())]
+    events = [
+        e async for e in pipeline.run_chat("What are my rights if I am arrested?", _StubStore())
+    ]
 
     citations = [e.data for e in events if e.event == "citation"]
     assert {c.marker for c in citations} == {1, 2}
-    assert all(c.source == "path-parameters.md" for c in citations)
+    assert all(c.source == _SRC for c in citations)
 
     sources = next(e.data for e in events if e.event == "sources")
     assert all(s.used for s in sources.retrieved)
