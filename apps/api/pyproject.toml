@@ -1,0 +1,62 @@
+[project]
+name = "knowledge-copilot-api"
+version = "0.1.0"
+description = "Knowledge Copilot API — grounded, citation-first RAG over a trusted corpus."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    "httpx>=0.27",
+    "faiss-cpu>=1.9",
+    "numpy>=1.26",
+    "fastembed>=0.4",
+    "pypdf>=5.0",
+    "langchain-text-splitters>=0.3",
+    "langgraph>=0.2",
+    "neo4j>=5.24",
+    "python-multipart>=0.0.12",
+    "sse-starlette>=2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.7",
+    "mypy>=1.13",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+]
+eval = [
+    "ragas>=0.2",
+    "datasets>=3.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+# numpy's bundled stubs use a 3.12-only `type` statement that trips mypy when
+# checking against 3.11; skip following them (numpy is treated as untyped).
+[[tool.mypy.overrides]]
+module = "numpy.*"
+follow_imports = "skip"
+follow_imports_for_stubs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app"]
