@@ -9,16 +9,33 @@ Run:  uvicorn app.main:app --reload   (from apps/api)
 
 from __future__ import annotations
 
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.config import get_settings
+from app.core.config import Settings, get_settings
 from app.db.store import get_account_store
 from app.retrieval.vector_store import VectorStore
 from app.routers import auth, chat, conversations, documents, health
+
+logger = logging.getLogger("app")
+
+
+def _enforce_security(settings: Settings) -> None:
+    """Fail fast on insecure auth config in production; warn about it in dev."""
+    problems = settings.security_problems()
+    if not problems:
+        return
+    if settings.is_production:
+        raise RuntimeError(
+            "Refusing to start in production with insecure auth config:\n  - "
+            + "\n  - ".join(problems)
+        )
+    for problem in problems:
+        logger.warning("insecure dev config (APP_ENV=%s): %s", settings.app_env, problem)
 
 
 @asynccontextmanager
@@ -26,18 +43,20 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     settings = get_settings()
     try:
         app.state.store = VectorStore.load(settings.data_path)
-        print(f"Loaded index: {len(app.state.store)} chunk(s) from {settings.data_path}")
+        logger.info("Loaded index: %d chunk(s) from %s", len(app.state.store), settings.data_path)
     except FileNotFoundError as exc:
         app.state.store = None
-        print(f"No index loaded ({exc}). /chat will return 503 until you ingest.")
+        logger.warning("No index loaded (%s). /chat will return 503 until you ingest.", exc)
     # Open (and create, first run) the accounts/history database up front.
     get_account_store()
-    print(f"Accounts DB ready at {settings.app_db_path}")
+    logger.info("Accounts DB ready at %s", settings.app_db_path)
     yield
 
 
 def create_app() -> FastAPI:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
     settings = get_settings()
+    _enforce_security(settings)
     app = FastAPI(
         title="Knowledge Copilot API",
         version="0.1.0",

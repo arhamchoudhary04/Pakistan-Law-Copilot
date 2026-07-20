@@ -1,7 +1,7 @@
-"""LangGraph agent — the self-correcting RAG pipeline.
+"""LangGraph agent: the self-correcting RAG pipeline.
 
-LangGraph is used (over a plain chain) specifically because the self-verification
-loop needs explicit state and conditional edges. The graph:
+LangGraph (rather than a plain chain) because the verification loop needs explicit
+state and conditional edges.
 
     rewrite -> retrieve -> grade --(weak)--> fallback -> END
                               |
@@ -11,25 +11,16 @@ loop needs explicit state and conditional edges. The graph:
                               ^                       |
                               +---------(retry)-------+
 
-- **rewrite**    expand the question into retrieval queries (LLM; falls back to
-                 the original query if generation is unavailable).
-- **retrieve**   dense search per query; merge/dedup candidates (keep best cosine).
-- **grade**      the relevance gate — refuse if the best cosine is below threshold.
-                 The gate stays cosine-based (calibrated to RELEVANCE_THRESHOLD)
-                 even though reranking reorders afterwards.
-- **rerank**     cross-encoder reorders candidates down to top-k.
-- **generate**   grounded answer with [n] citations.
-- **verify**     check every claim maps to a valid citation; loop back with
-                 feedback on unsupported claims, up to max_attempts.
-- **fallback**   honest "I don't know" stating what was searched.
-
-Guardrail: the loop is hard-capped at ``max_attempts``. Because verification runs
-before any token reaches the client (see pipeline.run_chat), the user never sees
-an unsupported claim that later gets retracted.
+grade is the relevance gate: it refuses on low cosine before the LLM is called, and
+stays cosine-based (calibrated to RELEVANCE_THRESHOLD) even though rerank reorders
+afterwards. verify checks every claim maps to a citation and loops back with feedback,
+hard-capped at max_attempts. Verification finishes before any token reaches the client,
+so the user never sees a claim that later gets retracted.
 """
 
 from __future__ import annotations
 
+import logging
 import operator
 import re
 from functools import lru_cache
@@ -50,6 +41,8 @@ from app.retrieval.reranker import get_reranker
 
 IDK_MESSAGE = "I don't know based on the available sources."
 _MARKER_RE = re.compile(r"\[(\d+)\]")
+
+logger = logging.getLogger("app")
 
 
 class AgentState(TypedDict, total=False):
@@ -139,8 +132,7 @@ async def retrieve_node(state: AgentState, config: RunnableConfig) -> dict:
                 merged[rc.chunk.id] = rc
     candidates = list(merged.values())
 
-    # Hybrid: expand with graph neighbours (cross-referenced provisions) that
-    # vector search missed. Only for the law corpus — uploaded docs aren't in the graph.
+    # Hybrid: add cross-referenced provisions the vector search missed (law corpus only).
     graph_added = 0
     if state.get("mode", "law") == "law":
         graph_added = _graph_expand(store, candidates, primary_vec)
@@ -211,9 +203,8 @@ def rerank_node(state: AgentState, config: RunnableConfig) -> dict:
     t = perf_counter()
     settings = get_settings()
     candidates = state["candidates"]
-    # Rerank against the English (rewritten) query, not the raw question — the
-    # cross-encoder is English-only, so scoring a Urdu/Roman-Urdu question against
-    # English provisions produces garbage and demotes the correct article.
+    # Rerank against the rewritten (English) query: the cross-encoder is English-only,
+    # so scoring a Urdu/Roman-Urdu question against English text demotes the right article.
     queries = state.get("queries") or [state["question"]]
     rerank_query = queries[0]
     if settings.rerank_enabled:
@@ -242,7 +233,7 @@ async def generate_node(state: AgentState, config: RunnableConfig) -> dict:
         gen = StageEvent(stage="generate", detail=f"{len(answer)} chars", latency_ms=_ms(t))
         return {"answer": answer, "can_retry": True, "trace": [gen]}
     except LLMError as exc:
-        print(f"[generate] LLM unavailable: {exc}")  # visible in server log for diagnosis
+        logger.warning("generate: LLM unavailable: %s", exc)
         gen = StageEvent(stage="generate", detail="LLM unavailable", latency_ms=_ms(t))
         return {
             "answer": f"[generation unavailable] {exc}",

@@ -1,9 +1,7 @@
-"""Application configuration.
+"""Application configuration (pydantic-settings, loaded from the repo-root ``.env``).
 
-Loads settings from the repo-root ``.env`` (copy of ``.env.example``) using
-pydantic-settings. Every field mirrors a variable documented in ``.env.example``.
-Path-like settings (``corpus_dir``, ``data_dir``) are resolved relative to the
-repo root so the app behaves the same regardless of the current working dir.
+Path-like settings resolve relative to the repo root, so the app behaves the same
+regardless of the working directory.
 """
 
 from __future__ import annotations
@@ -16,6 +14,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 # apps/api/app/core/config.py -> parents[4] == repo root (knowledge-copilot/)
 REPO_ROOT = Path(__file__).resolve().parents[4]
 
+# Placeholder secret for local dev; production refuses to boot with it still set.
+DEFAULT_INSECURE_SECRET = "dev-insecure-change-me"
+
 
 class Settings(BaseSettings):
     """Typed application settings, populated from environment / ``.env``."""
@@ -25,6 +26,9 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
+    # "dev" only warns about insecure auth defaults; "production" refuses to start.
+    app_env: str = "dev"
 
     # ---- Generation provider (Groq, OpenAI-compatible) ----
     llm_provider: str = "groq"
@@ -71,14 +75,13 @@ class Settings(BaseSettings):
     neo4j_database: str = "neo4j"
 
     # ---- Auth & chat history (local SQLite, separate from the Neo4j graph) ----
-    # HMAC secret used to sign session tokens. MUST be set to a long random value
-    # in production; the default is only for local development.
-    auth_secret: str = "dev-insecure-change-me"
+    # HMAC secret for session tokens; set a long random value in production.
+    auth_secret: str = DEFAULT_INSECURE_SECRET
     auth_token_ttl_hours: int = 168  # 7 days
-    # No email service is wired up, so password-reset tokens can't be emailed. When
-    # true (local dev), the reset token is returned in the API response so the flow
-    # works end to end. In production set this false and deliver the token by email.
-    auth_dev_reset: bool = True
+    # When true, /forgot-password returns the reset token in the response (no email
+    # service). It leaks the token to any caller, so it's off by default and rejected
+    # in production; enable only for local testing.
+    auth_dev_reset: bool = False
 
     # ---- API ----
     api_host: str = "0.0.0.0"
@@ -113,6 +116,25 @@ class Settings(BaseSettings):
     def cors_origin_list(self) -> list[str]:
         """CORS origins parsed from the comma-separated setting."""
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
+
+    @property
+    def is_production(self) -> bool:
+        return self.app_env.strip().lower() in {"prod", "production"}
+
+    def security_problems(self) -> list[str]:
+        """Insecure auth settings (empty == safe). Fatal in production, warnings in dev."""
+        problems: list[str] = []
+        if self.auth_secret == DEFAULT_INSECURE_SECRET:
+            problems.append(
+                "AUTH_SECRET is the built-in insecure default; session tokens are forgeable. "
+                'Set a long random value: python -c "import secrets; print(secrets.token_hex(32))"'
+            )
+        if self.auth_dev_reset:
+            problems.append(
+                "AUTH_DEV_RESET is true; password-reset tokens are returned in API responses "
+                "(account-takeover risk). Set it false and deliver tokens by email."
+            )
+        return problems
 
     @staticmethod
     def _resolve(value: str) -> Path:
