@@ -43,7 +43,7 @@ jobs:
           path: .data/models
           key: fastembed-${{ runner.os }}-bge-small-en-v1.5
 
-      - name: Build index (offline — local embeddings, no API keys)
+      - name: Build index (offline, local embeddings, no API keys)
         working-directory: apps/api
         run: python -m app.ingestion.build_index
 

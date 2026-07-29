@@ -1,7 +1,7 @@
 [project]
 name = "knowledge-copilot-api"
 version = "0.1.0"
-description = "Knowledge Copilot API — grounded, citation-first RAG over a trusted corpus."
+description = "Knowledge Copilot API: grounded, citation-first RAG over a trusted corpus."
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115",
