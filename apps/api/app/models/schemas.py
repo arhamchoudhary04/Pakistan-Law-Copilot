@@ -12,6 +12,11 @@ from pydantic import BaseModel, Field, field_validator
 
 AnswerStatus = Literal["grounded", "idk", "partial"]
 
+# Request-size bounds for /chat. Generous for a real legal question, but finite.
+MAX_MESSAGE_CHARS = 4_000
+MAX_ANSWER_CHARS = 20_000
+MAX_HISTORY_TURNS = 20
+
 
 class Chunk(BaseModel):
     """A single indexed passage of a source document."""
@@ -49,16 +54,20 @@ class ChatOptions(BaseModel):
 class HistoryTurn(BaseModel):
     """A prior turn, sent by the client so the agent can resolve follow-ups."""
 
-    question: str
-    answer: str
+    question: str = Field(max_length=MAX_MESSAGE_CHARS)
+    answer: str = Field(max_length=MAX_ANSWER_CHARS)
 
 
 class ChatRequest(BaseModel):
     session_id: str | None = None
-    message: str = Field(min_length=1)
+    # Bounded because the question is interpolated into the prompt verbatim (see
+    # prompts.build_messages); without a cap a single request can drive unbounded
+    # token cost on an endpoint that is unauthenticated by design.
+    message: str = Field(min_length=1, max_length=MAX_MESSAGE_CHARS)
     # Recent prior turns (client-supplied) for follow-up context; the agent stays
-    # otherwise stateless. Newest last.
-    history: list[HistoryTurn] = Field(default_factory=list)
+    # otherwise stateless. Newest last. Only the last few reach the prompt (and
+    # truncated at that), so the cap here bounds request-parsing cost, not tokens.
+    history: list[HistoryTurn] = Field(default_factory=list, max_length=MAX_HISTORY_TURNS)
     # When set, answer from this uploaded document instead of the law corpus.
     doc_id: str | None = None
     options: ChatOptions = Field(default_factory=ChatOptions)

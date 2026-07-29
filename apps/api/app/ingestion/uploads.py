@@ -21,7 +21,9 @@ from app.ingestion.chunker import approx_tokens
 from app.models.schemas import Chunk
 from app.retrieval.vector_store import VectorStore
 
-_MAX_BYTES = 10 * 1024 * 1024  # 10 MB
+# Public so the router can reject an oversized body *before* buffering it; the
+# check below stays as defense-in-depth for direct callers (eval scripts, tests).
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024  # 10 MB
 _MAX_DOCS = 20  # simple LRU-ish cap so memory can't grow unbounded
 
 
@@ -38,7 +40,7 @@ _DOCS: dict[str, UploadedDoc] = {}
 
 def ingest_pdf(filename: str, data: bytes) -> UploadedDoc:
     """Parse, chunk, and embed an uploaded PDF into an in-memory vector store."""
-    if len(data) > _MAX_BYTES:
+    if len(data) > MAX_UPLOAD_BYTES:
         raise ValueError("File too large (max 10 MB).")
     try:
         reader = PdfReader(io.BytesIO(data))
