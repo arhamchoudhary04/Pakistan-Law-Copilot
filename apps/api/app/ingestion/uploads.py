@@ -2,8 +2,8 @@
 
 An uploaded PDF is parsed, chunked, embedded into its own FAISS vector store, and
 kept in memory under a generated ``doc_id``. ``/chat`` can then answer from it
-instead of the law corpus ("understand your document" mode). Nothing is persisted
-— fine for a single-process demo; a real deployment would use shared storage.
+instead of the law corpus ("understand your document" mode). Nothing is persisted,
+which is fine for a single-process demo; a real deployment would use shared storage.
 """
 
 from __future__ import annotations

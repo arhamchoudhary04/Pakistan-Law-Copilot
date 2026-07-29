@@ -96,7 +96,7 @@ async def run_chat(
     message_id = str(uuid.uuid4())
     graph = get_graph()
 
-    # 1. Inspector trace — emit each stage event live as its node completes.
+    # 1. Inspector trace: emit each stage event live as its node completes.
     final: AgentState = {}
     emitted = 0
     async for state in graph.astream(

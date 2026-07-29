@@ -83,10 +83,17 @@ class Settings(BaseSettings):
     # in production; enable only for local testing.
     auth_dev_reset: bool = False
 
+    # ---- Rate limiting (per-client, in-process; budgets in app/core/ratelimit.py) ----
+    rate_limit_enabled: bool = True
+    # Identify callers by X-Forwarded-For. Off by default because it's client-supplied,
+    # trusting it lets anyone reset their own budget. Only enable behind a proxy that
+    # overwrites the header.
+    rate_limit_trust_proxy: bool = False
+
     # ---- API ----
     api_host: str = "0.0.0.0"
     api_port: int = 8000
-    # Allow 3000 and 3001 by default — Next.js falls back to 3001 when 3000 is taken.
+    # Allow 3000 and 3001 by default, since Next.js falls back to 3001 when 3000 is taken.
     cors_origins: str = "http://localhost:3000,http://localhost:3001"
 
     # ---- Web ----

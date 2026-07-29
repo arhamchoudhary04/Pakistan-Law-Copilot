@@ -89,7 +89,7 @@ export function RetrievalInspector({
                         cos {s.score.toFixed(2)}
                       </span>
                       <span className="w-16 text-right font-mono text-faint">
-                        {s.rerank_score !== null ? `rr ${s.rerank_score.toFixed(1)}` : "—"}
+                        {s.rerank_score !== null ? `rr ${s.rerank_score.toFixed(1)}` : "-"}
                       </span>
                     </button>
                   </li>

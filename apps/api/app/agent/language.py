@@ -69,7 +69,7 @@ _DIRECTIVES: dict[Language, str] = {
     ),
     "roman-urdu": (
         "Write your entire answer in Roman Urdu (Urdu written in the Latin alphabet, the "
-        "way the question is written) — do not use Urdu/Arabic script. Keep provision names "
+        "way the question is written). Do not use Urdu/Arabic script. Keep provision names "
         '(e.g. "Article 10A") and the [n] citation markers in English.'
     ),
 }

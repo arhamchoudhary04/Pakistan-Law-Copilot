@@ -23,7 +23,7 @@ export async function uploadDocument(file: File, signal?: AbortSignal): Promise<
     try {
       detail = JSON.parse(raw).detail ?? raw;
     } catch {
-      /* not JSON — use raw text */
+      /* not JSON, use raw text */
     }
     throw new Error(detail || `Upload failed (${resp.status})`);
   }

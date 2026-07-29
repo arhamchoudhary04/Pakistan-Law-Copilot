@@ -6,7 +6,7 @@ import type { ChatEvent } from "./types";
  *
  * The backend uses standard SSE framing (`event:` + `data:` lines, blank line
  * between events). Because /chat is a POST with a JSON body, we can't use the
- * browser's EventSource (GET-only) — we read the fetch response body stream and
+ * browser's EventSource (GET-only), so we read the fetch response body stream and
  * parse the frames ourselves.
  */
 export async function* streamChat(

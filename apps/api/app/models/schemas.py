@@ -60,13 +60,12 @@ class HistoryTurn(BaseModel):
 
 class ChatRequest(BaseModel):
     session_id: str | None = None
-    # Bounded because the question is interpolated into the prompt verbatim (see
-    # prompts.build_messages); without a cap a single request can drive unbounded
-    # token cost on an endpoint that is unauthenticated by design.
+    # The question reaches the prompt verbatim, so an unbounded one is unbounded
+    # token spend on an endpoint that takes no auth.
     message: str = Field(min_length=1, max_length=MAX_MESSAGE_CHARS)
     # Recent prior turns (client-supplied) for follow-up context; the agent stays
-    # otherwise stateless. Newest last. Only the last few reach the prompt (and
-    # truncated at that), so the cap here bounds request-parsing cost, not tokens.
+    # otherwise stateless. Newest last. Only the last few reach the prompt, so this
+    # cap is about request-parsing cost rather than tokens.
     history: list[HistoryTurn] = Field(default_factory=list, max_length=MAX_HISTORY_TURNS)
     # When set, answer from this uploaded document instead of the law corpus.
     doc_id: str | None = None
@@ -77,7 +76,7 @@ class ChatRequest(BaseModel):
 
 
 class StageEvent(BaseModel):
-    """One pipeline stage's result — powers the Retrieval Inspector."""
+    """One pipeline stage's result; powers the Retrieval Inspector."""
 
     stage: str
     detail: str = ""

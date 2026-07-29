@@ -73,7 +73,7 @@ export const TOPICS: Topic[] = [
     acts: ["Pakistan Penal Code, 1860", "Offence of Qazf Ordinance, 1979"],
     examples: [
       "What is the punishment for making a false criminal charge?",
-      "What is qazf — a false accusation of zina?",
+      "What is qazf, a false accusation of zina?",
       "What counts as defamation under the law?",
     ],
   },

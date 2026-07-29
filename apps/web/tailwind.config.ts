@@ -9,7 +9,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
-        // Editorial "paper" palette — warm, calm, authoritative.
+        // Editorial "paper" palette: warm, calm, authoritative.
         paper: "#FBFAF7",
         card: "#FFFFFF",
         surface: "#F3F1EA",
@@ -17,7 +17,7 @@ const config: Config = {
         muted: "#6B6760",
         faint: "#949087",
         line: "#E7E2D8",
-        // Oxblood accent (law, seals) — not generic indigo.
+        // Oxblood accent (law, seals), not generic indigo.
         accent: "#7C2D2A",
         "accent-tint": "#F3E7E4",
         // Semantic trust-state colours, tuned for a light canvas.

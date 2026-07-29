@@ -1,4 +1,4 @@
-"""The refusal path is the point of the project — test it hermetically.
+"""The refusal path is the point of the project, so test it hermetically.
 
 We stub the embedder and LLM (so no model download / API key) and use an empty
 index so nothing clears the relevance gate. The agent must refuse with

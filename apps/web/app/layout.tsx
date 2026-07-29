@@ -14,7 +14,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Pakistan Law Copilot",
   description:
-    "Grounded, citation-first answers about Pakistani law — cites the exact provision and refuses when unsure. Legal information, not legal advice.",
+    "Grounded, citation-first answers about Pakistani law. Cites the exact provision and refuses when unsure. Legal information, not legal advice.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

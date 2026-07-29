@@ -20,7 +20,7 @@ export function HomeView({
           <span className="text-accent">grounded in the law.</span>
         </h2>
         <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted">
-          Ask everyday questions about Pakistani law — in English, Urdu, or Roman Urdu —
+          Ask everyday questions about Pakistani law, in English, Urdu, or Roman Urdu,
           and get an answer drawn only from the statutes, cited to the exact Article or
           Section, with an honest &ldquo;I don&apos;t know&rdquo; when the law doesn&apos;t
           cover it.
@@ -49,7 +49,7 @@ export function HomeView({
           />
         </div>
 
-        {/* How it works — the trust story */}
+        {/* How it works: the trust story */}
         <div className="mt-12">
           <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-faint">
             How it works
@@ -58,7 +58,7 @@ export function HomeView({
             <Step
               n="01"
               title="Grounded"
-              body="Answers come only from official statutes — never the model's own memory."
+              body="Answers come only from official statutes, never the model's own memory."
             />
             <Step
               n="02"
@@ -100,7 +100,7 @@ export function HomeView({
         </div>
 
         <p className="mt-12 border-t border-line pt-5 text-[12px] leading-relaxed text-faint">
-          Legal information, not legal advice. Answers may be incomplete — verify against the
+          Legal information, not legal advice. Answers may be incomplete, so verify against the
           cited source and consult a qualified lawyer for your situation.
         </p>
       </div>

@@ -19,11 +19,10 @@ _READ_CHUNK = 1 << 20  # 1 MiB
 
 
 async def _read_capped(file: UploadFile, limit: int) -> bytes:
-    """Read at most ``limit`` bytes, aborting as soon as the body exceeds it.
+    """Read at most ``limit`` bytes, aborting once the body exceeds it.
 
-    ``await file.read()`` with no argument materializes the whole upload in memory,
-    so the size check has to happen *while* reading rather than after: a multi-GB
-    body would otherwise exhaust memory before any limit was consulted.
+    An argument-less ``file.read()`` materializes the whole upload, so the check has
+    to happen while reading, otherwise a multi-GB body exhausts memory first.
     """
     parts: list[bytes] = []
     total = 0
@@ -42,10 +41,9 @@ async def upload_document(
     if not (file.filename or "").lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
 
-    # Cheap pre-check on the declared size, before reading the body. A missing or
-    # dishonest Content-Length is still caught by the capped read below.
-    # Note: Starlette has already spooled the multipart body by this point, so a
-    # truly early reject also needs a body-size limit at the proxy / ingress.
+    # Cheap reject on the declared size; a missing or lying Content-Length falls
+    # through to the capped read. Starlette has already spooled the body by now, so
+    # a truly early reject also needs a body limit at the ingress.
     declared = request.headers.get("content-length")
     if declared and declared.isdigit() and int(declared) > MAX_UPLOAD_BYTES:
         raise HTTPException(status_code=413, detail="File too large (max 10 MB).")
@@ -53,8 +51,7 @@ async def upload_document(
     data = await _read_capped(file, MAX_UPLOAD_BYTES)
 
     try:
-        # Parsing and embedding are blocking CPU work; keep them off the event loop
-        # so concurrent requests and in-flight SSE streams aren't stalled.
+        # Parsing and embedding block; keep them off the loop.
         doc = await run_in_threadpool(ingest_pdf, file.filename or "document.pdf", data)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

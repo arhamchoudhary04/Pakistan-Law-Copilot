@@ -29,7 +29,7 @@ def build_index() -> VectorStore:
     )
     print(f"  produced {len(chunks)} chunk(s)")
     if not chunks:
-        raise SystemExit("No chunks produced — is the corpus empty?")
+        raise SystemExit("No chunks produced. Is the corpus empty?")
 
     print(f"Embedding with {settings.embed_model} ...")
     embedder = get_embedder()

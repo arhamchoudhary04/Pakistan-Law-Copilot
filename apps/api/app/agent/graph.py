@@ -116,13 +116,11 @@ async def rewrite_node(state: AgentState, config: RunnableConfig) -> dict:
 
 
 def retrieve_node(state: AgentState, config: RunnableConfig) -> dict:
-    """Embed the queries and search the store (hybrid: vector + graph expansion).
+    """Embed the queries and search; hybrid when the graph is enabled.
 
-    Deliberately sync, not ``async def``: every call inside is blocking CPU work
-    (fastembed ONNX inference, FAISS search). LangGraph runs a sync node in its
-    threadpool, so the event loop stays free to serve other requests and to keep
-    in-flight SSE streams moving. As an ``async def`` this body would run *on* the
-    loop and serialize every concurrent user behind it.
+    Kept sync: embedding and FAISS search are blocking CPU work, and LangGraph runs
+    sync nodes in a threadpool. As `async def` this would run on the event loop and
+    serialize every concurrent request behind it, SSE streams included.
     """
     t = perf_counter()
     settings = get_settings()

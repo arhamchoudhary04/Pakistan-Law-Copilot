@@ -1,7 +1,7 @@
-"""``/auth/*`` over HTTP: status codes, validation, and the no-enumeration promise.
+"""``/auth/*`` over HTTP: status codes, validation, no-enumeration.
 
-These exercise the layer the unit tests skip — FastAPI routing, the
-``get_current_user`` dependency, and request validation at the boundary.
+Covers the layer the unit tests skip: routing, the ``get_current_user`` dependency,
+and validation at the boundary.
 """
 
 from __future__ import annotations
@@ -101,7 +101,6 @@ def test_me_requires_a_valid_bearer_token(client: TestClient):
 
 
 def test_a_token_signed_with_another_secret_is_rejected(client: TestClient, monkeypatch):
-    """A forged token must not authenticate, even if it is structurally valid."""
     import app.auth.security as security
     from app.core.config import Settings
 
@@ -111,7 +110,7 @@ def test_a_token_signed_with_another_secret_is_rejected(client: TestClient, monk
 
 
 def test_token_for_a_deleted_account_is_rejected(client: TestClient, tmp_path):
-    """The token still verifies, but the account is gone — must not authenticate."""
+    """The signature still verifies; the account behind it is gone."""
     import sqlite3
 
     from app.core.config import get_settings
@@ -161,7 +160,6 @@ def test_reset_password_replaces_the_old_password(client: TestClient):
 
 
 def test_a_reset_token_cannot_be_used_as_a_session_token(client: TestClient):
-    """The typed-token guarantee, asserted through HTTP rather than in-process."""
     signup(client, "typed@example.com")
     reset_token = client.post(
         "/auth/forgot-password", json={"email": "typed@example.com"}

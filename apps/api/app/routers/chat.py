@@ -50,7 +50,7 @@ async def chat(request: Request, body: ChatRequest) -> EventSourceResponse:
 
     async def event_generator() -> AsyncIterator[dict[str, str]]:
         async for event in run_chat(body.message, store, history, mode):
-            # Client disconnected — stop generating (and stop paying the LLM).
+            # Client disconnected: stop generating, and stop paying the LLM.
             if await request.is_disconnected():
                 break
             data = event.data

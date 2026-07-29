@@ -17,6 +17,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import Settings, get_settings
+from app.core.ratelimit import RateLimitMiddleware
 from app.db.store import get_account_store
 from app.retrieval.vector_store import VectorStore
 from app.routers import auth, chat, conversations, documents, health
@@ -63,6 +64,13 @@ def create_app() -> FastAPI:
         description="Grounded, citation-first RAG over a trusted corpus.",
         lifespan=lifespan,
     )
+    # Starlette makes the last-added middleware outermost, so registering the limiter
+    # first leaves CORS wrapping it. A 429 without CORS headers reaches the browser as
+    # an opaque network failure.
+    if settings.rate_limit_enabled:
+        app.add_middleware(
+            RateLimitMiddleware, trust_proxy_headers=settings.rate_limit_trust_proxy
+        )
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origin_list,

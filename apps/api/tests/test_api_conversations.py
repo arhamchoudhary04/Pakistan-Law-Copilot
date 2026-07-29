@@ -1,8 +1,8 @@
-"""``/conversations/*`` over HTTP: authentication, per-user scoping, and round-trip.
+"""``/conversations/*`` over HTTP: auth, per-user scoping, round-trip.
 
-The store-level equivalents live in ``test_store.py``; these assert the same
-guarantee survives the router and the ``CurrentUser`` dependency, and that a
-cross-user attempt is reported as 404 (not 403, which would confirm existence).
+The store-level equivalents are in ``test_store.py``. These check the same guarantee
+survives the router and the ``CurrentUser`` dependency, and that a cross-user attempt
+comes back 404 rather than 403.
 """
 
 from __future__ import annotations
@@ -85,7 +85,6 @@ def test_saving_a_turn_into_another_users_conversation_is_a_404(client: TestClie
 
 
 def test_a_saved_turn_is_restored_with_its_citations(client: TestClient):
-    """Reopening a conversation must bring back the clickable sources."""
     token = signup(client, "round@example.com")
     conv_id = _new_conversation(client, token, "Rights on arrest")
     meta = {

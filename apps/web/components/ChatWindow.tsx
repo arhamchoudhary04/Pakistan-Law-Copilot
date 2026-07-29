@@ -123,7 +123,7 @@ export function ChatWindow({
           convIdRef.current = summary.id;
           onConversationCreated?.(summary);
         } catch {
-          /* couldn't create — answer anyway, just don't persist this turn */
+          /* couldn't create, so answer anyway and don't persist this turn */
         }
       }
 
@@ -202,7 +202,7 @@ export function ChatWindow({
     try {
       const uploaded = await uploadDocument(file);
       setDoc(uploaded);
-      // Fresh conversation for the new document — law-corpus turns don't apply.
+      // Fresh conversation for the new document; law-corpus turns don't apply.
       setTurns([]);
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : "Upload failed.");
@@ -216,7 +216,7 @@ export function ChatWindow({
     setDoc(null);
     setUploadError(null);
     setTurns([]);
-    convIdRef.current = null; // back to the law corpus — start a fresh saved chat
+    convIdRef.current = null; // back to the law corpus, so start a fresh saved chat
   }, []);
 
   // A question deep-linked from Home / Browse: submit it once when it arrives.
@@ -310,7 +310,7 @@ export function ChatWindow({
             placeholder={
               doc
                 ? `Ask about ${doc.filename}…`
-                : "Ask about your rights — English, Urdu, or Roman Urdu…"
+                : "Ask about your rights in English, Urdu, or Roman Urdu…"
             }
             disabled={busy}
             className="flex-1 bg-transparent px-1 py-2 text-[15px] text-ink placeholder:text-faint focus:outline-none disabled:opacity-60"
@@ -356,7 +356,7 @@ function EmptyState({
         </h2>
         <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">
           <span className="font-medium text-ink">{activeDoc.filename}</span> is ready
-          ({activeDoc.chunks} passages indexed). Ask anything about it — answers are drawn
+          ({activeDoc.chunks} passages indexed). Ask anything about it, and answers are drawn
           only from the document, cited to the page, with an honest &ldquo;I don&apos;t
           know&rdquo; when it isn&apos;t covered.
         </p>
@@ -371,7 +371,7 @@ function EmptyState({
         <span className="text-accent">with the source.</span>
       </h2>
       <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">
-        Ask in plain language — English, Urdu, or Roman Urdu — and get an answer grounded
+        Ask in plain language (English, Urdu, or Roman Urdu) and get an answer grounded
         in Pakistani law, cited to the exact Article or Section, with an honest
         &ldquo;I don&apos;t know&rdquo; when the law doesn&apos;t cover it.
       </p>

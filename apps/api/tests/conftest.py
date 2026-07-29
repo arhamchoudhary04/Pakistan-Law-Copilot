@@ -1,13 +1,8 @@
-"""Shared fixtures for the API-level (TestClient) tests.
+"""Fixtures for the TestClient-level tests.
 
-Two things have to be true for these tests to be safe and hermetic:
-
-1. **The real database is never touched.** ``DATA_DIR`` is pointed at ``tmp_path``
-   and both ``get_settings`` and ``get_account_store`` are ``lru_cache``d, so their
-   caches are cleared around every test. Without that, a test would read and write
-   the developer's actual ``.data/app.db``.
-2. **No model is ever downloaded.** The embedder and LLM are stubbed, so nothing
-   here needs network access, a GROQ_API_KEY, or the ~130MB fastembed model.
+``DATA_DIR`` points at ``tmp_path`` and the lru_caches around it are cleared per
+test, so nothing here can reach the real ``.data/app.db``. The embedder and LLM are
+stubbed, so the suite needs no network, no key, and no model download.
 """
 
 from __future__ import annotations
@@ -33,10 +28,10 @@ def _clear_caches() -> None:
 
 @pytest.fixture
 def test_env(tmp_path, monkeypatch) -> Iterator[None]:
-    """Point every cached setting at an isolated tmp dir for the duration of a test.
+    """Isolate every cached setting in a tmp dir.
 
-    Environment variables outrank the repo-root ``.env`` in pydantic-settings, so
-    setting them here overrides the developer's real configuration.
+    Env vars outrank the repo-root .env in pydantic-settings, which is what makes
+    this override the developer's real config.
     """
     monkeypatch.setenv("DATA_DIR", str(tmp_path))
     monkeypatch.setenv("APP_ENV", "dev")
@@ -50,25 +45,19 @@ def test_env(tmp_path, monkeypatch) -> Iterator[None]:
 
 @pytest.fixture
 def store(tmp_path) -> AccountStore:
-    """A bare AccountStore on its own SQLite file (no app, no HTTP)."""
     return AccountStore(tmp_path / "store-under-test.db")
 
 
 @pytest.fixture
 def client(test_env) -> Iterator[TestClient]:
-    """A TestClient with lifespan run but *no* vector index loaded.
-
-    Entering the context manager runs the lifespan, which creates the accounts DB
-    and tries to load an index. There is none in tmp_path, so ``app.state.store``
-    stays ``None`` — which is exactly the state ``/chat`` must answer 503 for.
-    """
+    """TestClient with lifespan run but no index loaded: the 503 case for /chat."""
     from app.main import create_app
 
     with TestClient(create_app()) as test_client:
         yield test_client
 
 
-# ---- Stubs for the chat pipeline (no model download, no API key) ----
+# ---- Stubs for the chat pipeline ----
 
 _SRC = "constitution-fundamental-rights.md"
 
@@ -79,7 +68,7 @@ class StubEmbedder:
 
 
 class StubLLM:
-    """Streams a fixed answer that cites [1], so verify() reports 'grounded'."""
+    """Streams a fixed answer citing [1], so verify() reports 'grounded'."""
 
     async def stream(self, messages, **kwargs) -> AsyncIterator[str]:
         for tok in ["You must be produced before a magistrate ", "within 24 hours [1]."]:
@@ -87,7 +76,7 @@ class StubLLM:
 
 
 class StubStore:
-    """Stands in for a VectorStore: one high-cosine hit, so the gate passes."""
+    """Stands in for a VectorStore: one hit, scored above the gate by default."""
 
     def __init__(self, score: float = 0.87) -> None:
         self._score = score
@@ -109,7 +98,6 @@ class StubStore:
 
 @pytest.fixture
 def stub_agent(monkeypatch) -> None:
-    """Replace the agent's embedder, LLM, and settings with offline stubs."""
     settings = Settings(
         rewrite_enabled=False,  # skip the extra LLM round-trip
         rerank_enabled=False,  # skip the cross-encoder download
@@ -124,12 +112,11 @@ def stub_agent(monkeypatch) -> None:
 
 @pytest.fixture
 def chat_client(test_env, stub_agent) -> Iterator[TestClient]:
-    """A TestClient whose ``/chat`` is wired to the stub store and stub LLM."""
     from app.main import create_app
 
     app = create_app()
     with TestClient(app) as test_client:
-        app.state.store = StubStore()  # set after lifespan, which would reset it
+        app.state.store = StubStore()  # after lifespan, which would reset it
         yield test_client
 
 
@@ -137,7 +124,6 @@ def chat_client(test_env, stub_agent) -> Iterator[TestClient]:
 
 
 def signup(test_client: TestClient, email: str, password: str = "correct-horse") -> str:
-    """Register an account and return its bearer token."""
     resp = test_client.post(
         "/auth/signup", json={"email": email, "name": "Test User", "password": password}
     )

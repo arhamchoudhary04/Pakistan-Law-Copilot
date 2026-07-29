@@ -1,10 +1,8 @@
-"""AccountStore: ownership scoping, turn ordering, and cascade behaviour.
+"""AccountStore: ownership scoping, turn ordering, cascade.
 
-The security-critical property here is that *every* conversation and message
-operation is scoped to the owning user. The code gets this right by passing
-``user_id`` into each query, but nothing pinned it down — so a refactor that
-dropped an ``AND user_id = ?`` would leak another user's chat history with all
-tests still green. These tests are that pin.
+Every conversation and message query is scoped by ``user_id``. Nothing pinned that
+down before, so a refactor dropping an ``AND user_id = ?`` would have leaked one
+user's history to another with the suite still green.
 """
 
 from __future__ import annotations
@@ -75,7 +73,7 @@ def test_user_cannot_delete_another_users_conversation(store: AccountStore):
     conv = store.create_conversation(alice.id, "Alice's chat")
 
     assert store.delete_conversation(bob.id, conv["id"]) is False
-    # Still there for its owner — Bob's attempt must not have removed it.
+    # Still there for its owner: Bob's attempt must not have removed it.
     assert store.get_conversation(alice.id, conv["id"]) is not None
     assert store.delete_conversation(alice.id, conv["id"]) is True
 
@@ -130,7 +128,6 @@ def test_turns_are_stored_in_order_as_user_then_assistant(store: AccountStore):
 
 
 def test_citation_meta_round_trips_so_reopening_restores_sources(store: AccountStore):
-    """The whole point of storing meta: a reopened conversation keeps its citations."""
     alice, _ = _two_users(store)
     conv = store.create_conversation(alice.id, "With citations")
     meta = {
@@ -155,7 +152,7 @@ def test_appending_a_turn_bumps_updated_at(store: AccountStore):
 
 
 def test_deleting_a_conversation_cascades_to_its_messages(tmp_path):
-    """Cascade needs PRAGMA foreign_keys per connection — assert it actually holds."""
+    """Cascade needs PRAGMA foreign_keys set per connection, so verify it holds."""
     db = tmp_path / "cascade.db"
     store = AccountStore(db)
     alice = store.create_user("alice@example.com", "Alice", "hash-a")
@@ -174,7 +171,6 @@ def test_deleting_a_conversation_cascades_to_its_messages(tmp_path):
 
 
 def test_schema_is_idempotent_across_reopens(tmp_path):
-    """Reopening the same file must not fail or lose data (CREATE TABLE IF NOT EXISTS)."""
     db = tmp_path / "reopen.db"
     first = AccountStore(db)
     account = first.create_user("keep@example.com", "Keep", "hash")
