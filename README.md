@@ -55,14 +55,14 @@ best cosine:   0.83
 
 I don't know based on the available sources.
 I searched the corpus but the most relevant
-passage scored only **0.52**, below the
-confidence threshold.
+passage scored **below the confidence
+threshold**.
 
 *No citations. No guess.*
 
 ```
 answer_status: idk
-gate:          0.52 < 0.65, refused
+gate:          best cosine < 0.65
 LLM:           never called
 ```
 
@@ -73,6 +73,64 @@ LLM:           never called
 The second column is the point. A legal assistant that confidently invents a section
 number is worse than useless, so refusal is a first-class outcome here: measured, and
 gated in CI alongside accuracy.
+
+<p align="center">
+  <img src="docs/screenshots/02-home.png" alt="Home: a worked example citing Article 10A, corpus statistics, and starter questions in English and Roman Urdu" width="100%">
+</p>
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+**A grounded answer**
+
+<img src="docs/screenshots/03-grounded-answer.png" alt="A grounded answer citing the Constitution and the Code of Criminal Procedure">
+
+Every claim carries a marker that resolves to a
+retrieved chunk. The badge reports `Grounded`.
+
+</td>
+<td width="50%" align="center">
+
+**A refusal**
+
+<img src="docs/screenshots/05-refusal.png" alt="An off-topic question refused, reporting the score it saw">
+
+Nothing cleared the gate, so it says so and
+reports the score. No citations are invented.
+
+</td>
+</tr>
+</table>
+
+### The retrieval inspector
+
+Every answer can be opened up: per-node latency, the rewritten queries, the candidate
+count, the gate decision, and every retrieved chunk with its cosine and rerank scores.
+The `cited` tag marks the chunks the answer actually used.
+
+<p align="center">
+  <img src="docs/screenshots/04-retrieval-inspector.png" alt="The retrieval inspector showing pipeline stages with latencies and ranked chunks with cosine and rerank scores" width="100%">
+</p>
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+**Click a citation, see the source**
+
+<img src="docs/screenshots/06-source-drawer.png" alt="The source drawer showing the cited provision, its document, chunk id, cosine and rerank scores">
+
+</td>
+<td width="50%" align="center">
+
+**Browse the corpus by topic**
+
+<img src="docs/screenshots/07-browse-law.png" alt="Browse the law: 14 everyday topics mapped to the statutes that cover them">
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -702,7 +760,11 @@ are intentionally demo-grade.
 
 ---
 
-## Disclaimer and attribution
+## Licence, disclaimer and attribution
+
+The code, documentation, and evaluation harness are MIT licensed; see
+[LICENSE](LICENSE). That licence does not extend to the legal texts under
+`data/corpus/`, which remain subject to the terms of their official sources.
 
 **This is legal information, not legal advice.** Answers are generated from a limited
 corpus and may be incomplete or out of date. Always verify against the cited official
