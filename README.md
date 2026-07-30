@@ -7,7 +7,7 @@
 Grounded, citation-first retrieval over 16 Pakistani statutes. It answers from official
 legal text, links the exact Article or Section, and refuses instead of guessing.
 
-[![CI](https://github.com/arhamchoudhary04/Knowledge-Copilot-/actions/workflows/ci.yml/badge.svg)](https://github.com/arhamchoudhary04/Knowledge-Copilot-/actions/workflows/ci.yml)
+[![CI](https://github.com/arhamchoudhary04/Pakistan-Law-Copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/arhamchoudhary04/Pakistan-Law-Copilot/actions/workflows/ci.yml)
 ![tests](https://img.shields.io/badge/tests-125_passing-brightgreen)
 ![provision accuracy](https://img.shields.io/badge/provision_hit_rate-0.958-brightgreen)
 ![refusal](https://img.shields.io/badge/refusal_accuracy-1.00-brightgreen)
