@@ -23,7 +23,7 @@ export function HistorySidebar({
     <div className="flex h-full flex-col">
       <button
         onClick={onNew}
-        className="m-3 flex items-center justify-center gap-2 rounded-xl border border-line bg-card px-3 py-2.5 text-[13px] font-medium text-ink shadow-paper transition hover:border-accent/40 hover:text-accent"
+        className="m-3 flex items-center justify-center gap-2 rounded-xl border border-line-strong bg-card px-3 py-2.5 text-[13px] font-medium text-ink shadow-paper transition hover:border-accent/40 hover:bg-elevated hover:text-accent"
       >
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -32,22 +32,31 @@ export function HistorySidebar({
       </button>
 
       <div className="scroll-thin min-h-0 flex-1 overflow-y-auto px-2">
+        <p className="px-2.5 pb-1.5 pt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-faint">
+          History
+        </p>
         {conversations.length === 0 ? (
-          <p className="px-2 py-6 text-[12px] leading-relaxed text-faint">
-            No conversations yet. Ask a question and it&apos;ll be saved here.
-          </p>
+          <div className="mx-1 mt-1 rounded-xl border border-dashed border-line px-3 py-5">
+            <p className="text-[12px] leading-relaxed text-faint">
+              No conversations yet. Ask a question and it&apos;ll be saved here.
+            </p>
+          </div>
         ) : (
           <ul className="space-y-0.5 pb-2">
             {conversations.map((c) => (
               <li key={c.id}>
                 <div
                   className={`group flex items-center gap-1 rounded-lg pr-1 transition ${
-                    activeId === c.id ? "bg-accent/10" : "hover:bg-surface"
+                    activeId === c.id
+                      ? "bg-elevated ring-1 ring-inset ring-accent/25"
+                      : "hover:bg-elevated/70"
                   }`}
                 >
                   <button
                     onClick={() => onSelect(c.id)}
-                    className="min-w-0 flex-1 truncate px-2.5 py-2 text-left text-[13px] text-ink/85"
+                    className={`min-w-0 flex-1 truncate px-2.5 py-2 text-left text-[13px] ${
+                      activeId === c.id ? "text-accent" : "text-ink/85"
+                    }`}
                     title={c.title}
                   >
                     {c.title}

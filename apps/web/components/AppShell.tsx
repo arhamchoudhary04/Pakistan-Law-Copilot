@@ -30,7 +30,7 @@ export function AppShell() {
   if (!ready) {
     return (
       <div className="grid h-[100dvh] place-items-center">
-        <span className="h-6 w-6 animate-spin rounded-full border-2 border-line border-t-accent" />
+        <span className="h-6 w-6 animate-spin rounded-full border-2 border-line-strong border-t-accent" />
       </div>
     );
   }
@@ -112,10 +112,14 @@ function Workspace() {
     setActiveId(summary.id);
   }, []);
 
+  // Home and Browse are content pages and use the full width; the chat keeps a
+  // narrow measure, because a 1,200px line of legal prose is unreadable.
+  const columnWidth = view === "ask" ? "max-w-3xl" : "max-w-6xl";
+
   return (
     <div className="flex h-[100dvh]">
       {/* Desktop sidebar */}
-      <aside className="hidden w-[264px] shrink-0 border-r border-line bg-surface/40 md:block">
+      <aside className="hidden w-[268px] shrink-0 border-r border-line bg-surface md:block">
         <HistorySidebar
           conversations={conversations}
           activeId={activeId}
@@ -128,8 +132,11 @@ function Workspace() {
       {/* Mobile sidebar drawer */}
       {mobileNav && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-ink/25 backdrop-blur-[2px]" onClick={() => setMobileNav(false)} />
-          <div className="absolute left-0 top-0 h-full w-[280px] border-r border-line bg-paper shadow-lift">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
+            onClick={() => setMobileNav(false)}
+          />
+          <div className="absolute left-0 top-0 h-full w-[280px] border-r border-line bg-surface shadow-lift">
             <HistorySidebar
               conversations={conversations}
               activeId={activeId}
@@ -143,13 +150,15 @@ function Workspace() {
 
       {/* Main column */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="px-5 pt-5">
-          <div className="mx-auto flex max-w-2xl items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-2">
+        <header className="sticky top-0 z-30 border-b border-line bg-canvas/85 backdrop-blur-xl">
+          <div
+            className={`mx-auto flex ${columnWidth} items-center justify-between gap-3 px-5 py-3.5`}
+          >
+            <div className="flex min-w-0 items-center gap-2.5">
               <button
                 onClick={() => setMobileNav(true)}
                 aria-label="Open history"
-                className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-muted transition hover:bg-surface hover:text-ink md:hidden"
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-muted transition hover:bg-elevated hover:text-ink md:hidden"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -157,19 +166,29 @@ function Workspace() {
               </button>
               <button
                 onClick={() => setView("home")}
-                className="truncate font-display text-[20px] font-semibold leading-none tracking-tight text-ink transition hover:text-accent"
+                className="group flex min-w-0 items-center gap-2.5"
               >
-                Pakistan Law Copilot
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-accent/30 bg-sheen font-display text-[15px] font-semibold text-accent">
+                  §
+                </span>
+                <span className="truncate text-left">
+                  <span className="block truncate font-display text-[17px] font-semibold leading-none tracking-tight text-ink transition group-hover:text-accent">
+                    Pakistan Law Copilot
+                  </span>
+                  <span className="mt-1 block text-[10px] uppercase tracking-[0.18em] text-faint">
+                    Cited. Or it says no.
+                  </span>
+                </span>
               </button>
             </div>
-            <nav className="flex items-center gap-1">
+            <nav className="flex shrink-0 items-center gap-1 rounded-full border border-line bg-surface p-1">
               {NAV.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => setView(item.id)}
                   className={`rounded-full px-3 py-1.5 text-[13px] transition ${
                     view === item.id
-                      ? "bg-accent/10 font-medium text-accent"
+                      ? "bg-elevated font-medium text-accent shadow-paper"
                       : "text-muted hover:text-ink"
                   }`}
                 >
@@ -178,18 +197,15 @@ function Workspace() {
               ))}
             </nav>
           </div>
-          <div className="mx-auto mt-3 flex max-w-2xl items-center gap-2 border-t border-line pt-2.5">
-            <span className="h-1 w-1 rounded-full bg-accent" />
-            <p className="text-[11px] text-muted">
-              Legal information, not legal advice. Grounded in cited statutes, and may be
-              incomplete. Verify against the source and consult a lawyer.
-            </p>
-          </div>
         </header>
 
-        <div className="mx-auto min-h-0 w-full max-w-2xl flex-1 px-5">
+        <div className={`mx-auto min-h-0 w-full ${columnWidth} flex-1 px-5`}>
           {view === "home" && (
-            <HomeView onStartAsk={() => newChat()} onBrowse={() => setView("browse")} />
+            <HomeView
+              onStartAsk={() => newChat()}
+              onBrowse={() => setView("browse")}
+              onAsk={(q) => newChat(q)}
+            />
           )}
           {view === "browse" && <BrowseLaw onAsk={(q) => newChat(q)} />}
           {/* Kept mounted so navigating Home/Browse never drops the conversation;
@@ -206,6 +222,17 @@ function Workspace() {
             />
           </div>
         </div>
+
+        {/* Kept on every view: the disclaimer has to be present, not just on Home. */}
+        <footer className="shrink-0 border-t border-line bg-surface/60">
+          <p
+            className={`mx-auto ${columnWidth} px-5 py-2.5 text-[11px] leading-relaxed text-faint`}
+          >
+            <span className="mr-1.5 inline-block h-1 w-1 -translate-y-[2px] rounded-full bg-accent/70" />
+            Legal information, not legal advice. Answers are drawn from a limited corpus and
+            may be incomplete. Verify against the cited source and consult a lawyer.
+          </p>
+        </footer>
       </div>
     </div>
   );

@@ -81,23 +81,54 @@ export function AuthScreen() {
           : "Reset password";
 
   return (
-    <main className="mx-auto flex min-h-[100dvh] max-w-md flex-col justify-center px-6 py-10">
-      <div className="animate-fade-in-up">
-        <h1 className="font-display text-[26px] font-semibold leading-none tracking-tight text-ink">
-          Pakistan Law Copilot
+    <main className="mx-auto grid min-h-[100dvh] max-w-5xl items-center gap-12 px-6 py-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16">
+      {/* Pitch column: a lone form on a wide dark page is what reads as unfinished. */}
+      <section className="hidden animate-fade-in-up lg:block">
+        <span className="grid h-10 w-10 place-items-center rounded-xl border border-accent/30 bg-sheen font-display text-[19px] font-semibold text-accent">
+          §
+        </span>
+        <h1 className="mt-6 font-display text-[42px] font-medium leading-[1.06] tracking-tight text-ink">
+          Know your rights,
+          <br />
+          <span className="text-accent">grounded in the law.</span>
         </h1>
+        <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">
+          A citation-first assistant over 16 Pakistani statutes. Every answer links the exact
+          Article or Section, and it says so plainly when the law does not cover your question.
+        </p>
+        <ul className="mt-8 space-y-3.5">
+          {[
+            ["Grounded", "Answers come only from official statutes."],
+            ["Cited", "Every claim links to the provision behind it."],
+            ["Honest", "It refuses instead of guessing."],
+          ].map(([title, body]) => (
+            <li key={title} className="flex gap-3">
+              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              <span className="text-[14px] leading-relaxed">
+                <span className="font-medium text-ink">{title}. </span>
+                <span className="text-muted">{body}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div className="animate-fade-in-up">
+        <h2 className="font-display text-[24px] font-semibold leading-none tracking-tight text-ink lg:hidden">
+          Pakistan Law Copilot
+        </h2>
         <p className="mt-2.5 text-[14px] leading-relaxed text-muted">{SUBTITLE[mode]}</p>
 
-        <div className="mt-7 rounded-2xl border border-line bg-card p-6 shadow-paper">
+        <div className="mt-5 rounded-2xl border border-line bg-card p-6 shadow-lift">
           {(mode === "login" || mode === "signup") && (
-            <div className="mb-5 flex rounded-xl bg-surface p-1 text-[13px] font-medium">
+            <div className="mb-5 flex rounded-xl border border-line bg-surface p-1 text-[13px] font-medium">
               {(["login", "signup"] as const).map((m) => (
                 <button
                   key={m}
                   type="button"
                   onClick={() => go(m)}
                   className={`flex-1 rounded-lg py-1.5 transition ${
-                    mode === m ? "bg-card text-ink shadow-paper" : "text-muted hover:text-ink"
+                    mode === m ? "bg-elevated text-accent shadow-paper" : "text-muted hover:text-ink"
                   }`}
                 >
                   {m === "login" ? "Sign in" : "Create account"}
@@ -153,15 +184,16 @@ export function AuthScreen() {
             )}
 
             {notice && <p className="text-[13px] leading-relaxed text-grounded">{notice}</p>}
-            {error && <p className="text-[13px] text-accent">{error}</p>}
+            {/* Errors use the refusal colour, not brass, which is chrome here. */}
+            {error && <p className="text-[13px] leading-relaxed text-idk">{error}</p>}
 
             <button
               type="submit"
               disabled={busy}
-              className="mt-1 flex w-full items-center justify-center rounded-xl bg-accent px-4 py-2.5 text-[14px] font-medium text-white transition hover:bg-[#6a2523] disabled:cursor-not-allowed disabled:opacity-40"
+              className="mt-1 flex w-full items-center justify-center rounded-xl bg-accent px-4 py-2.5 text-[14px] font-semibold text-canvas shadow-brass transition hover:bg-accent-hi disabled:cursor-not-allowed disabled:opacity-40"
             >
               {busy ? (
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-canvas/30 border-t-canvas" />
               ) : (
                 cta
               )}
@@ -205,7 +237,7 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required
-        className="w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-[14px] text-ink placeholder:text-faint transition focus:border-accent/40 focus:outline-none"
+        className="w-full rounded-xl border border-line-strong bg-surface px-3.5 py-2.5 text-[14px] text-ink placeholder:text-faint transition focus:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent/15"
       />
     </label>
   );

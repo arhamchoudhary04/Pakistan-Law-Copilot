@@ -15,12 +15,12 @@ export function SourceDrawer({
     <>
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-40 bg-ink/25 backdrop-blur-[2px] transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-black/70 backdrop-blur-[2px] transition-opacity duration-300 ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
       <aside
-        className={`scroll-thin fixed right-0 top-0 z-50 h-full w-full max-w-md overflow-y-auto border-l border-line bg-paper p-6 shadow-lift transition-transform duration-300 ease-out ${
+        className={`scroll-thin fixed right-0 top-0 z-50 h-full w-full max-w-md overflow-y-auto border-l border-line-strong bg-surface p-6 shadow-lift transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -32,7 +32,7 @@ export function SourceDrawer({
               </span>
               <button
                 onClick={onClose}
-                className="grid h-7 w-7 place-items-center rounded-lg text-muted transition hover:bg-surface hover:text-ink"
+                className="grid h-7 w-7 place-items-center rounded-lg text-muted transition hover:bg-elevated hover:text-ink"
                 aria-label="Close"
               >
                 ✕
@@ -56,18 +56,18 @@ export function SourceDrawer({
                 <ScorePill label="rerank" value={source.rerank_score} />
               )}
               {source.used && (
-                <div className="rounded-lg bg-accent/12 px-3 py-1.5 text-sm font-medium text-accent">
+                <div className="rounded-lg bg-accent/15 px-3 py-1.5 text-sm font-medium text-accent ring-1 ring-inset ring-accent/25">
                   cited in answer
                 </div>
               )}
               {source.via_graph && (
-                <div className="rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-muted">
+                <div className="rounded-lg border border-line bg-card px-3 py-1.5 text-sm text-muted">
                   found via graph
                 </div>
               )}
             </div>
 
-            <div className="rounded-lg border border-line bg-surface p-3 font-mono text-[11px] text-muted">
+            <div className="rounded-lg border border-line bg-card p-3 font-mono text-[11px] text-muted">
               {source.chunk_id}
             </div>
           </div>

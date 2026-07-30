@@ -7,9 +7,9 @@ const LABELS: Record<AnswerStatus, string> = {
 };
 
 const STYLES: Record<AnswerStatus, string> = {
-  grounded: "bg-grounded/10 text-grounded ring-grounded/30",
-  idk: "bg-idk/10 text-idk ring-idk/30",
-  partial: "bg-partial/10 text-partial ring-partial/40",
+  grounded: "bg-grounded/12 text-grounded ring-grounded/30",
+  idk: "bg-idk/12 text-idk ring-idk/30",
+  partial: "bg-partial/12 text-partial ring-partial/35",
 };
 
 /** Answer-status badge: a refusal looks visibly different from a grounded answer. */

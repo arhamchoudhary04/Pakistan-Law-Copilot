@@ -43,9 +43,9 @@ export function RetrievalInspector({
                     {s.detail}
                   </span>
                   <span className="flex items-center gap-2">
-                    <span className="h-1 w-16 overflow-hidden rounded-full bg-surface">
+                    <span className="h-1 w-16 overflow-hidden rounded-full bg-line-strong">
                       <span
-                        className="block h-full rounded-full bg-accent/70"
+                        className="block h-full rounded-full bg-accent/80"
                         style={{ width: `${(s.latency_ms / maxLatency) * 100}%` }}
                       />
                     </span>
@@ -68,15 +68,15 @@ export function RetrievalInspector({
                   <li key={s.chunk_id}>
                     <button
                       onClick={() => onOpenSource(s)}
-                      className={`flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-xs transition hover:bg-surface ${
-                        s.used ? "bg-accent-tint" : ""
+                      className={`flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-left text-xs transition hover:bg-elevated ${
+                        s.used ? "bg-accent/10" : ""
                       }`}
                     >
                       <span className="flex-1 truncate text-ink/80" title={s.section}>
                         {s.section || s.source}
                       </span>
                       {s.via_graph && (
-                        <span className="rounded border border-line bg-surface px-1.5 py-0.5 text-[10px] text-muted">
+                        <span className="rounded border border-line bg-elevated px-1.5 py-0.5 text-[10px] text-muted">
                           graph
                         </span>
                       )}
