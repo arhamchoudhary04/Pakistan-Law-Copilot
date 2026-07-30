@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 684" width="1180" height="684" role="img" aria-label="System architecture">
+<rect width="1180" height="684" rx="14" fill="#0E1117"/>
+<text x="34" y="44" font-family="Georgia,Cambria,serif" font-size="19" font-weight="600" fill="#E9EEF5" text-anchor="start" letter-spacing="0">System architecture</text>
+<text x="34" y="64" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="12" font-weight="400" fill="#6E7A8C" text-anchor="start" letter-spacing="0">Everything except the Groq call runs locally, offline and free.</text>
+<rect x="34" y="84" width="268" height="244" rx="12" fill="#151A22" fill-opacity="1.0" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="34" y="84" width="4" height="244" rx="2" fill="#22D3EE" fill-opacity="0.85"/>
+<text x="52" y="108" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#22D3EE" text-anchor="start" letter-spacing="1.4">CLIENT</text>
+<rect x="54" y="122" width="228" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#22D3EE" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="54" y="122" width="228" height="52" rx="9" fill="#22D3EE" fill-opacity="0.1"/>
+<text x="168.0" y="143" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="0">Next.js UI</text>
+<text x="168.0" y="160" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">App Router, TypeScript</text>
+<rect x="54" y="192" width="228" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#22D3EE" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="54" y="192" width="228" height="52" rx="9" fill="#22D3EE" fill-opacity="0.1"/>
+<text x="168.0" y="213" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="0">SSE over fetch</text>
+<text x="168.0" y="230" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">EventSource is GET only</text>
+<rect x="54" y="262" width="228" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#22D3EE" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="54" y="262" width="228" height="52" rx="9" fill="#22D3EE" fill-opacity="0.1"/>
+<text x="168.0" y="283" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="0">Tailwind</text>
+<text x="168.0" y="300" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">design tokens</text>
+<rect x="322" y="84" width="306" height="244" rx="12" fill="#151A22" fill-opacity="1.0" stroke="#FBBF24" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="322" y="84" width="4" height="244" rx="2" fill="#FBBF24" fill-opacity="0.85"/>
+<text x="340" y="108" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#FBBF24" text-anchor="start" letter-spacing="1.4">API</text>
+<rect x="342" y="122" width="266" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#FBBF24" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="342" y="122" width="266" height="52" rx="9" fill="#FBBF24" fill-opacity="0.1"/>
+<text x="475.0" y="143" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#FBBF24" text-anchor="middle" letter-spacing="0">Rate limit</text>
+<text x="475.0" y="160" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">sliding window, per endpoint</text>
+<rect x="342" y="192" width="266" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#FBBF24" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="342" y="192" width="266" height="52" rx="9" fill="#FBBF24" fill-opacity="0.1"/>
+<text x="475.0" y="213" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#FBBF24" text-anchor="middle" letter-spacing="0">FastAPI</text>
+<text x="475.0" y="230" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">Pydantic v2, typed boundaries</text>
+<rect x="342" y="262" width="266" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#F472B6" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="342" y="262" width="266" height="52" rx="9" fill="#F472B6" fill-opacity="0.1"/>
+<text x="475.0" y="283" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#F472B6" text-anchor="middle" letter-spacing="0">SQLite</text>
+<text x="475.0" y="300" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">accounts and chat history</text>
+<rect x="648" y="84" width="498" height="244" rx="12" fill="#151A22" fill-opacity="1.0" stroke="#A78BFA" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="648" y="84" width="4" height="244" rx="2" fill="#A78BFA" fill-opacity="0.85"/>
+<text x="666" y="108" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#A78BFA" text-anchor="start" letter-spacing="1.4">AGENT</text>
+<rect x="668" y="192" width="214" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#A78BFA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="668" y="192" width="214" height="52" rx="9" fill="#A78BFA" fill-opacity="0.1"/>
+<text x="775.0" y="213" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#A78BFA" text-anchor="middle" letter-spacing="0">LangGraph</text>
+<text x="775.0" y="230" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">state machine</text>
+<rect x="912" y="192" width="214" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#A78BFA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="912" y="192" width="214" height="52" rx="9" fill="#A78BFA" fill-opacity="0.1"/>
+<text x="1019.0" y="213" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#A78BFA" text-anchor="middle" letter-spacing="0">verify loop</text>
+<text x="1019.0" y="230" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">retry on unsupported claims</text>
+<text x="668" y="145" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#A78BFA" text-anchor="start" letter-spacing="0">rewrite -&gt; retrieve -&gt; grade -&gt; rerank -&gt; generate -&gt; verify</text>
+<rect x="34" y="356" width="1112" height="132" rx="12" fill="#151A22" fill-opacity="1.0" stroke="#34D399" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="34" y="356" width="4" height="132" rx="2" fill="#34D399" fill-opacity="0.85"/>
+<text x="52" y="380" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#34D399" text-anchor="start" letter-spacing="1.4">MODELS AND STORES</text>
+<rect x="54" y="400" width="190" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#34D399" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="54" y="400" width="190" height="52" rx="9" fill="#34D399" fill-opacity="0.1"/>
+<text x="149.0" y="421" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#34D399" text-anchor="middle" letter-spacing="0">fastembed</text>
+<text x="149.0" y="438" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">bge-small, ONNX</text>
+<rect x="274" y="400" width="190" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#F472B6" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="274" y="400" width="190" height="52" rx="9" fill="#F472B6" fill-opacity="0.1"/>
+<text x="369.0" y="421" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#F472B6" text-anchor="middle" letter-spacing="0">FAISS</text>
+<text x="369.0" y="438" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">1,872 chunks</text>
+<rect x="494" y="400" width="190" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#34D399" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="494" y="400" width="190" height="52" rx="9" fill="#34D399" fill-opacity="0.1"/>
+<text x="589.0" y="421" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#34D399" text-anchor="middle" letter-spacing="0">cross-encoder</text>
+<text x="589.0" y="438" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">MiniLM, ONNX</text>
+<rect x="714" y="400" width="190" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#F472B6" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="714" y="400" width="190" height="52" rx="9" fill="#F472B6" fill-opacity="0.1"/>
+<text x="809.0" y="421" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#F472B6" text-anchor="middle" letter-spacing="0">Neo4j</text>
+<text x="809.0" y="438" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">provision graph</text>
+<rect x="934" y="400" width="190" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#FB923C" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="934" y="400" width="190" height="52" rx="9" fill="#FB923C" fill-opacity="0.1"/>
+<text x="1029.0" y="421" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#FB923C" text-anchor="middle" letter-spacing="0">Groq</text>
+<text x="1029.0" y="438" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">llama-3.1-8b</text>
+<rect x="34" y="508" width="1112" height="132" rx="12" fill="#151A22" fill-opacity="1.0" stroke="#60A5FA" stroke-width="1" stroke-opacity="0.3"/>
+<rect x="34" y="508" width="4" height="132" rx="2" fill="#60A5FA" fill-opacity="0.85"/>
+<text x="52" y="532" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" fill="#60A5FA" text-anchor="start" letter-spacing="1.4">INGESTION, OFFLINE</text>
+<rect x="54" y="552" width="245" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#60A5FA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="54" y="552" width="245" height="52" rx="9" fill="#60A5FA" fill-opacity="0.1"/>
+<text x="176.5" y="573" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#60A5FA" text-anchor="middle" letter-spacing="0">Official PDFs</text>
+<text x="176.5" y="590" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">pakistancode.gov.pk</text>
+<rect x="329" y="552" width="245" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#60A5FA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="329" y="552" width="245" height="52" rx="9" fill="#60A5FA" fill-opacity="0.1"/>
+<text x="451.5" y="573" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#60A5FA" text-anchor="middle" letter-spacing="0">pypdf</text>
+<text x="451.5" y="590" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">to structured markdown</text>
+<rect x="604" y="552" width="245" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#60A5FA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="604" y="552" width="245" height="52" rx="9" fill="#60A5FA" fill-opacity="0.1"/>
+<text x="726.5" y="573" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#60A5FA" text-anchor="middle" letter-spacing="0">chunker</text>
+<text x="726.5" y="590" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">one provision per chunk</text>
+<rect x="879" y="552" width="245" height="52" rx="9" fill="#1C222C" fill-opacity="1.0" stroke="#60A5FA" stroke-width="1.4" stroke-opacity="0.55"/>
+<rect x="879" y="552" width="245" height="52" rx="9" fill="#60A5FA" fill-opacity="0.1"/>
+<text x="1001.5" y="573" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="600" fill="#60A5FA" text-anchor="middle" letter-spacing="0">embed and index</text>
+<text x="1001.5" y="590" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="400" fill="#9AA6B8" text-anchor="middle" letter-spacing="0">writes the FAISS store</text>
+<path d="M 282 148.0 H 335" stroke="#22D3EE" stroke-width="1.9" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="341,148.0 333.0,143.0 333.0,153.0" fill="#22D3EE"/>
+<path d="M 475.0 174 V 185" stroke="#FBBF24" stroke-width="1.9" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="475.0,191 470.0,183.0 480.0,183.0" fill="#FBBF24"/>
+<path d="M 608 218.0 H 661" stroke="#FBBF24" stroke-width="1.9" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="667,218.0 659.0,213.0 659.0,223.0" fill="#FBBF24"/>
+<path d="M 475.0 244 V 255" stroke="#F472B6" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="475.0,261 470.0,253.0 480.0,253.0" fill="#F472B6"/>
+<path d="M 882 218.0 H 905" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="911,218.0 903.0,213.0 903.0,223.0" fill="#A78BFA"/>
+<path d="M 775.0 244 V 344" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 149.0 344 H 1029.0" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 149.0 344 V 393" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="149.0,399 144.0,391.0 154.0,391.0" fill="#A78BFA"/>
+<path d="M 369.0 344 V 393" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="369.0,399 364.0,391.0 374.0,391.0" fill="#A78BFA"/>
+<path d="M 589.0 344 V 393" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="589.0,399 584.0,391.0 594.0,391.0" fill="#A78BFA"/>
+<path d="M 809.0 344 V 393" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="809.0,399 804.0,391.0 814.0,391.0" fill="#A78BFA"/>
+<path d="M 1029.0 344 V 393" stroke="#A78BFA" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1029.0,399 1024.0,391.0 1034.0,391.0" fill="#A78BFA"/>
+<path d="M 299 578.0 H 322" stroke="#60A5FA" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+<polygon points="328,578.0 320.0,573.0 320.0,583.0" fill="#60A5FA"/>
+<path d="M 574 578.0 H 597" stroke="#60A5FA" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+<polygon points="603,578.0 595.0,573.0 595.0,583.0" fill="#60A5FA"/>
+<path d="M 849 578.0 H 872" stroke="#60A5FA" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+<polygon points="878,578.0 870.0,573.0 870.0,583.0" fill="#60A5FA"/>
+<path d="M 1001.5 552 V 478 H 369.0 V 459" stroke="#60A5FA" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5 4"/>
+<polygon points="369.0,453 364.0,461.0 374.0,461.0" fill="#60A5FA"/>
+<circle cx="39" cy="658" r="4.5" fill="#22D3EE"/>
+<text x="50" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">client</text>
+<circle cx="117.30000000000001" cy="658" r="4.5" fill="#FBBF24"/>
+<text x="128.3" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">API</text>
+<circle cx="177.45000000000002" cy="658" r="4.5" fill="#A78BFA"/>
+<text x="188.45000000000002" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">agent</text>
+<circle cx="249.70000000000002" cy="658" r="4.5" fill="#34D399"/>
+<text x="260.70000000000005" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">models</text>
+<circle cx="328.0" cy="658" r="4.5" fill="#F472B6"/>
+<text x="339.0" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">data stores</text>
+<circle cx="436.55" cy="658" r="4.5" fill="#60A5FA"/>
+<text x="447.55" y="662" font-family="ui-sans-serif,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="11" font-weight="400" fill="#9AA6B8" text-anchor="start" letter-spacing="0">build time only</text>
+</svg>
