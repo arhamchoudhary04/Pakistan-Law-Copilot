@@ -3,35 +3,57 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #fbfaf7;
-  color: #1b1a17;
+  background-color: #100e0b;
+  color: #f4f0e8;
   @apply antialiased;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "kern", "liga", "calt";
 }
 
-/* Faint warm vignette at the top — subtle paper depth, no clutter. */
+/* Two fixed washes: brass behind the masthead, a cooler pool bottom-right. On a dark
+   canvas a flat fill is what reads as empty, so every view sits on a slow gradient. */
 body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 46% at 50% -8%, rgba(201, 166, 107, 0.11), transparent 72%),
+    radial-gradient(52% 40% at 88% 104%, rgba(201, 166, 107, 0.05), transparent 70%);
+}
+
+/* Very faint grain, so large dark areas are not a dead void. Inlined as a data URI
+   rather than an asset request. */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(60% 42% at 50% -6%, rgba(124, 45, 42, 0.05), transparent 70%);
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
 }
 
 ::selection {
-  background: rgba(124, 45, 42, 0.14);
+  background: rgba(201, 166, 107, 0.26);
+  color: #f4f0e8;
 }
 
-/* Serif display gets tighter tracking + optical sizing for a masthead feel. */
+/* Serif display gets tighter tracking and optical sizing for a masthead feel. */
 .font-display {
   font-optical-sizing: auto;
   letter-spacing: -0.01em;
+}
+
+/* Hairline rule that fades at both ends, for separating page sections. */
+.rule-fade {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #352e26 16%, #352e26 84%, transparent);
 }
 
 .scroll-thin::-webkit-scrollbar {
@@ -40,8 +62,15 @@ body::before {
 }
 .scroll-thin::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background: rgba(27, 26, 23, 0.12);
+  background: rgba(244, 240, 232, 0.1);
 }
 .scroll-thin:hover::-webkit-scrollbar-thumb {
-  background: rgba(27, 26, 23, 0.22);
+  background: rgba(244, 240, 232, 0.2);
+}
+
+/* Keep the UA's white autofill box off a dark input. */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f4f0e8;
+  -webkit-box-shadow: 0 0 0 1000px #191612 inset;
 }
